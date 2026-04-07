@@ -1,0 +1,48 @@
+/* Fondo de la página completa */
+.signup-container {
+    min-height: 100vh;
+    background: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)),
+                url('https://tu-link-de-imagen-de-bosque.jpg') no-repeat center center;
+    background-size: cover;
+    padding: 20px;
+  }
+  
+  /* La tarjeta blanca con bordes redondeados */
+  .signup-card {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 25px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Inputs con estilo minimalista */
+  .custom-input {
+    background-color: #f8f9fa !important;
+    border: 1px solid #dee2e6 !important;
+    border-radius: 10px !important;
+    padding: 10px 15px;
+  }
+  
+  .custom-input:focus {
+    box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.1);
+    border-color: #198754 !important;
+  }
+  
+  /* Colores personalizados */
+  .btn-orange {
+    background-color: #f47c3c;
+    border: none;
+    border-radius: 10px;
+    transition: 0.3s;
+  }
+  
+  .btn-orange:hover {
+    background-color: #e36b2d;
+  }
+  
+  .text-orange {
+    color: #f47c3c;
+    cursor: pointer;
+    text-decoration: underline;
+  }
