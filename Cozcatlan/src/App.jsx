@@ -5,11 +5,11 @@ import heroImg from './assets/hero.png'
 import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router'
 
-import SignUp from './assets/screens/SignUp'
-import Login from './assets/screens/Login'
-import Products from './assets/screens/Products'
-import ShoppingCart from './assets/screens/ShoppingCart'
-import AboutUs from './assets/screens/AboutUs'
+import SignUp from './screens/SignUp.jsx'
+import Login from './screens/Login.jsx'
+import Products from './screens/Products.jsx'
+import ShoppingCart from './screens/ShoppingCart.jsx'
+import AboutUs from './screens/AboutUs.jsx'
 
 
 function App() {
@@ -21,9 +21,9 @@ function App() {
         <Routes>
           <Route path="/signUp" element={<SignUp/>} />
           <Route path="/login" element={<Login/>} />
-          <Route path="/login" element={<Products/>} />
-          <Route path="/login" element={<ShoppingCart/>} />
-          <Route path="/login" element={<AboutUs/>} />
+          <Route path="/products" element={<Products/>} />
+          <Route path="/shoppingCart" element={<ShoppingCart/>} />
+          <Route path="/aboutUs" element={<AboutUs/>} />
         </Routes>
       </Router>  
 

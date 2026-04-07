@@ -1,11 +1,13 @@
 /* Fondo de la página completa */
-.signup-container {
+.signup-wrapper {
     min-height: 100vh;
+    font-family: "Montserrat", sans-serif !important;
     background: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)),
-                url('https://tu-link-de-imagen-de-bosque.jpg') no-repeat center center;
+                url('../assets/CozcatlanFondo.png') no-repeat center center;
     background-size: cover;
     padding: 20px;
   }
+
   
   /* La tarjeta blanca con bordes redondeados */
   .signup-card {
