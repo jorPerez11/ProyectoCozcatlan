@@ -1,0 +1,49 @@
+/* Contenedor general */
+.login-wrapper {
+    min-height: 100vh;
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+/* Panel Izquierdo (Verde Oscuro) */
+.left-panel {
+    background-color: #1a3a13; /* Verde oscuro tipo bosque */
+    background-image: url('/path-to-leaf-pattern.png'); /* El patrón de hojas del fondo */
+    background-size: cover;
+    position: relative;
+}
+
+/* Panel Derecho (Fondo claro con hojas) */
+.right-panel {
+    background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8)),
+                url('/path-to-light-leaves.png');
+    background-size: cover;
+}
+
+/* Tarjeta de Login */
+.login-card {
+    background: white;
+    border-radius: 25px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+/* Ajuste del color Bienvenido */
+.text-success {
+    color: #2d5a27 !important;
+}
+
+/* Línea divisoria suave */
+hr {
+    border-top: 2px solid #e0e0e0;
+    opacity: 1;
+    width: 100%;
+}
+
+/* BOTONES (Para que no pierdas el naranja) */
+.btn-orange {
+    background-color: #f47c3c !important;
+    border-radius: 12px !important;
+    padding: 15px !important;
+    font-size: 1.1rem;
+}
