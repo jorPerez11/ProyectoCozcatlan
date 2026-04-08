@@ -1,9 +1,15 @@
 import React from 'react';
 import { Button } from './Button';
+import { useNavigate } from 'react-router';
 import imgWelcome1 from '../../assets/pupusas-salvadorenas.jpg';
 import imgWelcome2 from '../../assets/riguas.jpg';
 
 export const WelcomeSection = () => {
+  const navigate = useNavigate();
+
+  const handleProductsClick = () => {
+    navigate('/products');
+  };
   return (
     <section className="container-fluid py-5 bg-[#F1F6DF]">
       <div className="container">
@@ -14,22 +20,22 @@ export const WelcomeSection = () => {
             {/* Columna de Texto */}
             <div className="col-12 font-['Montserrat']">
               {/* Título: cambia de tamaño según la pantalla */}
-              <h2 className="!font-title !font-semibold !tracking-tight !text-[#0E7800] text-4xl md:text-6xl lg:text-9xl mb-4 lg:text-start text-lg-start">
+              <h2 className="!font-title !font-semibold !tracking-tight !text-[#0E7800] text-4xl md:text-6xl lg:text-9xl mb-3 lg:text-start text-lg-start">
                 Bienvenidos a Cōzcatlan
               </h2>
               {/* Texto: text-justify en todas las pantallas. mx-auto y max-w para que se vea centrado en móviles */}
-              <p className="text-[#0F243B] mb-5 text-[14px] sm:text-base md:text-base lg:text-xl leading-relaxed text-justify mx-auto lg:mx-0 max-w-md md:max-w-xl lg:max-w-none">
+              <p className="text-[#0F243B] mb-5 text-[14px] sm:text-base md:text-base lg:text-xl leading-relaxed text-justify mx-auto lg:mx-0 max-w-md md:max-w-xl lg:max-w-none !mb-5 p-0">
                 Es un placer para nosotros dar a conocer nuestro país  con nuestro sazón tradicional que viene impregnado con nuestra historia, compartiendo el sabor de nuestro hogar a todas partes.
               </p>
 
               <div className="d-flex justify-content-center justify-content-lg-start">
-                <Button text="Ver Productos" />
+                <Button text="Ver Productos" onClick={handleProductsClick}/>
               </div>
             </div>
           </div>
 
           {/* Columna de Imágenes */}
-          <div className="col-12 col-lg-6">
+          <div className="col-12 col-lg-6 !mt-8">
             <div className="d-flex align-items-center justify-content-center gap-4">
               {/* Imagen 1: Tamaño estándar rectangular */}
               <div className="w-[200px] md:w-[250px]">
