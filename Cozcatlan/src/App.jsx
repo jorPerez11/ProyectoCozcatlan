@@ -12,6 +12,7 @@ import ShoppingCart from './screens/ShoppingCart.jsx'
 import AboutUs from './screens/AboutUs.jsx'
 import Home from './screens/Home.jsx'
 import Contact from './screens/Contact.jsx'
+import { TermsAndConditionsPage } from './screens/TermsAndConditions.jsx';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
           <Route path="/aboutUs" element={<AboutUs/>} />
           <Route path="/" element={<Home/>} />
           <Route path="/contact" element={<Contact/>} />
+          <Route path="/terms-and-conditions" element={<TermsAndConditionsPage />} />
         </Routes>
       </Router>  
 

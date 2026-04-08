@@ -18,8 +18,8 @@ export const HeroAbout = () => {
                text-[#0F243B] px-6 leading-tight
                /* borde blanco perfecto */
                [text-shadow:_2px_2px_0_#fff,_-2px_-2px_0_#fff,_2px_-2px_0_#fff,_-2px_2px_0_#fff]">
-    Sobre Nosotros: El Corazón de Cōzcatlan
-</h1>
+                Sobre Nosotros: El Corazón de Cōzcatlan
+            </h1>
         </div>
     );
 };
