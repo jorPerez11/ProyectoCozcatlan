@@ -10,6 +10,7 @@ import Login from './screens/Login.jsx'
 import Products from './screens/Products.jsx'
 import ShoppingCart from './screens/ShoppingCart.jsx'
 import AboutUs from './screens/AboutUs.jsx'
+import Home from './screens/Home.jsx'
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Route path="/products" element={<Products/>} />
           <Route path="/shoppingCart" element={<ShoppingCart/>} />
           <Route path="/aboutUs" element={<AboutUs/>} />
+          <Route path="/" element={<Home/>} />
         </Routes>
       </Router>  
 
