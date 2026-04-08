@@ -1,26 +1,56 @@
 import React from 'react';
-
-import { Button } from './Button'; // Importamos el boton
+import { Button } from './Button';
+import imgWelcome1 from '../../assets/pupusas-salvadorenas.jpg';
+import imgWelcome2 from '../../assets/riguas.jpg';
 
 export const WelcomeSection = () => {
   return (
-    <section className="bg-[#F1F6DF] py-12 px-6">
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-        {/* Columna de Texto */}
-        <div>
-          <h2 className="text-3xl font-bold text-green-700 mb-6">Bienvenidos a Cōzcatlan</h2>
-          <p className="text-gray-700 leading-relaxed mb-8">
-            Es un placer para nosotros dar a conocer nuestro país con nuestro sazón tradicional 
-            que viene impregnado con nuestra historia, compartiendo el sabor de nuestro hogar 
-            a todas partes.
-          </p>
-          <Button text="Ver Productos" />
-        </div>
+    <section className="container-fluid py-5 bg-[#F1F6DF]">
+      <div className="container">
+        <div className="row align-items-center g-5">
 
-        {/* Columna de Imágenes (Mockup) */}
-        <div className="flex gap-4 justify-center">
-          <img src="../../assets/hero.png" className="w-40 h-60 object-cover rounded-lg shadow-lg" alt="Comida 1" />
-          <img src="../../assets/hero.png" className="w-40 h-60 object-cover rounded-lg shadow-lg mt-8" alt="Comida 2" />
+          {/* Columna de Texto */}
+          <div className="col-12 col-lg-6 font-['Montserrat']">
+            {/* Columna de Texto */}
+            <div className="col-12 font-['Montserrat']">
+              {/* Título: cambia de tamaño según la pantalla */}
+              <h2 className="!font-title !font-semibold !tracking-tight !text-[#0E7800] text-4xl md:text-6xl lg:text-9xl mb-4 lg:text-start text-lg-start">
+                Bienvenidos a Cōzcatlan
+              </h2>
+              {/* Texto: text-justify en todas las pantallas. mx-auto y max-w para que se vea centrado en móviles */}
+              <p className="text-[#0F243B] mb-5 text-[14px] sm:text-base md:text-base lg:text-xl leading-relaxed text-justify mx-auto lg:mx-0 max-w-md md:max-w-xl lg:max-w-none">
+                Es un placer para nosotros dar a conocer nuestro país  con nuestro sazón tradicional que viene impregnado con nuestra historia, compartiendo el sabor de nuestro hogar a todas partes.
+              </p>
+
+              <div className="d-flex justify-content-center justify-content-lg-start">
+                <Button text="Ver Productos" />
+              </div>
+            </div>
+          </div>
+
+          {/* Columna de Imágenes */}
+          <div className="col-12 col-lg-6">
+            <div className="d-flex align-items-center justify-content-center gap-4">
+              {/* Imagen 1: Tamaño estándar rectangular */}
+              <div className="w-[200px] md:w-[250px]">
+                <img
+                  src={imgWelcome1}
+                  alt="Pupusas"
+                  className="w-full aspect-[3/4] object-cover shadow-lg"
+                />
+              </div>
+
+              {/* Imagen 2: Más pequeña que la primera */}
+              <div className="w-[160px] md:w-[210px]">
+                <img
+                  src={imgWelcome2}
+                  alt="Riguas"
+                  className="w-full aspect-[3/4] object-cover shadow-lg"
+                />
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
