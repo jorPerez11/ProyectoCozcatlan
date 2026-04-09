@@ -1,0 +1,55 @@
+/* Este selector es para la Card para el contenedor padre*/
+.cardContainer {
+    border-radius: 15px;
+    width: 175px;
+    min-height: 120px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-shrink: 0; /* Impide que la tarjeta se aplaste si no hay espacio */
+    color: #0E7800;
+   
+    
+
+}
+
+/* El contenedor hijo donde estara la imagen y el titulo*/
+.card-header {
+    display: flex;
+    align-items: center;  /* Alinea icono y texto al centro verticalmente */
+    gap: 8px;  /* Funciona para el espacio entre el icono y el titulo */
+    width: 100%;
+    justify-content: flex-start; /* Icono y texto a la izquierda */
+
+
+
+   
+
+}
+
+/*Para tener un mejor control del tamaño de la imagen*/
+.card-icon {
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+}
+
+/* Para que se evite los padding y margin de tailWind*/
+.card-header h5 {
+    margin: 0 !important;
+    padding: 0;
+    line-height: 1;
+}
+
+
+.textP {
+    font-size: 30px; 
+    font-weight: bold;
+    margin: 10px 0 0 0;  
+    width: 100%;
+    text-align: center; 
+    color: #6FC44C;
+}
+

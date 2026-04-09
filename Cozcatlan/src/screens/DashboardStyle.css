@@ -1,0 +1,58 @@
+
+.Container-main {
+    background-color: #F1F6DF;
+
+}
+
+.break {
+    color: #E57937;
+
+}
+
+
+.dashboard-grid {
+  display: grid;
+  gap: 20px;
+  /* Por defecto: una sola columna (Móvil) */
+  grid-template-columns: 1fr;
+  grid-template-areas: 
+    "card1"
+    "card2"
+    "card3"
+    "chart"
+    "side";
+}
+
+/* Cuando la pantalla sea más grande que 992px (Desktop) */
+@media (min-width: 992px) {
+  .dashboard-grid {
+    /* 4 columnas: 3 para las cards y 1 un poco más ancha para el sidebar */
+    grid-template-columns: repeat(3, 1fr) 1.3fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas: 
+      "card1 card2 card3 side"
+      "chart chart chart side";
+  }
+}
+
+/* Asignación de áreas a tus divs */
+.dashboard-grid > div:nth-child(1) { grid-area: card1; }
+.dashboard-grid > div:nth-child(2) { grid-area: card2; }
+.dashboard-grid > div:nth-child(3) { grid-area: card3; }
+.main-chart { grid-area: chart; min-height: 350px; }
+.sidebar { grid-area: side; }
+
+.container-notifications{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  overflow-y: auto;      /* Si hay muchas órdenes, permite scroll */
+  color:  #0E7800;
+  justify-content: flex-start;
+  padding: 5px;
+  
+}
+
+
+
