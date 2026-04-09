@@ -1,5 +1,5 @@
-import { Hero } from '../components/home/Hero';
-import { WelcomeSection } from '../components/home/WelcomeSection';
+import { Hero } from '../components/Home/Hero';
+import { WelcomeSection } from '../components/Home/WelcomeSection';
 import "@fontsource/montserrat"; 
 import "@fontsource/prompt";
 import "@fontsource/montserrat/400.css";

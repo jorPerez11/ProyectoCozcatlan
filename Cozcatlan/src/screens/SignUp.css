@@ -18,6 +18,7 @@
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   }
   
+
   /* Inputs con estilo minimalista */
   .custom-input {
     background-color: #f8f9fa !important;
@@ -33,18 +34,27 @@
   
   /* Colores personalizados */
   .btn-orange {
-    background-color: #f47c3c;
+    background-color: #f47c3c !important;
     border: none;
     border-radius: 10px;
     transition: 0.3s;
   }
-  
-  .btn-orange:hover {
-    background-color: #e36b2d;
+
+  .btn-orange:hover{
+    background-color: rgb(209, 94, 0) !important;
   }
+
   
   .text-orange {
     color: #f47c3c;
     cursor: pointer;
     text-decoration: underline;
   }
+
+
+   /*Botón de Inicio de Sesión*/
+.btnLogin:hover{
+    color: #198754 !important;
+    background-color: #ebebeb !important;
+}
+

@@ -1,9 +1,9 @@
 import React from 'react';
-import './SignUp.css';
 import CustomInput from '../components/SignUp/CustomInput.jsx';
 import Nav from '../components/SignUp/Nav.jsx';
 import "@fontsource/montserrat"; 
 import "@fontsource/montserrat/700.css";
+import './SignUp.css';
 
 const SignUp = () => {
   return (
