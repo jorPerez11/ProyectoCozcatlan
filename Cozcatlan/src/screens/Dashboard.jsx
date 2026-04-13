@@ -5,10 +5,11 @@ import './CardDashboardStyle.css'; // CSS DEL COMPONENTE CardDashboard
 import './CardNotificationStyle.css' // CSS DEL COMPONENTE CardNotification
 
 // Para importar los componentes
-import CardDashboard from '../components/home/dashboard/CardDashboard';
-import CardNotification from "../components/home/dashboard/CardNotification";
+import CardDashboard from '../components/home/dashboard/CardDashboard.jsx';
+import CardNotification from "../components/home/dashboard/CardNotification.jsx";
+import ChartSales  from "../components/home/dashboard/ChartSales.jsx"
 
-// Para importar las fotos
+// Para importar las fotosº 
 import photoIconClient from '../assets/IconoCliente.svg'
 import photoIconOrders from '../assets/IconoOrdenes.svg'
 import photoIconSales from '../assets/IconoVenta.svg'
@@ -61,7 +62,7 @@ const Dashboard = () => {
 
                         {/* Bloque ancho de abajo (productos) */}
                         <div className="box main-chart bg-light-green shadow-sm">
-                            {/* Aquí va tu gráfico */}
+                            <ChartSales/>
                         </div>
 
                         {/* Bloque lateral alto (órdenes) */}

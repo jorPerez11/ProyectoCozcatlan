@@ -1,0 +1,21 @@
+.containerPrimary{
+    width: 350px;
+    border-radius: 25px;
+    background-color: #E57937;
+    color: white;
+}
+
+.container-Main-Product{
+    background-color: #F1F6DF;
+}
+.buttonUnit{
+     background-color: #E57937;
+     border-radius: 15px;
+     
+    
+}
+
+.break {
+    color: #E57937;
+
+}
