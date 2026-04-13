@@ -1,0 +1,64 @@
+.custom-navbar {
+    background-color: #E7F0C7 !important; /* El verde crema del fondo */
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.navbar-logo {
+    height: 60px; /* Ajusta según el tamaño de tu imagen */
+    width: auto;
+}
+
+/* Estilo de los enlaces */
+.custom-navbar .nav-link-custom {
+    color: #1a3a13 !important; /* Verde oscuro tipo bosque */
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+    text-decoration: none;
+}
+
+.nav-link-custom {
+    color: #1a3a13 !important;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 10px 15px;
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    transition: all 0.6s ease;
+}
+
+.custom-navbar .nav-link-custom:hover {
+    color: #1f9310 !important;
+    text-shadow: 0px 0px 1px rgba(31, 147, 16, 0.2);
+}
+
+
+
+/* Contenedor de iconos a la derecha */
+.icons-container {
+    color: #1a3a13;
+}
+
+.nav-icon {
+    transition: transform 0.2s ease;
+    text-decoration: none;
+}
+
+.nav-icon:hover {
+    transform: scale(1.05);
+    color: #f47c3c; /* Naranja en hover para resaltar */
+}
+
+/* Ajustes para móvil */
+@media (max-width: 991px) {
+    .icons-container {
+        margin-top: 15px;
+        justify-content: center;
+    }
+}
+

@@ -2,6 +2,7 @@ import React from "react";
 import Nav from '../components/Login/Nav';
 import CustomInput from '../components/SignUp/CustomInput';
 import PrimaryButton from '../components/SignUp/ButtonSignUp';
+import logoCozcatlan from '../assets/Cozcatlan_Logo 3.png';
 import './Login.css';
 
 
@@ -13,18 +14,25 @@ const Login = () => {
         <div className="row g-0 min-vh-100">
           
          
-          <div className="col-lg-5 d-none d-lg-flex flex-column justify-content-center align-items-center left-panel p-5 text-white">
-            <div className="overlay-content text-center">
-              <div className="brand-images mb-4">
-                 <img src="/path-to-your-combined-images.png" alt="Cozcatlan" className="img-fluid" />
-              </div>
-              <h2 className="display-5 fw-light">El sabor de tu hogar</h2>
+          <div className="col-lg-4 d-none d-lg-flex flex-column justify-content-center align-items-center left-panel text-white">
+
+            <div className="top-visual-container">
+            <img 
+              src={logoCozcatlan} // Tu nueva imagen combinada
+              alt="Cozcatlán - El sabor de tu hogar" 
+              className="img-fluid top-full-img" 
+            />
+          </div>
+
+
+            <div className="bottom-text-content text-center mt-auto mb-5">
+              <h2 className="display-6 fw-light">El sabor de tu hogar</h2>
               <p className="fs-5">Ingredientes 100% salvadoreños.</p>
             </div>
           </div>
 
          
-          <div className="col-lg-7 d-flex align-items-center justify-content-center right-panel">
+          <div className="col-lg-8 d-flex align-items-center justify-content-center right-panel">
             <div className="login-card p-4 p-md-5">
               <h1 className="text-success fw-bold">Bienvenido</h1>
               <p className="text-muted mb-4">Inicia sesión en tu cuenta</p>

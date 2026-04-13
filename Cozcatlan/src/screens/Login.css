@@ -4,19 +4,55 @@
     font-family: 'Montserrat', sans-serif !important;
 }
 
+.top-visual-container {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    line-height: 0; 
+}
+
+.top-full-img {
+    width: 100%;
+    height: auto; /* Mantiene la proporción */
+    display: block;
+}
+
+.side-logo {
+    max-width: 250px;
+    z-index: 2;
+}
+
 /* Panel Izquierdo (Verde Oscuro) */
 .left-panel {
-    background-color: #1a3a13; /* Verde oscuro tipo bosque */
-    background-image: url('/path-to-leaf-pattern.png'); /* El patrón de hojas del fondo */
+    background-color: #293B0F; /* Verde oscuro tipo bosque */
     background-size: cover;
     position: relative;
+    background-position: center;
+}
+
+.left-panel::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 107%;
+    height: 70%; /* Solo cubre la parte inferior del panel */
+    background-image: url('../assets/coffeeLeaves.png'); /* Tus hojas doradas/verdes */
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    opacity: 0.3; /* Sutil como en la imagen */
+    z-index: 1;
+    pointer-events: none;
 }
 
 /* Panel Derecho (Fondo claro con hojas) */
 .right-panel {
-    background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8)),
-                url('/path-to-light-leaves.png');
+    background: linear-gradient(rgba(241, 246, 223, 0.4), rgba(241, 246, 223, 0.4)),
+                url('../assets/tropicalLeaves.png');
     background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 /* Tarjeta de Login */

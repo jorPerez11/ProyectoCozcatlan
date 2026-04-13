@@ -1,0 +1,104 @@
+.store-wrapper {
+    background-color: #f1f6df; /* El verde clarito del fondo */
+    min-height: 100vh;
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+
+
+.promo-content{
+    position: relative;
+    z-index: 2; /* Un valor alto para asegurar que esté arriba */
+    max-width: 60%;
+}
+.promo-image{
+    position: absolute;         
+    width: 100%;         /* Que ocupe la mitad derecha */
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    z-index: 1;
+}
+
+.promo-image.img{
+    width: 100%;
+}
+
+/* Banner Promo */
+.promo-banner {
+    background: linear-gradient(135deg, #fefae0 0%, #e9edc9 100%);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.btn-promo {
+    background-color: #f47c3c;
+    color: white;
+    border-radius: 10px;
+    padding: 10px 25px;
+    font-weight: bold;
+}
+
+/* Tarjetas de Producto */
+.product-card {
+    border-radius: 20px;
+    overflow: hidden;
+    background: white;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.product-image-placeholder {
+    background-color: #f8f9fa;
+    height: 200px;
+    border-bottom: 1px solid #eee;
+}
+
+/* Botón de Carrito con degradado */
+.btn-orange-cart {
+    background: linear-gradient(to right, #f47c3c, #e36b2d);
+    border: none;
+    color: white;
+    padding: 12px;
+    border-radius: 12px;
+    font-weight: 500;
+}
+
+/* Buscador */
+.search-bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: #f1f6df; 
+    border-radius: 30px;
+    border: 1px solid #0D253C;
+}
+
+.search-bar input {
+    border: none;
+    background: #f1f6df;
+    padding: 12px 20px;
+    width: 100%;
+}
+
+.search-bar input:focus {
+    background-color: #f1f6df !important; /* Mantiene el mismo color que el estado normal */
+    outline: none !important; 
+    box-shadow: none !important; 
+    border-color: #7a917e !important;
+}
+
+.btn-dark-green {
+    background-color: #0D253C !important;
+    color: white !important;
+    border-radius: 10px;
+    padding: 12px 25px;
+}
+
+.form-control{
+
+}

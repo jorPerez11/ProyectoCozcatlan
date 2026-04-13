@@ -1,0 +1,15 @@
+.btn-finish-purchase {
+    background-color: #8bbd5e !important;
+    color: white !important;
+    border: none;
+    border-radius: 12px;
+    padding: 14px;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 15px rgba(139, 189, 94, 0.3);
+}
+
+.btn-finish-purchase:hover {
+    background-color: #7aa552 !important;
+    color: white !important;
+}

@@ -1,0 +1,85 @@
+.product-detail-container {
+    background-color: #F1F6DF;
+    background-image: url('../assets/tropicalLeavesTransp.png');
+    background-repeat: no-repeat;
+    background-size: 110%;
+    background-position: bottom; /* Para que la imagen quede abajo como en tu diseño */
+    background-attachment: fixed; /* Opcional: para que la imagen no se mueva al hacer scroll */
+    height: calc(100vh - 80px);
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+/* Caja de la Imagen */
+.product-image-box {
+    background-color: #eeeeee; /* Gris suave del placeholder */
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 600px;
+}
+
+/* Tipografía */
+.product-name-title {
+    color: #1a3a13;
+    font-weight: 600;
+    font-size: 2.5rem;
+}
+
+.product-price-tag {
+    color: #1a3a13;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.product-description-text {
+    color: #444;
+    line-height: 1.6;
+    font-size: 1rem;
+    max-width: 700px;
+}
+
+/* Selector de Cantidad (El rectángulo verde claro) */
+.qty-picker {
+    background-color: #c8d9b2;
+    padding: 5px 15px;
+    border-radius: 12px;
+}
+
+.btn-qty-action {
+    border: none;
+    background: transparent;
+    color: #1a3a13;
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 0 10px;
+}
+
+.qty-number {
+    font-weight: 600;
+    color: #1a3a13;
+}
+
+/* Botón Añadir (Verde más intenso) */
+.btn-add-to-cart {
+    background-color: #8bbd5e;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-weight: 500;
+    transition: transform 0.2s ease;
+}
+
+.btn-add-to-cart:hover {
+    background-color: #7aa552;
+    transform: scale(1.03);
+}
+
+/* Información extra */
+.product-meta-info p {
+    margin-bottom: 5px;
+    color: #555;
+    font-size: 0.95rem;
+}

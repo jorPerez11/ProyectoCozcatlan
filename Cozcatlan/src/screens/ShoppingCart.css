@@ -1,0 +1,90 @@
+.cart-page-wrapper {
+    background-color: #F1F6DF;
+    background-image: url('../assets/tropicalLeavesTransp.png');
+    background-repeat: no-repeat;
+    background-size: 110%;
+    background-position: bottom; /* Para que la imagen quede abajo como en tu diseño */
+    background-attachment: fixed; /* Opcional: para que la imagen no se mueva al hacer scroll */
+    min-height: 100vh;
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+.cart-title {
+    color: #1a3a13;
+    font-weight: 510;
+}
+
+.line-separator {
+    border: 0;
+    height: 2px;
+    background: linear-gradient(to right, #f47c3c, #f47c3c);
+    opacity: 0.8;
+}
+
+.btn-delete-all {
+    color: #7a917e;
+    font-size: 0.9rem;
+}
+
+/* Tarjeta de Items */
+.cart-items-card {
+    background: #E2EFD6;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+}
+
+.item-img-placeholder {
+    width: 80px;
+    height: 80px;
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #eee;
+}
+
+/* Selector de Cantidad */
+.quantity-selector {
+    background: #c8d9b2;
+    border-radius: 8px;
+    padding: 2px 8px;
+}
+
+.btn-qty {
+    border: none;
+    background: transparent;
+    color: #1a3a13;
+    font-size: 1.2rem;
+}
+
+.text-dark-green {
+    color: #0D6002;
+}
+
+/* Resumen y Botón Final */
+.summary-card {
+    background: #c8d9b2;
+    border-radius: 15px;
+    color: #1a3a13;
+}
+
+.btn-finish-purchase {
+    background-color: #8bbd5e;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-finish-purchase:hover {
+    background-color: #7aa552;
+    transform: translateY(-2px);
+}
+
+.continue-shopping {
+    color: #f47c3c;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
