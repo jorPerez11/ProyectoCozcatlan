@@ -3,10 +3,12 @@ import { ContactHero } from '../components/Contact/ContactHero';
 import { LocationCards } from '../components/Contact/LocationCards';
 import { ContactForm } from '../components/Contact/ContactForm';
 import { SocialLinks } from '../components/Contact/SocialLinks';
+import Navbar from '../components/PublicNavbar/Nav.jsx';
 
 export const Contact = () => {
   return (
     <div className="bg-[#F1F6DF] min-h-screen pb-20">
+      <Navbar />
       <ContactHero />
       <div className="container mx-auto px-6 md:px-12 lg:px-32">
         {/* lg:flex-row-reverse hace que el Form se vea a la derecha en Desktop */}

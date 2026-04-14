@@ -4,11 +4,13 @@ import React from 'react';
 import { HeroAbout } from '../components/AboutUs/HeroAbout.jsx';
 import { AboutContent } from '../components/AboutUs/AboutContent.jsx';
 import { PromiseSection } from '../components/AboutUs/PromiseSection.jsx';
+import Navbar from '../components/PublicNavbar/Nav.jsx';
 
 export const AboutUs = () => {
   return (
     /* div principal o un main para envolver toda la pantalla */
     <main className="animate-fade-in">
+      <Navbar />
       
       {/* 1. El Banner con el título sobre el patrón salvadoreño */}
       <HeroAbout />
