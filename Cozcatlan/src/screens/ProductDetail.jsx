@@ -3,6 +3,7 @@ import './ProductDetail.css';
 import Nav from '../components/PublicNavbar/Nav.jsx';
 import Placeholder from '../assets/placeholder.png';
 import AddBtn from '../components/ShoppingCart/FinishBtn.jsx';
+import CozcaFooter from "../components/Footer/CozcaFooter.jsx";
 
 const ProductDetail = ({ product }) => {
   return (
@@ -52,6 +53,7 @@ const ProductDetail = ({ product }) => {
         </div>
       </div>
     </div>
+    <CozcaFooter />
     </>
   );
 };

@@ -29,10 +29,10 @@ const CozcaFooter = () => {
           {/* Columna 2: Links Navegación */}
           <div className="col-12 col-md-4 text-center mb-4 mb-md-0">
             <nav className="footer-nav d-flex flex-wrap justify-content-center gap-4">
-              <a href="#inicio" className="footer-link">Inicio</a>
-              <a href="#nosotros" className="footer-link">Sobre Nosotros</a>
-              <a href="#productos" className="footer-link">Productos</a>
-              <a href="#contacto" className="footer-link">Contacto</a>
+              <a href="/" className="footer-link">Inicio</a>
+              <a href="/aboutUs" className="footer-link">Sobre Nosotros</a>
+              <a href="/products" className="footer-link">Productos</a>
+              <a href="/contact" className="footer-link">Contacto</a>
             </nav>
             <div className="mt-4 copyright-text">
                ©{currentYear} Cozcatlan
@@ -51,7 +51,7 @@ const CozcaFooter = () => {
               </a>
               <FaEnvelope className="contact-icon-main" />
             </div>
-            <p className="mb-0 fs-7 footer-terms">Términos y Condiciones</p>
+            <p className="mb-0 fs-7 footer-terms"><a href="/terms-and-conditions" className="contact-text terms-link">Términos y Condiciones</a></p>
           </div>
 
         </div>

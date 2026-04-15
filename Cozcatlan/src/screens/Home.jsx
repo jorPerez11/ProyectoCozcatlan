@@ -7,6 +7,7 @@ import "@fontsource/montserrat/700.css";
 import "@fontsource/prompt/400.css";
 import "@fontsource/prompt/600.css";
 import Navbar from '../components/PublicNavbar/Nav.jsx';
+import CozcaFooter from "../components/Footer/CozcaFooter.jsx";
 
 const Home = () => {
   return (
@@ -14,6 +15,7 @@ const Home = () => {
       <Navbar />
       <Hero />
       <WelcomeSection />
+      <CozcaFooter />
     </main>
   );
 };

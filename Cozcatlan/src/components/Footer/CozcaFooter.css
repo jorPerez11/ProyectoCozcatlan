@@ -1,6 +1,7 @@
 .cozca-footer {
     background-color: #E8F3D1;
     color: #0E7800;
+    font-family: 'Montserrat', sans-serif;
     /* Reducimos el padding de 5 (3rem) a 3 (1rem) */
     padding: 1.5rem 0 !important; 
 }
@@ -36,6 +37,11 @@
 
 .email-link {
     text-decoration: underline;
+    color: inherit;
+}
+
+.terms-link {
+    text-decoration: none;
     color: inherit;
 }
 

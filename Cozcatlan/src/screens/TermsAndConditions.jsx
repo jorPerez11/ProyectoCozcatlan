@@ -2,6 +2,7 @@ import React from 'react';
 import { TermsHeader } from '../components/TermsAndConditions/TermsHeader';
 import { TermsContent } from '../components/TermsAndConditions/TermsContent';
 import Navbar from '../components/PublicNavbar/Nav.jsx';
+import CozcaFooter from "../components/Footer/CozcaFooter.jsx";
 
 export const TermsAndConditionsPage = () => {
   return (
@@ -18,6 +19,7 @@ export const TermsAndConditionsPage = () => {
           </div>
         </div>
       </div>
+      <CozcaFooter />
     </main>
   );
 };

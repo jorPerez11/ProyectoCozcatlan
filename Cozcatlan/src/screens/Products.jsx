@@ -3,6 +3,7 @@ import ProductCard from '../components/Products/ProductsCard.jsx';
 import CozcPromoBanner from '../assets/descuentosPromo.png';
 import Navbar from '../components/PublicNavbar/Nav.jsx';
 import Placeholder from '../assets/placeholder.png';
+import CozcaFooter from "../components/Footer/CozcaFooter.jsx";
 import './Products.css';
 
 const Products = () => {
@@ -67,6 +68,7 @@ const Products = () => {
           ))}
         </div>
       </div>
+      <CozcaFooter />
     </div>
   );
 };

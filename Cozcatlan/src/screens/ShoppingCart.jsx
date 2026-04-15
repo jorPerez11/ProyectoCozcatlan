@@ -4,6 +4,7 @@ import trashIcon from  '../assets/mdi_trash.png';
 import Placeholder from '../assets/placeholder.png';
 import Nav from '../components/PublicNavbar/Nav.jsx';
 import FinishBtn from '../components/ShoppingCart/FinishBtn.jsx';
+import CozcaFooter from "../components/Footer/CozcaFooter.jsx";
 
 const ShoppingCart = () => {
     const cartItems = [1, 2, 3, 4, 5]; // Array de ejemplo para las filas
@@ -78,6 +79,7 @@ const ShoppingCart = () => {
           </div>
         </div>
       </div>
+      <CozcaFooter />
     </div>
   );
 };

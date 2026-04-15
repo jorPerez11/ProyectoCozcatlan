@@ -5,6 +5,7 @@ import { HeroAbout } from '../components/AboutUs/HeroAbout.jsx';
 import { AboutContent } from '../components/AboutUs/AboutContent.jsx';
 import { PromiseSection } from '../components/AboutUs/PromiseSection.jsx';
 import Navbar from '../components/PublicNavbar/Nav.jsx';
+import CozcaFooter from "../components/Footer/CozcaFooter.jsx";
 
 export const AboutUs = () => {
   return (
@@ -20,6 +21,8 @@ export const AboutUs = () => {
 
       {/* 3. El cierre con la promesa y el fondo crema */}
       <PromiseSection />
+
+      <CozcaFooter />
 
     </main>
   );
