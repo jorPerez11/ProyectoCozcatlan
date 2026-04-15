@@ -1,0 +1,99 @@
+import React, { useState } from "react";
+import ClientRow from "../components/Admins-Supppliers-Employees/ClientRow";
+import ButtonAdmin from '../components/Admins-Supppliers-Employees/ButtonAdmin';
+import FormAdmin from '../components/Admins-Supppliers-Employees/FormAdmin.jsx';
+import CozcaModal from "../components/Admins-Supppliers-Employees/CozcaModal.jsx";
+import CozcaFooter from "../components/Footer/CozcaFooter.jsx"; // Importamos el footer
+import './3Screens.css'; 
+
+const Admins = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [formData, setFormData] = useState({});
+
+  const administradores = [
+    { id: 1, nombre: "Lourdes Carolina Estévez Rojas", email: "m_estevez@gmail.com" },
+    { id: 2, nombre: "Carlos Andrés Méndez López", email: "c.mendez@cozcatlan.com" },
+    { id: 3, nombre: "Roberto Isaac Peña", email: "r_pena@gmail.com" },
+  ];
+
+  const handleAddClick = () => {
+    setIsEditing(false);
+    setFormData({});
+    setModalOpen(true);
+  };
+
+  const handleEditClick = (adminData) => {
+    setIsEditing(true);
+    setFormData(adminData);
+    setModalOpen(true);
+  };
+
+  return (
+    /* 1. min-vh-100 y flex-column aseguran que el footer se vaya al fondo */
+    <div className="cozca-screen-wrapper d-flex flex-column min-vh-100"> 
+      
+      {/* Header / Nav Placeholder */}
+      <div className="py-4 px-5 text-start bg-white/30 backdrop-blur-md mb-4 border-bottom border-white/20">
+        <span className="text-success fw-bold">Cozcatlán Dashboard / Panel Admins</span>
+      </div>
+
+      {/* 2. flex-grow-1 expande este contenedor para empujar el footer */}
+      <div className="container py-5 flex-grow-1">
+        <div className="header-container">
+          <div className="d-flex justify-content-between align-items-center w-100 mb-2 px-2">
+            <h1 className="cozca-page-title mb-0">Administradores</h1>        
+            <div style={{ width: '180px' }}>
+                <ButtonAdmin 
+                  text={<><span>Agregar</span> +</>} 
+                  className="btn-cozca-add" 
+                  onClick={handleAddClick}
+                />
+            </div>
+          </div>
+          <div className="title-underline-long"></div>
+        </div>
+
+        <div className="cozca-main-card mt-5">
+          {administradores.map(admin => (
+            <ClientRow 
+              key={admin.id} 
+              title={admin.nombre} 
+              subtitle={admin.email} 
+              onEdit={() => handleEditClick(admin)} 
+            />
+          ))}
+        </div>
+
+        <div className="cozca-pagination-container mt-4">
+          <button className="cozca-page-btn" disabled><span>←</span></button>
+          <div className="cozca-page-number">1</div>
+          <button className="cozca-page-btn"><span>→</span></button>
+        </div>
+      </div>
+
+      <CozcaModal 
+        isOpen={modalOpen} 
+        onClose={() => setModalOpen(false)}
+        title={isEditing ? "Editar Administrador" : "Agregar Administrador"}
+        onSubmitText={isEditing ? "Guardar Cambios" : "Agregar"}
+        onSubmit={() => {
+          console.log("Guardando datos:", formData);
+          setModalOpen(false);
+        }}
+      >
+        <FormAdmin 
+          formData={formData} 
+          setFormData={setFormData} 
+          isEditing={isEditing} 
+        />
+      </CozcaModal>
+
+      {/* 3. Insertamos el Footer al final */}
+      <CozcaFooter />
+
+    </div>
+  );
+};
+
+export default Admins;

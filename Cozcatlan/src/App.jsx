@@ -14,6 +14,9 @@ import Home from './screens/Home.jsx'
 import Contact from './screens/Contact.jsx'
 import { TermsAndConditionsPage } from './screens/TermsAndConditions.jsx';
 import ProductDetail from './screens/ProductDetail.jsx';
+import Admins from './screens/Admins.jsx'
+import Employees from './screens/Employees.jsx'
+import Suppliers from './screens/Suppliers.jsx'
 
 
 function App() {
@@ -32,6 +35,9 @@ function App() {
           <Route path="/contact" element={<Contact/>} />
           <Route path="/terms-and-conditions" element={<TermsAndConditionsPage />} />
           <Route path="/productdetail" element={<ProductDetail/>}/>
+          <Route path="/admins" element={<Admins/>} />
+          <Route path="/employees" element={<Employees/>} />
+          <Route path="/suppliers" element={<Suppliers/>} />
         </Routes>
       </Router>  
 

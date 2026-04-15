@@ -1,0 +1,63 @@
+import React from 'react';
+import { FaInstagram, FaFacebookF, FaTwitter, FaYoutube, FaWhatsapp, FaEnvelope } from 'react-icons/fa';
+import logoCozcatlan from '../../assets/logo-cozcatlan.png';
+import './CozcaFooter.css';
+
+const CozcaFooter = () => {
+  const currentYear = new Date().getFullYear();
+
+  return (
+    <footer className="cozca-footer py-5 mt-auto">
+      <div className="container-fluid px-md-5">
+        <div className="row align-items-center">
+          
+          {/* Columna 1: Logo y Redes */}
+          <div className="col-12 col-md-4 text-center text-md-start mb-4 mb-md-0">
+            <div className="footer-logo-container mb-3">
+              <img src={logoCozcatlan} alt="Logo Cozcatlán" className="img-fluid footer-logo" />
+            </div>
+            {/* Iconos de Redes con el estilo circular verde de tu código */}
+            <div className="footer-social-icons d-flex justify-content-center justify-content-md-start gap-3">
+              {[FaInstagram, FaFacebookF, FaTwitter, FaYoutube].map((Icon, index) => (
+                <div key={index} className="social-icon-circle">
+                  <Icon />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Columna 2: Links Navegación */}
+          <div className="col-12 col-md-4 text-center mb-4 mb-md-0">
+            <nav className="footer-nav d-flex flex-wrap justify-content-center gap-4">
+              <a href="#inicio" className="footer-link">Inicio</a>
+              <a href="#nosotros" className="footer-link">Sobre Nosotros</a>
+              <a href="#productos" className="footer-link">Productos</a>
+              <a href="#contacto" className="footer-link">Contacto</a>
+            </nav>
+            <div className="mt-4 copyright-text">
+               ©{currentYear} Cozcatlan
+            </div>
+          </div>
+
+          {/* Columna 3: WhatsApp y Email (Info Directa) */}
+          <div className="col-12 col-md-4 text-center text-md-end footer-contact-info">
+            <div className="d-flex align-items-center justify-content-center justify-content-md-end gap-3 mb-3">
+              <span className="contact-text">+503 7831-4183</span>
+              <FaWhatsapp className="contact-icon-main" />
+            </div>
+            <div className="d-flex align-items-center justify-content-center justify-content-md-end gap-3 mb-3">
+              <a href="mailto:contacto@cozcatlan.com" className="contact-text email-link">
+                contacto@cozcatlan.com
+              </a>
+              <FaEnvelope className="contact-icon-main" />
+            </div>
+            <p className="mb-0 fs-7 footer-terms">Términos y Condiciones</p>
+          </div>
+
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default CozcaFooter;
