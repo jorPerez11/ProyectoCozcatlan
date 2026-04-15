@@ -6,7 +6,7 @@ import Config from '../../assets/config.png';
 
 const Navbar = () => {
   return (
-    <nav className="navbar navbar-expand-lg custom-navbar px-4">
+    <nav className="navbar navbar-expand-lg custom-navbar px-4 fixed-top">
       <div className="container-fluid d-flex align-items-center">
         
         {/* 1. LOGO (Izquierda) */}
