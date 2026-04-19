@@ -3,7 +3,7 @@ import ClientRow from "../components/Admins-Supppliers-Employees/ClientRow";
 import ButtonAdmin from '../components/Admins-Supppliers-Employees/ButtonAdmin';
 import FormAdmin from '../components/Admins-Supppliers-Employees/FormAdmin.jsx';
 import CozcaModal from "../components/Admins-Supppliers-Employees/CozcaModal.jsx";
-import CozcaFooter from "../components/Footer/CozcaFooter.jsx"; // Importamos el footer
+import CozcaFooterPrivate from "../components/Footer/CozcaFooterPrivate.jsx"; // Importamos el footer
 import './3Screens.css'; 
 
 const Admins = () => {
@@ -90,7 +90,7 @@ const Admins = () => {
       </CozcaModal>
 
       {/* 3. Insertamos el Footer al final */}
-      <CozcaFooter />
+      <CozcaFooterPrivate />
 
     </div>
   );
