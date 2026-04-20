@@ -17,6 +17,7 @@ import ProductDetail from './screens/ProductDetail.jsx';
 import Admins from './screens/Admins.jsx'
 import Employees from './screens/Employees.jsx'
 import Suppliers from './screens/Suppliers.jsx'
+import ProductsPrivate from './screens/ProductsPrivate.jsx'
 
 
 function App() {
@@ -26,20 +27,22 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route path="/signUp" element={<SignUp/>} />
-          <Route path="/login" element={<Login/>} />
-          <Route path="/products" element={<Products/>} />
-          <Route path="/shoppingCart" element={<ShoppingCart/>} />
-          <Route path="/aboutUs" element={<AboutUs/>} />
-          <Route path="/" element={<Home/>} />
-          <Route path="/contact" element={<Contact/>} />
+          <Route path="/signUp" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/shoppingCart" element={<ShoppingCart />} />
+          <Route path="/aboutUs" element={<AboutUs />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/terms-and-conditions" element={<TermsAndConditionsPage />} />
-          <Route path="/productdetail" element={<ProductDetail/>}/>
-          <Route path="/admins" element={<Admins/>} />
-          <Route path="/employees" element={<Employees/>} />
-          <Route path="/suppliers" element={<Suppliers/>} />
+          <Route path="/productdetail" element={<ProductDetail />} />
+          <Route path="/admins" element={<Admins />} />
+          <Route path="/employees" element={<Employees />} />
+          <Route path="/suppliers" element={<Suppliers />} />
+          <Route path="/productosprivados" element={<ProductsPrivate />} />
+
         </Routes>
-      </Router>  
+      </Router>
 
     </>
   )

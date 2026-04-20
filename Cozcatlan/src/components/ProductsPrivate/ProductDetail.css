@@ -1,0 +1,105 @@
+.detail-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    background-color: #f0f7e6; /* Verde muy clarito del fondo */
+}
+
+.detail-card {
+    display: flex;
+    flex-direction: row; /* Horizontal en desktop */
+    flex-wrap: wrap;    /* Permite bajar en móvil */
+    gap: 40px;
+    max-width: 1000px;
+    width: 100%;
+    align-items: center;
+}
+
+/* Secciones principales */
+.detail-image-section, .detail-info-section {
+    flex: 1 1 400px; /* Crecen y se encogen, base de 400px */
+}
+
+.detail-image-section img {
+    width: 100%;
+    max-width: 450px;
+    background-color: #e0e0e0; /* Color grisáceo de tu placeholder */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* Tipografía y elementos */
+.product-title {
+    color: #1a3a3a;
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.product-price {
+    color: #2d5a27; /* Verde oscuro del precio */
+    font-size: 2rem;
+    margin: 15px 0;
+}
+
+.edit-icon {
+    color: #e67e22; /* Color naranja del lapicito */
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.product-description {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+/* Selector de cantidad */
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    background-color: #c5d8b6; /* Verde del fondo de los botones */
+    width: fit-content;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 25px;
+}
+
+.btn-qty {
+    border: none;
+    background: rgba(0,0,0,0.1);
+    padding: 5px 15px;
+    font-size: 1.2rem;
+    transition: 0.3s;
+}
+
+.btn-qty:hover {
+    background: rgba(0,0,0,0.2);
+}
+
+.qty-value {
+    padding: 0 20px;
+    font-weight: bold;
+}
+
+.product-meta p {
+    margin-bottom: 5px;
+    color: #666;
+}
+
+/* Responsividad para móviles */
+@media (max-width: 768px) {
+    .detail-card {
+        flex-direction: column; /* Apilar imagen arriba y texto abajo */
+        text-align: center;
+    }
+    
+    .quantity-selector {
+        margin: 0 auto 25px auto; /* Centrar selector en móvil */
+    }
+    
+    .product-title {
+        font-size: 1.8rem;
+    }
+}

@@ -1,21 +1,62 @@
-.containerPrimary{
+.containerPrimary {
     width: 350px;
     border-radius: 25px;
     background-color: #E57937;
     color: white;
 }
 
-.container-Main-Product{
+.container-Main-Product {
     background-color: #F1F6DF;
 }
-.buttonUnit{
-     background-color: #E57937;
-     border-radius: 15px;
-     
-    
+
+.buttonUnit {
+    background-color: #E57937;
+    border-radius: 15px;
+
+
 }
 
 .break {
     color: #E57937;
 
+}
+
+/* Contenedor de los botones (Buscador y Agregar) */
+.header-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    /* Para que en móvil el botón de agregar baje */
+}
+
+/* Contenedor de las tarjetas */
+.products-grid-flex {
+    display: flex;
+    flex-wrap: wrap;
+    /* para que las tarjetas bajen a la siguiente fila */
+    gap: 25px;
+    /* Espacio entre tarjetas */
+    justify-content: center;
+    /* Centra las tarjetas si sobra espacio */
+}
+
+/* Estilo para que las tarjetas sean responsivas */
+.products-grid-flex>* {
+    /* En pantallas grandes ocuparán menos el gap */
+    flex: 1 1 300px;
+    max-width: 350px;
+    /* Evita que se estiren demasiado  */
+    min-width: 280px;
+    /* Evita que se hagan muy pequeñas */
+}
+
+@media (max-width: 480px) {
+    .products-grid-flex>* {
+        flex: 1 1 100%;
+        /* Una tarjeta por fila en móviles */
+        max-width: 100%;
+    }
 }

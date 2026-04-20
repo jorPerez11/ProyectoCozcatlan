@@ -7,34 +7,72 @@ import './CardProductsPrivate.css'; // CSS de la pantalla Dashboard
 // Para importar las fotosº 
 import photoProduct from '../assets/PhotoProduct.webp'
 import SearchButton from "../components/ProductsPrivate/SearchButton";
+import BottonAdd from "../components/ProductsPrivate/BottonAdd";
+import ProductDetail from "./ProductDetail";
+import ProductDetailPrivate from "../components/ProductsPrivate/ProductDetailPrivate";
 const ProductsPrivate = () => {
     return (
         <div className="container-Main-Product">
-
-            <main>
-                <h1>Productos</h1>
+            <main className="p-4">
+                <h1 className="text-success">Productos</h1>
                 <hr className="break" />
-                <div className="Buttons"
-                > <SearchButton
-                    />
 
+              
+                <div className="header-actions">
+                    <SearchButton />
+                    <BottonAdd />  {/* Este es el boton para agregar productos*/}
                 </div>
 
-                <CardProducts
+             
+                <div className="products-grid-flex">
+                    <CardProducts
+                        image1={photoProduct}
+                        price="$10.50"
+                        stock="100 Unidades"
+                        productInfo="Harina de Maíz Nixtamalizado"
+                    />
+                    <CardProducts
+                        image1={photoProduct}
+                        price="$10.50"
+                        stock="100 Unidades"
+                        productInfo="Frijol Rojo de Seda"
+                    />
+                    <CardProducts
+                        image1={photoProduct}
+                        price="$10.50"
+                        stock="100 Unidades"
+                        productInfo="Chocolate en Tablilla"
+                    />
 
-                    image1={photoProduct}
-                    price="$2.99"
-                    stock="100 Unidades"
-                    productInfo="Frijol Rojo de Seda"
+                      <CardProducts
+                        image1={photoProduct}
+                        price="$10.50"
+                        stock="100 Unidades"
+                        productInfo="Chocolate en Tablilla"
+                    />
 
-                />
+                      <CardProducts
+                        image1={photoProduct}
+                        price="$10.50"
+                        stock="100 Unidades"
+                        productInfo="Chocolate en Tablilla"
+                    />
+
+                     {/* Este es el ejemplo para que vean como es darle click al producto*/}
+                    <ProductDetailPrivate
+                    photoProduct={photoProduct}
+                    productTitle ="Frijol de seda"
+                    price ="29.29"
+                    description ="Este frijol de seda es importado"
+                    category ="Ingredientes"
+                    providers = "El tazón de mi abuelo"
+                    />
 
 
-
+                      
+                    
+                </div>
             </main>
-
-
-
         </div>
 
 
