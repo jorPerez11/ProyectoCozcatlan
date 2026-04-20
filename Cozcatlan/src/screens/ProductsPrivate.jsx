@@ -10,10 +10,14 @@ import SearchButton from "../components/ProductsPrivate/SearchButton";
 import BottonAdd from "../components/ProductsPrivate/BottonAdd";
 import ProductDetail from "./ProductDetail";
 import ProductDetailPrivate from "../components/ProductsPrivate/ProductDetailPrivate";
+import CozcaFooterPrivate from "../components/Footer/CozcaFooterPrivate";
+import Navbar from "../components/PublicNavbar/Nav";
+import NavPrivate from "../components/privateNavBar/NavPrivate";
 const ProductsPrivate = () => {
     return (
         <div className="container-Main-Product">
             <main className="p-4">
+                <NavPrivate/>
                 <h1 className="text-success">Productos</h1>
                 <hr className="break" />
 
@@ -57,21 +61,18 @@ const ProductsPrivate = () => {
                         stock="100 Unidades"
                         productInfo="Chocolate en Tablilla"
                     />
+                    
 
-                     {/* Este es el ejemplo para que vean como es darle click al producto*/}
-                    <ProductDetailPrivate
-                    photoProduct={photoProduct}
-                    productTitle ="Frijol de seda"
-                    price ="29.29"
-                    description ="Este frijol de seda es importado"
-                    category ="Ingredientes"
-                    providers = "El tazón de mi abuelo"
-                    />
+                    
+
+                  
 
 
                       
                     
                 </div>
+                
+                  <CozcaFooterPrivate/>
             </main>
         </div>
 

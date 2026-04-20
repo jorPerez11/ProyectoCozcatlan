@@ -18,6 +18,8 @@ import Admins from './screens/Admins.jsx'
 import Employees from './screens/Employees.jsx'
 import Suppliers from './screens/Suppliers.jsx'
 import ProductsPrivate from './screens/ProductsPrivate.jsx'
+import DashboardPrivate from './screens/Dashboard.jsx'
+
 
 
 function App() {
@@ -40,6 +42,8 @@ function App() {
           <Route path="/employees" element={<Employees />} />
           <Route path="/suppliers" element={<Suppliers />} />
           <Route path="/productosprivados" element={<ProductsPrivate />} />
+          <Route path="/dashboardPrivate" element={<DashboardPrivate />} />
+
 
         </Routes>
       </Router>

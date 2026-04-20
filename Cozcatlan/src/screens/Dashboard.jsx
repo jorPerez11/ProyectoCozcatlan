@@ -17,6 +17,8 @@ import photoIconOrder from '../assets/IconoOrden.svg'
 import photoIconDate from '../assets/Iconofecha.svg'
 import photoIconRider from '../assets/IconoRider.svg'
 import photoIconSelect from '../assets/IconSelect.svg'
+import CozcaFooterPrivate from "../components/Footer/CozcaFooterPrivate.jsx";
+import NavPrivate from "../components/privateNavBar/NavPrivate";
 
 
 
@@ -26,7 +28,7 @@ const Dashboard = () => {
             
         <div className="Container-main min-vh-100">
             <main container d-flex align-items-center justify-content-center min-vh-100>
-
+                <NavPrivate/>
                 <h1>Bienvenido, Kevin Castro</h1>
                 <hr className="break" />
 
@@ -119,6 +121,8 @@ const Dashboard = () => {
 
                     </div>
                 </div>
+
+                <CozcaFooterPrivate/>
 
             </main>
 
