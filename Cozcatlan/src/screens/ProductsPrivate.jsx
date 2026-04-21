@@ -1,10 +1,7 @@
-import React from "react";
+import { useState } from "react";
 import CardProducts from "../components/ProductsPrivate/CardProducts";
-// Para importar los archivos css
-import './CardProductsPrivate.css'; // CSS de la pantalla Dashboard
-
-
-// Para importar las fotosº 
+import './CardProductsPrivate.css'; 
+import ProductCreateModal from "../components/ProductsPrivate/ProductCreateModal";
 import photoProduct from '../assets/PhotoProduct.webp'
 import SearchButton from "../components/ProductsPrivate/SearchButton";
 import BottonAdd from "../components/ProductsPrivate/BottonAdd";
@@ -14,6 +11,18 @@ import CozcaFooterPrivate from "../components/Footer/CozcaFooterPrivate";
 import Navbar from "../components/PublicNavbar/Nav";
 import NavPrivate from "../components/privateNavBar/NavPrivate";
 const ProductsPrivate = () => {
+    const [formData, setFormData] = useState({
+        nombre: '',
+        categoria: '',
+        precio: '',
+        stock: '',
+        descripcion: ''
+    });
+    const handleSaveProduct = () => {
+        console.log("Guardando producto:", formData);
+        setFormData({ nombre: '', categoria: '', precio: '', stock: '', descripcion: '' });
+    };
+
     return (
         <div className="container-Main-Product">
             <main className="p-4">
@@ -24,7 +33,13 @@ const ProductsPrivate = () => {
               
                 <div className="header-actions">
                     <SearchButton />
-                    <BottonAdd />  {/* Este es el boton para agregar productos*/}
+                    <button 
+                        className="btn btn-success" 
+                        data-bs-toggle="modal" 
+                        data-bs-target="#createProductModal"
+                    >
+                        Agregar Producto
+                    </button>
                 </div>
 
              
@@ -60,24 +75,16 @@ const ProductsPrivate = () => {
                         price="$10.50"
                         stock="100 Unidades"
                         productInfo="Chocolate en Tablilla"
-                    />
-                    
-
-                    
-
-                  
-
-
-                      
-                    
+                    />   
                 </div>
-                
+                <ProductCreateModal 
+                    formData={formData} 
+                    setFormData={setFormData} 
+                    onSave={handleSaveProduct} 
+                />
                   <CozcaFooterPrivate/>
             </main>
         </div>
-
-
-
     );
 
 };

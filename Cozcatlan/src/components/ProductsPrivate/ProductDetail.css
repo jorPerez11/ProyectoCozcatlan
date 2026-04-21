@@ -103,3 +103,48 @@
         font-size: 1.8rem;
     }
 }
+
+/* Contenedor principal del modal */
+.custom-modal-content {
+    border-radius: 30px !important;
+    border: 2px solid black !important;
+    background-color: #F5F5F5 !important;
+    padding: 20px;
+}
+
+/* Título del modal */
+.custom-modal-title {
+    font-size: 1.5rem;
+}
+
+/* Footer con el ajuste de posición para los botones */
+.custom-modal-footer {
+    padding-right: 0;
+    margin-left: 35%;
+    margin-top: -42px;
+    padding-top: 0;
+    padding-bottom: 5px;
+    z-index: 10;
+}
+
+/* Base para los botones circulares (Cancelar y Agregar) */
+.btn-custom-pill {
+    border-radius: 50px !important;
+    font-size: 0.9rem !important;
+    padding: 7px 0 !important;
+    border: none !important;
+    transition: opacity 0.2s ease;
+}
+
+.btn-custom-pill:hover {
+    opacity: 0.9;
+}
+
+/* Colores específicos */
+.btn-cancel {
+    background-color: #E07E4A !important;
+}
+
+.btn-add {
+    background-color: #5FB63F !important;
+}

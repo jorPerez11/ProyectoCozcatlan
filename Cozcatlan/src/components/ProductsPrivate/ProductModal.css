@@ -1,0 +1,287 @@
+/* Tarjetas con bordes negros sólidos e independientes */
+.cozca-card {
+  background-color: #ffffff !important;
+  border: 3px solid #000000 !important;
+  border-radius: 25px !important;
+  padding: 30px !important;
+  height: 100%;
+}
+
+/* Área de subir foto */
+.photo-display-area {
+  background-color: #f9f9f9;
+  border: 2px dashed #000;
+  border-radius: 20px;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.upload-icon {
+  font-size: 70px;
+  color: #000;
+}
+
+/* Etiquetas y Inputs */
+.cozca-label {
+  color: #0E7800 !important;
+  font-weight: 700 !important;
+  margin-bottom: 6px;
+}
+
+.cozca-input {
+  border-radius: 12px !important;
+  border: 2px solid #eee !important;
+}
+
+/* Botones con los colores de Cozcatlán */
+.btn-cozca-orange {
+  background-color: #E67E22 !important;
+  color: white !important;
+  border-radius: 50px !important;
+  border: none !important;
+  font-weight: bold;
+}
+
+.btn-cozca-green {
+  background-color: #6FC44C !important;
+  color: white !important;
+  border-radius: 50px !important;
+  border: none !important;
+  font-weight: bold;
+}
+
+/* Tarjetas principales con borde negro sólido y grueso del boceto */
+.cozca-card {
+    background-color: #ffffff !important;
+    border: 3px solid #000000 !important; /* Borde negro marcado */
+    border-radius: 20px !important;       /* Esquinas redondeadas */
+    padding: 25px !important;             /* Espacio interno para que respire */
+    height: 100%;
+    margin-bottom: 0 !important;          /* Evitamos márgenes de bootstrap */
+}
+
+/* El marco interno de la imagen con borde negro sólido */
+.product-image-frame {
+    background-color: #fdfdfd;
+    border: 2px solid #000000;            /* Borde negro marcado */
+    border-radius: 12px;
+    aspect-ratio: 1 / 1;                  /* Lo mantiene cuadrado */
+    width: 100%;
+    max-width: 250px;                     /* No deja que se haga gigante */
+    margin: 0 auto;                       /* Centrado horizontal */
+}
+
+/* Estilos de Botones Específicos para Cozcatlán */
+.btn-eliminar-foto-cozca {
+    background-color: #E67E22 !important; /* Naranja idéntico al boceto */
+    color: white !important;
+    border: none !important;
+    border-radius: 20px !important;
+    padding: 8px 12px !important;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.btn-agregar-foto-cozca {
+    background-color: #6FC44C !important; /* Verde idéntico al boceto */
+    color: white !important;
+    border: none !important;
+    border-radius: 20px !important;
+    padding: 8px 12px !important;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+/* Etiquetas y Inputs con estilo Cozcatlán */
+.cozca-label {
+    color: #0E7800 !important;            /* Verde Cozcatlán para el texto */
+    font-weight: bold !important;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.cozca-input {
+    border-radius: 12px !important;       /* Inputs redondeados */
+    border: 1px solid #ced4da !important; /* Borde suave interno */
+    padding: 8px 12px !important;
+}
+
+/* Textarea específico */
+textarea.cozca-input {
+    resize: none;                         /* Evita que el usuario lo deforme */
+}
+
+/* Solo la tarjeta de la foto lleva el borde negro */
+.cozca-card-photo {
+    background-color: #ffffff;
+    border: 2px solid #000000;
+    border-radius: 20px;
+    padding: 20px;
+    /* Esto ayuda a que baje un poco y no pegue arriba */
+    margin-top: 10px; 
+}
+
+/* El marco de la imagen (el cuadrado interno) */
+.product-image-frame {
+    background-color: #fff;
+    border: 1px solid #ccc; /* Un borde más suave como el boceto */
+    border-radius: 15px;
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    max-width: 220px;
+    margin: 0 auto;
+}
+
+/* Ajuste de los inputs para que se vean más como el boceto */
+.cozca-input {
+    border-radius: 10px !important;
+    border: 1.5px solid #000 !important; /* Borde negro pero delgado para los inputs */
+    padding: 6px 12px !important;
+    background-color: #fff !important;
+}
+
+.cozca-label {
+    color: #0E7800 !important;
+    font-weight: 500 !important;
+    font-size: 0.95rem;
+    margin-bottom: 2px;
+}
+
+/* Botones de abajo en el footer del modal */
+.btn-cozca-orange {
+    background-color: #E67E22 !important;
+    border-radius: 15px !important;
+    padding: 8px 25px !important;
+}
+
+.btn-cozca-green {
+    background-color: #6FC44C !important;
+    border-radius: 15px !important;
+    padding: 8px 25px !important;
+}
+
+/* Contenedor principal del modal */
+.custom-modal-content {
+    border-radius: 30px !important;
+    border: 2px solid black !important;
+    background-color: #F5F5F5 !important;
+    padding: 20px;
+}
+
+/* Título del modal */
+.custom-modal-title {
+    font-size: 1.5rem;
+}
+
+/* Contenedor de botones (Footer y Foto) */
+.custom-modal-footer, 
+.photo-buttons-container {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los botones salten de línea si no hay espacio */
+    gap: 10px;
+    justify-content: center;
+}
+
+/* Ajustes para móviles (Pantallas menores a 768px) */
+@media (max-width: 768px) {
+    .custom-modal-footer {
+        margin-left: 0 !important; /* Quitamos el desplazamiento lateral en móviles */
+        margin-top: 20px !important; /* Damos aire arriba para que no choquen con los inputs */
+        padding: 15px !important;
+    }
+
+    .btn-custom-pill {
+        width: 100% !important; /* Los botones ocupan todo el ancho en celulares */
+        padding: 12px 0 !important; /* Un poco más grandes para que sea fácil tocarlos con el dedo */
+    }
+
+    /* Ajuste para que la columna de la foto no quede pegada a los botones */
+    .photo-upload-container {
+        min-height: 300px !important;
+    }
+}
+
+/* Base para los botones circulares (Cancelar y Agregar) */
+.btn-custom-pill {
+    border-radius: 50px !important;
+    font-size: 0.9rem !important;
+    padding: 7px 0 !important;
+    border: none !important;
+    transition: opacity 0.2s ease;
+}
+
+.btn-custom-pill:hover {
+    opacity: 0.9;
+}
+
+/* Colores específicos */
+.btn-cancel {
+    background-color: #E07E4A !important;
+}
+
+.btn-add {
+    background-color: #5FB63F !important;
+}
+
+/* Contenedor de la foto */
+.photo-upload-container {
+    width: 100%;
+    padding: 1.5rem;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    gap: 10px;
+}
+
+/* Icono de subida */
+.upload-icon-large {
+    font-size: 90px;
+    color: black;
+}
+
+/* Estilos para etiquetas e inputs personalizados */
+.cozca-label {
+    font-weight: bold;
+    color: #2e7d32; /* Verde temático */
+}
+
+.cozca-input {
+    border-radius: 12px !important;
+    border: 1px solid #dee2e6 !important;
+}
+
+.cozca-input:focus {
+    border-color: #5FB63F !important;
+    box-shadow: 0 0 0 0.25rem rgba(95, 182, 63, 0.25) !important;
+}
+
+/* Para los botones de la foto, reutilizamos la lógica de pill */
+.btn-photo-action {
+    flex-grow: 1;
+    transition: all 0.2s ease;
+}
+/* Ajustes para móviles (Pantallas menores a 768px) */
+@media (max-width: 768px) {
+    .custom-modal-footer {
+        margin-left: 0 !important; /* Quitamos el desplazamiento lateral en móviles */
+        margin-top: 20px !important; /* Damos aire arriba para que no choquen con los inputs */
+        padding: 15px !important;
+    }
+
+    .btn-custom-pill {
+        width: 100% !important; /* Los botones ocupan todo el ancho en celulares */
+        padding: 12px 0 !important; /* Un poco más grandes para que sea fácil tocarlos con el dedo */
+    }
+
+    /* Ajuste para que la columna de la foto no quede pegada a los botones */
+    .photo-upload-container {
+        min-height: 300px !important;
+    }
+}
