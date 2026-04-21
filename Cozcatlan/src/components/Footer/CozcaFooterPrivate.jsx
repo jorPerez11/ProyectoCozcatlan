@@ -29,11 +29,11 @@ const CozcaFooterPrivate = () => {
           {/* Columna 2: Links Navegación */}
           <div className="col-12 col-md-4 text-center mb-4 mb-md-0">
             <nav className="footer-nav d-flex flex-wrap justify-content-center gap-4">
-              <a href="/" className="footer-link">Inicio</a>
+              <a href="/dashboardPrivate" className="footer-link">Inicio</a>
               <a href="/admins" className="footer-link">Administradores</a>
               <a href="/employees" className="footer-link">Empleados</a>
               <a href="/suppliers" className="footer-link">Proveedores</a>
-              <a href="/products" className="footer-link">Productos</a>
+              <a href="/productosprivados" className="footer-link">Productos</a>
             </nav>
             <div className="mt-4 copyright-text">
                ©{currentYear} Cozcatlan

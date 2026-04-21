@@ -3,7 +3,8 @@ import ClientRow from "../components/Admins-Supppliers-Employees/ClientRow";
 import ButtonAdmin from '../components/Admins-Supppliers-Employees/ButtonAdmin';
 import FormAdmin from '../components/Admins-Supppliers-Employees/FormAdmin.jsx';
 import CozcaModal from "../components/Admins-Supppliers-Employees/CozcaModal.jsx";
-import CozcaFooterPrivate from "../components/Footer/CozcaFooterPrivate.jsx"; // Importamos el footer
+import CozcaFooterPrivate from "../components/Footer/CozcaFooterPrivate.jsx"; 
+import NavPrivate from "../components/privateNavBar/NavPrivate.jsx";
 import './3Screens.css'; 
 
 const Admins = () => {
@@ -35,7 +36,7 @@ const Admins = () => {
       
       {/* Header / Nav Placeholder */}
       <div className="py-4 px-5 text-start bg-white/30 backdrop-blur-md mb-4 border-bottom border-white/20">
-        <span className="text-success fw-bold">Cozcatlán Dashboard / Panel Admins</span>
+         <NavPrivate/>
       </div>
 
       {/* 2. flex-grow-1 expande este contenedor para empujar el footer */}

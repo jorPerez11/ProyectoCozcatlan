@@ -27,7 +27,7 @@ const Dashboard = () => {
 
             
         <div className="Container-main min-vh-100">
-            <main container d-flex align-items-center justify-content-center min-vh-100>
+            <main className="cozca-screen-wrapper d-flex flex-column min-vh-100"> 
                 <NavPrivate/>
                 <h1>Bienvenido, Kevin Castro</h1>
                 <hr className="break" />

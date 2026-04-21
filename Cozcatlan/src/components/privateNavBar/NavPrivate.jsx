@@ -48,7 +48,7 @@ const NavPrivate = () => {
                             <a className="nav-link-custom active" href="/employees">Empleados</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link-custom" href="/clients">Clientes</a>
+                            <a className="nav-link-custom" href="/suppliers">Proveedores</a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link-custom" href="/productosprivados">Productos</a>

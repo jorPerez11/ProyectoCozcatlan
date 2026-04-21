@@ -25,7 +25,7 @@ const ProductsPrivate = () => {
 
     return (
         <div className="container-Main-Product">
-            <main className="p-4">
+            <main className="cozca-screen-wrapper d-flex flex-column min-vh-100"> 
                 <NavPrivate/>
                 <h1 className="text-success">Productos</h1>
                 <hr className="break" />
