@@ -19,7 +19,9 @@ import Employees from './screens/Employees.jsx'
 import Suppliers from './screens/Suppliers.jsx'
 import ProductsPrivate from './screens/ProductsPrivate.jsx'
 import DashboardPrivate from './screens/Dashboard.jsx'
-
+import RecoveryPassword from './screens/RecoverPassword.jsx'
+import RecoveryPasswordPin from './screens/RecoverPasswordPin.jsx'
+import RecoveryNewPassword from './screens/RecoverNewPassword.jsx'
 
 
 function App() {
@@ -43,6 +45,11 @@ function App() {
           <Route path="/suppliers" element={<Suppliers />} />
           <Route path="/productosprivados" element={<ProductsPrivate />} />
           <Route path="/dashboardPrivate" element={<DashboardPrivate />} />
+          <Route path="/recoveryPassword" element={<RecoveryPassword />} />
+          <Route path="/recoveryPasswordPin" element={<RecoveryPasswordPin />} />
+          <Route path="/recoveryNewPassword" element={<RecoveryNewPassword />} />
+
+
 
 
         </Routes>

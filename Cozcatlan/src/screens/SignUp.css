@@ -58,3 +58,9 @@
     background-color: #ebebeb !important;
 }
 
+
+.buttonsFlex{
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+}
