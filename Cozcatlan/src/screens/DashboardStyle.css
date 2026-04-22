@@ -1,58 +1,71 @@
-
+/* Contenedor principal */
 .Container-main {
     background-color: #F1F6DF;
-
 }
 
 .break {
     color: #E57937;
-
+    border-top: 2px solid #E57937;
+    opacity: 1;
 }
 
-
+/* --- CONFIGURACIÓN DEL GRID --- */
 .dashboard-grid {
-  display: grid;
-  gap: 20px;
-  /* Por defecto: una sola columna (Móvil) */
-  grid-template-columns: 1fr;
-  grid-template-areas: 
-    "card1"
-    "card2"
-    "card3"
-    "chart"
-    "side";
+    display: grid;
+    gap: 20px;
+    /* Por defecto: todo en una sola columna (Móvil) */
+    grid-template-columns: 1fr;
 }
 
-/* Cuando la pantalla sea más grande que 992px (Desktop) */
+/* Desktop (Pantallas mayores a 992px) */
 @media (min-width: 992px) {
-  .dashboard-grid {
-    /* 4 columnas: 3 para las cards y 1 un poco más ancha para el sidebar */
-    grid-template-columns: repeat(3, 1fr) 1.3fr;
-    grid-template-rows: auto 1fr;
-    grid-template-areas: 
-      "card1 card2 card3 side"
-      "chart chart chart side";
-  }
+    .dashboard-grid {
+        /* Creamos 4 columnas. 
+           Las primeras 3 para las tarjetas pequeñas, la 4ta para el sidebar */
+        grid-template-columns: repeat(3, 1fr) 1.2fr;
+        grid-template-rows: auto 1fr;
+    }
+
+    /* Posicionamiento exacto como en tu imagen */
+    .dashboard-grid > div:nth-child(1) { grid-column: 1; grid-row: 1; } /* Clientes */
+    .dashboard-grid > div:nth-child(2) { grid-column: 2; grid-row: 1; } /* Órdenes */
+    .dashboard-grid > div:nth-child(3) { grid-column: 3; grid-row: 1; } /* Venta Total */
+    
+    .main-chart { 
+        grid-column: 1 / span 3; /* El gráfico abarca las 3 columnas de las tarjetas */
+        grid-row: 2; 
+        min-height: 450px;
+    }
+    
+    .sidebar { 
+        grid-column: 4; 
+        grid-row: 1 / span 2; /* El sidebar ocupa desde la fila 1 hasta la 2 */
+    }
 }
 
-/* Asignación de áreas a tus divs */
-.dashboard-grid > div:nth-child(1) { grid-area: card1; }
-.dashboard-grid > div:nth-child(2) { grid-area: card2; }
-.dashboard-grid > div:nth-child(3) { grid-area: card3; }
-.main-chart { grid-area: chart; min-height: 350px; }
-.sidebar { grid-area: side; }
-
-.container-notifications{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-  overflow-y: auto;      /* Si hay muchas órdenes, permite scroll */
-  color:  #0E7800;
-  justify-content: flex-start;
-  padding: 5px;
-  
+/* --- ESTILOS DE COMPONENTES --- */
+.bg-light-green {
+    border-radius: 15px;
+    padding: 20px;
 }
 
+.container-notifications {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    color: #0E7800;
+    max-height: 85vh; /* Altura máxima para que no rompa el diseño */
+}
 
+/* Scroll interno para las notificaciones si hay muchas */
+.container-notifications {
+    overflow-y: auto;
+}
 
+/* Opcional: diseño del título del sidebar */
+.container-notifications h2 {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
