@@ -8,31 +8,23 @@ import NavPrivate from "../components/privateNavBar/NavPrivate.jsx";
 import './3Screens.css'; 
 
 const Suppliers = () => {
-// Estado para controlar el modal
   const [modalOpen, setModalOpen] = useState(false);
-  // Estado para saber si estamos agregando o editando
   const [isEditing, setIsEditing] = useState(false);
-  // Estado para los datos del formulario
   const [formData, setFormData] = useState({});
 
-  // 2. Datos de ejemplo (ESTO ES LO QUE TE FALTA)
   const administradores = [
     { id: 1, nombre: "Lourdes Carolina Estévez Rojas", email: "m_estevez@gmail.com" },
     { id: 2, nombre: "Lourdes Carolina Estévez Rojas", email: "m_estevez@gmail.com" },
     { id: 3, nombre: "Lourdes Carolina Estévez Rojas", email: "m_estevez@gmail.com" },
   ];
-
-  // Función para abrir modal en modo "Añadir"
   const handleAddClick = () => {
     setIsEditing(false);
-    setFormData({}); // Limpiamos el formulario
+    setFormData({}); 
     setModalOpen(true);
   };
-
-  // Función para abrir modal en modo "Editar" (esta la pasarías a GenericRow)
   const handleEditClick = (adminData) => {
     setIsEditing(true);
-    setFormData(adminData); // Cargamos los datos del admin
+    setFormData(adminData); 
     setModalOpen(true);
   };
 
@@ -61,7 +53,6 @@ const Suppliers = () => {
               key={admin.id} 
               title={admin.nombre} 
               subtitle={admin.email} 
-              // Pasamos la función de editar y los datos de este admin específico
               onEdit={() => handleEditClick(admin)} 
             />
           ))}

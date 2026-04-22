@@ -9,7 +9,6 @@ const FormEmployee = ({ formData, setFormData, isEditing }) => {
   return (
     <div className="container-fluid px-0">
       <div className="row g-3">
-        {/* Fila 1: Nombre y Correo */}
         <div className="col-md-6">
           <label className="cozca-label mb-1">Nombre Completo:</label>
           <input 
@@ -30,22 +29,20 @@ const FormEmployee = ({ formData, setFormData, isEditing }) => {
             onChange={handleChange}
           />
         </div>
-
-        {/* Fila 2: Contraseña, Fecha y DUI */}
         <div className="col-md-4">
         <label className="cozca-label mb-1">Contraseña:</label>
         <div className="position-relative">
             <input 
-            type={showPassword ? "text" : "password"} // <--- Tipo dinámico
+            type={showPassword ? "text" : "password"} 
             className="form-control cozca-input" 
             placeholder="**********"
             />
             <button 
             type="button"
             className="position-absolute end-0 top-50 translate-middle-y me-2 btn border-0"
-            onClick={() => setShowPassword(!showPassword)} // <--- Cambia el estado
+            onClick={() => setShowPassword(!showPassword)} 
             >
-            {showPassword ? "👁️‍🗨️" : "👁️"} {/* Cambia el icono si quieres */}
+            {showPassword ? "👁️‍🗨️" : "👁️"} 
             </button>
         </div>
         </div>
@@ -59,8 +56,6 @@ const FormEmployee = ({ formData, setFormData, isEditing }) => {
           <label className="cozca-label mb-1">DUI:</label>
           <input type="text" className="form-control cozca-input" placeholder="12345678-9" />
         </div>
-
-        {/* Fila 3: Teléfono y Dirección (y Estado si es editar) */}
         <div className={isEditing ? "col-md-4" : "col-md-4"}>
           <label className="cozca-label mb-1">Teléfono:</label>
           <input type="text" className="form-control cozca-input" placeholder="6875-5412" />
@@ -70,8 +65,6 @@ const FormEmployee = ({ formData, setFormData, isEditing }) => {
           <label className="cozca-label mb-1">Dirección:</label>
           <input type="text" className="form-control cozca-input" />
         </div>
-
-        {/* Campo de Estado: Solo aparece en modo Editar */}
         {isEditing && (
           <div className="col-md-4">
             <label className="cozca-label mb-1">Estado:</label>

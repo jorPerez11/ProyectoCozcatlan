@@ -1,4 +1,4 @@
-/* 1 - Wrapper de todo junto con imagen de fondo*/
+
 
 .cozca-screen-wrapper {
     min-height: 100vh;
@@ -23,7 +23,6 @@
     pointer-events: none; 
 }
 
-/* 2 - Contenedores y titulos*/
 
 .container {
     position: relative;
@@ -82,7 +81,6 @@
     display: none !important;
 }
 
-/* 3 - Titulos */
 
 .cozca-text-primary {
     color: #1a3a13;
@@ -101,7 +99,6 @@
     font-weight: 700;
 }
 
-/* 4 - Bótones e iconos */ 
 
 .btn-cozca-add {
     background-color: #E7F0C7 !important;
@@ -183,7 +180,6 @@
     border-radius: 10px;
 }
 
-/* 5 - Bótones y elementos de paginación */
 
 .cozca-pagination-container {
     display: flex;

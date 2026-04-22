@@ -31,15 +31,10 @@ const Admins = () => {
   };
 
   return (
-    /* 1. min-vh-100 y flex-column aseguran que el footer se vaya al fondo */
     <div className="cozca-screen-wrapper d-flex flex-column min-vh-100"> 
-      
-      {/* Header / Nav Placeholder */}
       <div className="py-4 px-5 text-start bg-white/30 backdrop-blur-md mb-4 border-bottom border-white/20">
          <NavPrivate/>
       </div>
-
-      {/* 2. flex-grow-1 expande este contenedor para empujar el footer */}
       <div className="container py-5 flex-grow-1">
         <div className="header-container">
           <div className="d-flex justify-content-between align-items-center w-100 mb-2 px-2">
@@ -89,8 +84,6 @@ const Admins = () => {
           isEditing={isEditing} 
         />
       </CozcaModal>
-
-      {/* 3. Insertamos el Footer al final */}
       <CozcaFooterPrivate />
 
     </div>
