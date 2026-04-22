@@ -38,7 +38,6 @@ const Suppliers = () => {
 
   return (
     <div className="cozca-screen-wrapper d-flex flex-column min-vh-100"> 
-      {/* Placeholder para el NAV */}
       <div className="py-4 px-5 text-start bg-white/30 backdrop-blur-md mb-4 border-bottom border-white/20">
          <NavPrivate/>
       </div>
@@ -85,7 +84,6 @@ const Suppliers = () => {
         onSubmitText={isEditing ? "Guardar Cambios" : "Agregar"}
         onSubmit={() => console.log("Guardando datos:", formData)}
       >
-        {/* AQUÍ INYECTAMOS EL FORMULARIO ESPECÍFICO */}
         <FormSuppliers 
           formData={formData} 
           setFormData={setFormData} 
