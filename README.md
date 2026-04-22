@@ -10,7 +10,7 @@ Los integrantes de este proyecto son:
 
 ## Tecnologías a Utilizar
 
-El proyecto se divide en capas estratégicas para garantizar escalabilidad y un rendimiento óptimo tanto en web como en dispositivos móviles.
+El proyecto se divide en capas estratégicas para garantizar escalabilidad y un rendimiento óptimo  en web 
 
 ### Frontend (Interfaz de Usuario)
 <table border="0">
