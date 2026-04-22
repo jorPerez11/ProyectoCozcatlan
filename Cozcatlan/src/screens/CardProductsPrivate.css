@@ -4,7 +4,6 @@
     padding: 20px;
 }
 
-/* Encabezado: Buscador y Botón */
 .header-actions {
     display: flex;
     justify-content: space-between;
@@ -14,33 +13,29 @@
     margin-bottom: 30px;
 }
 
-/* Cuadrícula de Productos Responsive */
 .products-grid-flex {
     display: grid;
-    /* Ajuste automático: crea columnas de al menos 280px y las reparte */
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 25px;
-    justify-items: center; /* Centra las cards si sobran espacios */
+    justify-items: center; 
 }
 
-/* --- AJUSTES PARA MÓVILES --- */
 @media (max-width: 576px) {
     .header-actions {
-        flex-direction: column; /* Apila buscador y botón en celulares */
+        flex-direction: column; 
         align-items: stretch;
     }
 
     .header-actions > * {
-        width: 100%; /* Botones a ancho completo en móvil */
+        width: 100%; 
     }
 
     .products-grid-flex {
-        /* En pantallas muy pequeñas, una sola columna */
+       
         grid-template-columns: 1fr;
     }
 }
 
-/* Estilo de la línea divisoria */
 .break {
     color: #E57937;
     border-top: 3px solid currentColor;

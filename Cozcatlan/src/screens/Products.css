@@ -1,5 +1,5 @@
 .store-wrapper {
-    background-color: #f1f6df; /* El verde clarito del fondo */
+    background-color: #f1f6df;
     min-height: 100vh;
     font-family: 'Montserrat', sans-serif !important;
 }
@@ -8,12 +8,12 @@
 
 .promo-content{
     position: relative;
-    z-index: 2; /* Un valor alto para asegurar que esté arriba */
+    z-index: 2; 
     max-width: 60%;
 }
 .promo-image{
     position: absolute;         
-    width: 100%;         /* Que ocupe la mitad derecha */
+    width: 100%;         
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -24,7 +24,6 @@
     width: 100%;
 }
 
-/* Banner Promo */
 .promo-banner {
     background: linear-gradient(135deg, #fefae0 0%, #e9edc9 100%);
     position: relative;
@@ -40,7 +39,6 @@
     font-weight: bold;
 }
 
-/* Tarjetas de Producto */
 .product-card {
     border-radius: 20px;
     overflow: hidden;
@@ -58,7 +56,6 @@
     border-bottom: 1px solid #eee;
 }
 
-/* Botón de Carrito con degradado */
 .btn-orange-cart {
     background: linear-gradient(to right, #f47c3c, #e36b2d);
     border: none;
@@ -86,7 +83,7 @@
 }
 
 .search-bar input:focus {
-    background-color: #f1f6df !important; /* Mantiene el mismo color que el estado normal */
+    background-color: #f1f6df !important; 
     outline: none !important; 
     box-shadow: none !important; 
     border-color: #7a917e !important;

@@ -2,12 +2,12 @@
     background: linear-gradient(to right, #e36b2d, #e36b2d) !important;
     color: white !important;
     border: none !important;
-    border-radius: 12px !important; /* Bordes redondeados como la tarjeta */
+    border-radius: 12px !important; 
     padding: 12px 20px !important;
     font-weight: 500;
-    width: 100%; /* Por defecto ocupa todo el ancho del contenedor */
+    width: 100%; 
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(244, 124, 60, 0.3); /* Sombra naranja sutil */
+    box-shadow: 0 4px 15px rgba(244, 124, 60, 0.3); 
 }
 
 .btn-add-to-cart:hover {

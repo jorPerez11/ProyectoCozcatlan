@@ -2,11 +2,9 @@
     background-color: #E8F3D1;
     color: #0E7800;
     font-family: 'Montserrat', sans-serif;
-    /* Reducimos el padding de 5 (3rem) a 3 (1rem) */
     padding: 1.5rem 0 !important; 
 }
 
-/* Círculos de las redes sociales */
 .social-icon-circle {
     background-color: #0E7800;
     color: white;
@@ -24,7 +22,6 @@
     background-color: #0A5D00;
 }
 
-/* Textos de contacto */
 .contact-text {
     font-size: 1.1rem;
     font-weight: 500;
@@ -61,7 +58,6 @@
 }
 
 .footer-logo {
-    /* Logo un poco más pequeño */
     max-height: 60px; 
     width: auto;
 }
@@ -69,26 +65,23 @@
 .social-icon-circle {
     background-color: #0E7800;
     color: white;
-    /* Círculos un pelín más pequeños */
     padding: 8px; 
     font-size: 1rem;
 }
 
 .contact-icon-main {
-    /* Iconos de contacto menos pesados */
     font-size: 1.4rem; 
     color: #0E7800;
 }
 
 .contact-text {
-    font-size: 0.95rem; /* Texto un poco más fino */
+    font-size: 0.95rem; 
 }
 
 .footer-link {
     font-size: 0.9rem;
 }
 
-/* Reducimos el margen de la fila de copyright */
 .footer-copyright-row {
     margin-top: 1rem !important;
     border-top: 1px solid rgba(14, 120, 0, 0.1);

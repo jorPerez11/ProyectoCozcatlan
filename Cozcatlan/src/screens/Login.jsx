@@ -18,7 +18,7 @@ const Login = () => {
 
             <div className="top-visual-container">
             <img 
-              src={logoCozcatlan} // Tu nueva imagen combinada
+              src={logoCozcatlan} 
               alt="Cozcatlán - El sabor de tu hogar" 
               className="img-fluid top-full-img" 
             />

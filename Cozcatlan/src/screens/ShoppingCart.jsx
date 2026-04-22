@@ -7,7 +7,7 @@ import FinishBtn from '../components/ShoppingCart/FinishBtn.jsx';
 import CozcaFooter from "../components/Footer/CozcaFooter.jsx";
 
 const ShoppingCart = () => {
-    const cartItems = [1, 2, 3, 4, 5]; // Array de ejemplo para las filas
+    const cartItems = [1, 2, 3, 4, 5]; 
 
   return (
     <div className="cart-page-wrapper min-vh-100">
@@ -27,28 +27,23 @@ const ShoppingCart = () => {
             <div className="cart-items-card p-1 pe-5 ps-5 shadow-lg">
               {cartItems.map((item, index) => (
                 <div key={index} className={`cart-item-row d-flex align-items-center py-3 ${index !== cartItems.length - 1 ? 'border-bottom' : ''}`}>
-                  {/* Placeholder imagen */}
                   <div className="item-img-placeholder me-3">
                     <img src={Placeholder} alt="placeholder" />
                   </div>
                   
-                  {/* Info Producto */}
                   <div className="flex-grow-1">
                     <h6 className=" mb-0">Queso Duro Viejo</h6>
                     <small className="text-success d-block">En Stock</small>
                   </div>
 
-                  {/* Precio Unitario */}
                   <div className="mx-4 text-dark-green fw-bold">$15.25</div>
 
-                  {/* Controles de Cantidad */}
                   <div className="quantity-selector d-flex align-items-center me-4">
                     <button className="btn-qty">-</button>
                     <span className="qty-value text-dark-green mx-3">2</span>
                     <button className="btn-qty">+</button>
                   </div>
 
-                  {/* Subtotal por Item */}
                   <div className="item-subtotal text-dark-green fw-bold">$30.50</div>
                 </div>
               ))}

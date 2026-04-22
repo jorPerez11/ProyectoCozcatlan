@@ -32,10 +32,10 @@ const Dashboard = () => {
                 <h1>Bienvenido, Kevin Castro</h1>
                 <hr className="break" />
 
-                <div className="Container-Components p-3"> {/* p-3 es clase de Bootstrap para padding */}
+                <div className="Container-Components p-3"> 
                     <div className="dashboard-grid">
 
-                        {/* Card 1 */}
+                       
                         <div className="h-100">
                             <CardDashboard
                                 photo={photoIconClient}
@@ -44,7 +44,7 @@ const Dashboard = () => {
                             />
                         </div>
 
-                        {/* Card 2 */}
+                       
                         <div className="h-100">
                             <CardDashboard
                                 photo={photoIconOrders}
@@ -53,7 +53,7 @@ const Dashboard = () => {
                             />
                         </div>
 
-                        {/* Card 3 */}
+                      
                         <div className="h-100">
                             <CardDashboard
                                 photo={photoIconSales}
@@ -62,14 +62,12 @@ const Dashboard = () => {
                             />
                         </div>
 
-                        {/* Bloque ancho de abajo (productos) */}
                         <div className="box main-chart bg-light-green shadow-sm">
                             <ChartSales/>
                         </div>
 
-                        {/* Bloque lateral alto (órdenes) */}
                         <div className="container-notifications box sidebar bg-light-green shadow-sm">
-                            {/* Aquí van tus órdenes pendientes */}
+                           
                             <h2>Òrdenes pendientes</h2>
                             <CardNotification
                                 icon1={photoIconOrder}

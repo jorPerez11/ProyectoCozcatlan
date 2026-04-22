@@ -6,7 +6,6 @@ const ButtonAdmin = ({ type, onClick, disabled, text, className }) => {
       type={type}
       onClick={onClick}
       disabled={disabled}
-      /* Combinamos las clases base con las que envíes (como btn-agregar-verde) */
       className={`btn fw-bold shadow-sm ${className}`}
     >
       {text}
