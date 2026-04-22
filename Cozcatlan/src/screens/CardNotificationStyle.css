@@ -1,4 +1,3 @@
-/*Este selector es el contenedor padre donde se hara la card notification*/
 .card.container-main {
     background-color: #C3DEB0; 
     border-radius: 15px ;
@@ -10,7 +9,6 @@
        
 }
 
-/*Este selector es donde estaran las imagenes y los parrafos para agruparlos en una linea*/
 .container-CardNotification {
     display: flex;
     align-items: center;/* Alinea icono y texto al centro verticalmente */
@@ -20,10 +18,9 @@
 
 }
 
-/*Este selector hace que la dirección y la flecha para ver el estado del pedido esten alineados*/
 .container-address-row {
     display: flex;
-    justify-content: space-between; /* Hace que la dirección a la izquierda, flecha a la derecha */
+    justify-content: space-between; 
     align-items: center;
 }
 
@@ -31,17 +28,17 @@
     margin: 0;
     font-size: 0.95rem;
     color: #333; 
-    white-space: nowrap; /* Si la dirección es muy larga, esto evita que rompa el diseño */
+    white-space: nowrap; 
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 85%;
 }
 
 .container-CardNotification p{
-    margin: 0; /*  margen que traen los <p> por defecto */
+    margin: 0; 
     font-size: 15px;
 }
 .container-CardNotification span {
-    margin: 0; /*  margen que traen los <p> por defecto */
+    margin: 0;
     font-size: 15px;
 }

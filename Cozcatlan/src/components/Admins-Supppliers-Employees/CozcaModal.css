@@ -1,7 +1,7 @@
-/* Un CSS global o genérico para tus formularios de Cozcatlán */
+
 .cozca-input {
-    background-color: #F8F9F8 !important; /* El color claro del boceto */
-    border: 1px solid #CACACA !important; /* El borde delgado */
+    background-color: #F8F9F8 !important;
+    border: 1px solid #CACACA !important; 
     border-radius: 8px !important;
     padding: 10px !important;
     font-size: 1.1rem !important;
@@ -9,33 +9,31 @@
 }
 
 .cozca-label {
-    color: #0E7800; /* El verde oscuro del boceto */
+    color: #0E7800; 
     font-weight: 500;
-    display: block !important; /* Ocupa todo el ancho disponible */
-    text-align: left !important; /* <--- ¡ESTE ES EL CAMBIO CLAVE! */
+    display: block !important; 
+    text-align: left !important;
     width: 100% !important;
-    margin-left: 0 !important; /* Asegura que no haya margen izquierdo que lo empuje */
+    margin-left: 0 !important; 
 }
 
-/* El fondo oscuro que cubre toda la pantalla */
 .cozca-modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Oscurece el fondo */
+    background-color: rgba(0, 0, 0, 0.5); 
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999; /* Asegura que esté por encima de todo */
-    backdrop-filter: blur(2px); /* Efecto de desenfoque al fondo */
+    z-index: 9999; 
+    backdrop-filter: blur(2px); 
 }
 
-/* El recuadro blanco (el modal en sí) */
 .cozca-modal-content {
-    background: rgba(255, 255, 255, 0.9); /* Blanco con ligera transparencia */
-    backdrop-filter: blur(15px); /* Desenfoque para el fondo */
+    background: rgba(255, 255, 255, 0.9); 
+    backdrop-filter: blur(15px); 
     border-radius: 24px;
     border: 1px solid rgba(255, 255, 255, 0.4);
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
@@ -43,7 +41,7 @@
 }
 
 .btn-cozca-cancel {
-    background-color: #E57937 !important; /* El naranja que usas en la línea */
+    background-color: #E57937 !important; 
     color: white !important;
     border-radius: 50px !important;
     padding: 10px 30px !important;
@@ -52,7 +50,7 @@
 }
 
 .btn-cozca-submit {
-    background-color: #6FC44C !important; /* El verde brillante de Cozcatlán */
+    background-color: #6FC44C !important; 
     color: white !important;
     border-radius: 50px !important;
     padding: 10px 30px !important;
@@ -92,15 +90,14 @@
 
 
 .cozca-modal-overlay {
-    /* ... lo que ya tenías ... */
-    overflow-y: auto; /* Permite scroll si el modal es muy alto */
+    overflow-y: auto; 
     padding: 20px 10px; 
-    align-items: flex-start; /* En móvil es mejor que empiece arriba, no centrado */
+    align-items: flex-start; 
 }
 
 @media (min-width: 768px) {
     .cozca-modal-overlay {
-        align-items: center; /* En PC sí lo queremos centrado */
+        align-items: center; 
     }
 }
 
@@ -113,15 +110,13 @@ body.modal-open {
     text-align: left !important;
 }
 
-/* Estiliza el icono del calendario nativo para que combine con Cozcatlán */
 .cozca-calendar-input::-webkit-calendar-picker-indicator {
     background-color: transparent;
     cursor: pointer;
-    filter: invert(30%) sepia(80%) saturate(500%) hue-rotate(80deg); /* Lo vuelve verdoso */
+    filter: invert(30%) sepia(80%) saturate(500%) hue-rotate(80deg); 
     padding: 5px;
 }
 
-/* Esto hace que el icono del calendario siempre sea visible y combine con tu verde */
 .cozca-input::-webkit-calendar-picker-indicator {
     display: block;
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" viewBox="0 0 24 24"><path fill="%230E7800" d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"/></svg>');

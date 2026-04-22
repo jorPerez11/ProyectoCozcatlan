@@ -43,7 +43,7 @@
     }
 }
 
-/* --- ESTILOS DE COMPONENTES --- */
+
 .bg-light-green {
     border-radius: 15px;
     padding: 20px;
@@ -54,15 +54,15 @@
     flex-direction: column;
     gap: 15px;
     color: #0E7800;
-    max-height: 85vh; /* Altura máxima para que no rompa el diseño */
+    max-height: 85vh;
 }
 
-/* Scroll interno para las notificaciones si hay muchas */
+
 .container-notifications {
     overflow-y: auto;
 }
 
-/* Opcional: diseño del título del sidebar */
+
 .container-notifications h2 {
     text-align: center;
     font-size: 1.5rem;

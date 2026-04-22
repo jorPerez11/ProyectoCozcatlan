@@ -1,34 +1,27 @@
-import React, { useEffect } from "react"; // <--- No olvides importar useEffect
+import React, { useEffect } from "react"; 
 import '../Admins-Supppliers-Employees/CozcaModal.css'; 
 
 const CozcaModal = ({ isOpen, onClose, title, children, onSubmitText, onSubmit }) => {
-  
-  // Efecto para detectar la tecla Escape
   useEffect(() => {
     const handleEsc = (event) => {
-      if (event.keyCode === 27) { // 27 es el código de la tecla Esc
+      if (event.keyCode === 27) { 
         onClose();
       }
     };
-
     if (isOpen) {
       window.addEventListener('keydown', handleEsc);
-      // Bloqueamos el scroll del body
     document.body.style.overflow = 'hidden';
     document.body.style.height = '100vh'; 
   } else {
-    // Liberamos el scroll cuando el modal se cierra
     document.body.style.overflow = 'unset';
     document.body.style.height = 'auto';
   }
-
-  // Cleanup por si el componente se desmonta inesperadamente
   return () => {
     document.body.style.overflow = 'unset';
     document.body.style.height = 'auto';
   };
     
-  }, [isOpen, onClose]); // Solo se ejecuta cuando el modal se abre o cierra
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
