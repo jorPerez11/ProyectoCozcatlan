@@ -1,35 +1,25 @@
 import React from 'react';
 import { BsArrowUpSquareFill } from "react-icons/bs";
-import './ProductModal.css'; // Asegúrate de que esté importado
+import './ProductModal.css'; 
 
-const FormProduct = ({ formData, setFormData }) => {
+const FormProduct = ({ formData, setFormData, renderPhotoButtons, onSave }) => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     };
-
     return (
         <div className="container-fluid px-0 mt-2">
-            <div className="row g-4">
-                
-                <div className="col-md-5 d-flex flex-column align-items-center pt-0"> 
-                    {/* Contenedor de la imagen */}
+            <div className="row g-4 form-product-row px-4 pb-4 align-items-stretch">
+                <div className="col-md-5 d-flex flex-column"> 
                     <div className="photo-upload-container shadow-sm">
                         <BsArrowUpSquareFill className="upload-icon-large" />
                     </div>
-                        <div className="w-100 mt-4 photo-buttons-container px-1">
-                            <button type="button" className="btn text-white fw-bold shadow-sm btn-custom-pill btn-cancel btn-photo-action">
-                                Eliminar Foto
-                            </button>
-                            <button type="button" className="btn text-white fw-bold shadow-sm btn-custom-pill btn-add btn-photo-action">
-                                Agregar Foto
-                            </button>
-                    </div>
+                    {renderPhotoButtons}
                 </div>
-                <div className="col-md-7">
+                <div className="col-md-7 d-flex flex-column">
                     <div className="row g-3">
-                        <div className="col-md-8">
+                        <div className="col-md-7">
                             <label className="cozca-label mb-1">Nombre Producto:</label>
                             <input 
                                 type="text" 
@@ -39,7 +29,7 @@ const FormProduct = ({ formData, setFormData }) => {
                                 onChange={handleChange}
                             />
                         </div>
-                        <div className="col-md-4">
+                        <div className="col-md-5">
                             <label className="cozca-label mb-1">Categoría:</label>
                             <select 
                                 name="categoria" 
@@ -101,6 +91,14 @@ const FormProduct = ({ formData, setFormData }) => {
                                 <option value="distribuidora_local">Distribuidora Local</option>
                             </select>
                         </div>
+                    </div>
+                    <div className="w-100 d-flex gap-3 justify-content-center mt-auto pt-4 pb-0"> 
+                        <button type="button" className="btn btn-custom-pill btn-cancel" data-bs-dismiss="modal">
+                            Cancelar
+                        </button>
+                        <button type="button" className="btn btn-custom-pill btn-add" onClick={onSave}>
+                            Agregar
+                        </button>
                     </div>
                 </div>
             </div>
