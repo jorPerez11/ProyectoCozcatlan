@@ -6,7 +6,6 @@ export const SocialLinks = () => {
     <div className="mt-10">
       <h2 className="font-['Prompt'] !text-[#0E7800] text-2xl mb-6 text-center md:text-left">Síguenos</h2>
       
-      {/* Iconos de Redes */}
       <div className="flex !justify-center md:justify-start gap-4 mb-10">
         {[FaInstagram, FaFacebookF, FaTwitter, FaYoutube].map((Icon, index) => (
           <div key={index} className="bg-[#0E7800] text-white p-3 rounded-full text-xl cursor-pointer hover:bg-[#0A5D00] transition-colors">
@@ -15,7 +14,6 @@ export const SocialLinks = () => {
         ))}
       </div>
 
-      {/* Info Directa */}
       <div className="space-y-6">
         <div className="flex items-center justify-center md:justify-start gap-4">
           <FaWhatsapp className="text-[#0E7800] text-3xl" />

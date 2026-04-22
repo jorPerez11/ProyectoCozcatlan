@@ -6,9 +6,7 @@ export const Hero = () => {
   return (
     <section className="w-full overflow-hidden">
       <picture>
-        {/* Si la pantalla es mayor a 768px, usa la versión de escritorio */}
         <source media="(min-width: 768px)" srcSet={heroDesktop} />
-        {/* Por defecto (móvil), usa la versión cuadrada */}
         <img 
           src={heroMobile} 
           className="w-full h-auto" 
