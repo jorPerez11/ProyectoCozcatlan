@@ -31,3 +31,16 @@ El proyecto se divide en capas estratégicas para garantizar escalabilidad y un 
     <td><b>Bootstrap:</b> Framework de estilos para un diseño responsivo.</td>
   </tr>
 </table>
+
+## 🛠️ Tecnologías y Dependencias
+
+| Tecnología | Descripción |
+| :--- | :--- |
+| **React 19** | Biblioteca principal para la construcción de interfaces basadas en componentes funcionales. |
+| **Vite 8** | Herramienta de nueva generación que proporciona un entorno de desarrollo extremadamente rápido. |
+| **Tailwind CSS 4** | Framework de CSS orientado a utilidades para un diseño moderno y altamente personalizado. |
+| **Bootstrap 5** | Utilizado para componentes de UI consistentes y un sistema de rejilla (grid) responsivo. |
+| **React Router 7** | Estándar para la navegación dinámica y gestión de rutas en aplicaciones de una sola página (SPA). |
+
+
+
