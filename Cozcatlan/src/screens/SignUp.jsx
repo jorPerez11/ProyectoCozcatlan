@@ -20,7 +20,6 @@ const SignUp = () => {
             <CustomInput label="Dirección de correo electrónico" type="email" placeholder="Ingresa tu correo electrónico" />
             <CustomInput label="Contraseña" type="password" placeholder="Ingresa tu contraseña" />
             
-            {/* Input de Teléfono especial */}
             <div className="mb-3 text-start">
               <label className="form-label small fw-bold text-secondary mb-1">Número de teléfono</label>
               <div className="input-group">

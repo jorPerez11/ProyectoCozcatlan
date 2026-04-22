@@ -3,8 +3,8 @@
     background-image: url('../assets/tropicalLeavesTransp.png');
     background-repeat: no-repeat;
     background-size: 110%;
-    background-position: bottom; /* Para que la imagen quede abajo como en tu diseño */
-    background-attachment: fixed; /* Opcional: para que la imagen no se mueva al hacer scroll */
+    background-position: bottom; 
+    background-attachment: fixed; 
     min-height: 100vh;
     font-family: 'Montserrat', sans-serif !important;
 }
@@ -43,7 +43,6 @@
     border: 1px solid #eee;
 }
 
-/* Selector de Cantidad */
 .quantity-selector {
     background: #c8d9b2;
     border-radius: 8px;
@@ -61,7 +60,6 @@
     color: #0D6002;
 }
 
-/* Resumen y Botón Final */
 .summary-card {
     background: #c8d9b2;
     border-radius: 15px;

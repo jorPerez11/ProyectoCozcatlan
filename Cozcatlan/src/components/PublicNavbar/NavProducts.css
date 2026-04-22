@@ -1,18 +1,17 @@
 .custom-navbar {
-    background-color: #E7F0C7 !important; /* El verde crema del fondo */
+    background-color: #E7F0C7 !important; 
     padding-top: 15px;
     padding-bottom: 15px;
     border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
 .navbar-logo {
-    height: 60px; /* Ajusta según el tamaño de tu imagen */
+    height: 60px; 
     width: auto;
 }
 
-/* Estilo de los enlaces */
 .custom-navbar .nav-link-custom {
-    color: #1a3a13 !important; /* Verde oscuro tipo bosque */
+    color: #1a3a13 !important; 
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
     font-size: 1.1rem;
@@ -39,7 +38,6 @@
 
 
 
-/* Contenedor de iconos a la derecha */
 .icons-container {
     color: #1a3a13;
 }
@@ -51,10 +49,9 @@
 
 .nav-icon:hover {
     transform: scale(1.05);
-    color: #f47c3c; /* Naranja en hover para resaltar */
+    color: #f47c3c; 
 }
 
-/* Ajustes para móvil */
 @media (max-width: 991px) {
     .icons-container {
         margin-top: 15px;

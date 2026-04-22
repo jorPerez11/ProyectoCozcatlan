@@ -3,15 +3,14 @@
     background-image: url('../assets/tropicalLeavesTransp.png');
     background-repeat: no-repeat;
     background-size: 110%;
-    background-position: bottom; /* Para que la imagen quede abajo como en tu diseño */
-    background-attachment: fixed; /* Opcional: para que la imagen no se mueva al hacer scroll */
+    background-position: bottom; 
+    background-attachment: fixed; 
     height: calc(100vh - 80px);
     font-family: 'Montserrat', sans-serif !important;
 }
 
-/* Caja de la Imagen */
 .product-image-box {
-    background-color: #eeeeee; /* Gris suave del placeholder */
+    background-color: #eeeeee; 
     width: 100%;
     aspect-ratio: 1 / 1;
     border-radius: 40px;
@@ -41,7 +40,6 @@
     max-width: 700px;
 }
 
-/* Selector de Cantidad (El rectángulo verde claro) */
 .qty-picker {
     background-color: #c8d9b2;
     padding: 5px 15px;
@@ -62,7 +60,6 @@
     color: #1a3a13;
 }
 
-/* Botón Añadir (Verde más intenso) */
 .btn-add-to-cart {
     background-color: #8bbd5e;
     color: white;
@@ -77,7 +74,6 @@
     transform: scale(1.03);
 }
 
-/* Información extra */
 .product-meta-info p {
     margin-bottom: 5px;
     color: #555;

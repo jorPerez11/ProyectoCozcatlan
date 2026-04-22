@@ -40,7 +40,6 @@ const Products = () => {
         </div>
 
 
-      {/* Barrade busqueda y Filtro */}
       <div className="row mb-5 align-items-center justify-content-center">
         <div className="col-md-6 mb-3 mb-md-0 ">
           <div className="search-bar">
@@ -60,7 +59,6 @@ const Products = () => {
         </div>
       </div>
 
-      {/* Grid de Productos */}
       <div className="container">
         <div className="row">
           {productos.map(p => (

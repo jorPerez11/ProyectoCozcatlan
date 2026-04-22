@@ -1,4 +1,3 @@
-/* Fondo de la página completa */
 .signup-wrapper {
     min-height: 100vh;
     font-family: "Montserrat", sans-serif !important;
@@ -9,7 +8,6 @@
   }
 
   
-  /* La tarjeta blanca con bordes redondeados */
   .signup-card {
     background-color: rgba(255, 255, 255, 0.95);
     border-radius: 25px;
@@ -19,7 +17,6 @@
   }
   
 
-  /* Inputs con estilo minimalista */
   .custom-input {
     background-color: #f8f9fa !important;
     border: 1px solid #dee2e6 !important;
@@ -32,7 +29,6 @@
     border-color: #198754 !important;
   }
   
-  /* Colores personalizados */
   .btn-orange {
     background-color: #f47c3c !important;
     border: none;
@@ -52,7 +48,6 @@
   }
 
 
-   /*Botón de Inicio de Sesión*/
 .btnLogin:hover{
     color: #198754 !important;
     background-color: #ebebeb !important;
