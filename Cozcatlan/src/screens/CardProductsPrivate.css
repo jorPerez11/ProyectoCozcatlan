@@ -1,62 +1,49 @@
-.containerPrimary {
-    width: 350px;
-    border-radius: 25px;
-    background-color: #E57937;
-    color: white;
-}
-
+/* Contenedor Principal */
 .container-Main-Product {
     background-color: #F1F6DF;
+    padding: 20px;
 }
 
-.buttonUnit {
-    background-color: #E57937;
-    border-radius: 15px;
-
-
-}
-
-.break {
-    color: #E57937;
-
-}
-
-/* Contenedor de los botones (Buscador y Agregar) */
+/* Encabezado: Buscador y Botón */
 .header-actions {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 20px;
+    flex-wrap: wrap; /* Permite que bajen en móviles */
+    gap: 15px;
     margin-bottom: 30px;
-    flex-wrap: wrap;
-    /* Para que en móvil el botón de agregar baje */
 }
 
-/* Contenedor de las tarjetas */
+/* Cuadrícula de Productos Responsive */
 .products-grid-flex {
-    display: flex;
-    flex-wrap: wrap;
-    /* para que las tarjetas bajen a la siguiente fila */
+    display: grid;
+    /* Ajuste automático: crea columnas de al menos 280px y las reparte */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 25px;
-    /* Espacio entre tarjetas */
-    justify-content: center;
-    /* Centra las tarjetas si sobra espacio */
+    justify-items: center; /* Centra las cards si sobran espacios */
 }
 
-/* Estilo para que las tarjetas sean responsivas */
-.products-grid-flex>* {
-    /* En pantallas grandes ocuparán menos el gap */
-    flex: 1 1 300px;
-    max-width: 350px;
-    /* Evita que se estiren demasiado  */
-    min-width: 280px;
-    /* Evita que se hagan muy pequeñas */
-}
-
-@media (max-width: 480px) {
-    .products-grid-flex>* {
-        flex: 1 1 100%;
-        /* Una tarjeta por fila en móviles */
-        max-width: 100%;
+/* --- AJUSTES PARA MÓVILES --- */
+@media (max-width: 576px) {
+    .header-actions {
+        flex-direction: column; /* Apila buscador y botón en celulares */
+        align-items: stretch;
     }
+
+    .header-actions > * {
+        width: 100%; /* Botones a ancho completo en móvil */
+    }
+
+    .products-grid-flex {
+        /* En pantallas muy pequeñas, una sola columna */
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Estilo de la línea divisoria */
+.break {
+    color: #E57937;
+    border-top: 3px solid currentColor;
+    opacity: 1;
+    margin-bottom: 20px;
 }

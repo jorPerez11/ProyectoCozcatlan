@@ -1,6 +1,6 @@
 import { useState } from "react";
 import CardProducts from "../components/ProductsPrivate/CardProducts";
-import './CardProductsPrivate.css'; 
+import './CardProductsPrivate.css';
 import ProductCreateModal from "../components/ProductsPrivate/ProductCreateModal";
 import photoProduct from '../assets/PhotoProduct.webp'
 import SearchButton from "../components/ProductsPrivate/SearchButton";
@@ -25,24 +25,24 @@ const ProductsPrivate = () => {
 
     return (
         <div className="container-Main-Product">
-            <main className="cozca-screen-wrapper d-flex flex-column min-vh-100"> 
-                <NavPrivate/>
+            <main className="cozca-screen-wrapper d-flex flex-column min-vh-100">
+                <NavPrivate />
                 <h1 className="text-success">Productos</h1>
                 <hr className="break" />
 
-              
+
                 <div className="header-actions">
                     <SearchButton />
-                    <button 
-                        className="btn btn-success" 
-                        data-bs-toggle="modal" 
+                    <button
+                        className="btn btn-success"
+                        data-bs-toggle="modal"
                         data-bs-target="#createProductModal"
                     >
                         Agregar Producto
                     </button>
                 </div>
 
-             
+
                 <div className="products-grid-flex">
                     <CardProducts
                         image1={photoProduct}
@@ -63,26 +63,26 @@ const ProductsPrivate = () => {
                         productInfo="Chocolate en Tablilla"
                     />
 
-                      <CardProducts
+                    <CardProducts
                         image1={photoProduct}
                         price="$10.50"
                         stock="100 Unidades"
                         productInfo="Chocolate en Tablilla"
                     />
 
-                      <CardProducts
+                    <CardProducts
                         image1={photoProduct}
                         price="$10.50"
                         stock="100 Unidades"
                         productInfo="Chocolate en Tablilla"
-                    />   
+                    />
                 </div>
-                <ProductCreateModal 
-                    formData={formData} 
-                    setFormData={setFormData} 
-                    onSave={handleSaveProduct} 
+                <ProductCreateModal
+                    formData={formData}
+                    setFormData={setFormData}
+                    onSave={handleSaveProduct}
                 />
-                  <CozcaFooterPrivate/>
+                <CozcaFooterPrivate />
             </main>
         </div>
     );
