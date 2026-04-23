@@ -3,6 +3,8 @@ import CustomInput from '../components/SignUp/CustomInput.jsx';
 import Nav from '../components/SignUp/Nav.jsx';
 import "@fontsource/montserrat"; 
 import "@fontsource/montserrat/700.css";
+
+import home from '../screens/Home.jsx'
 import './SignUp.css';
 
 const SignUp = () => {
@@ -37,9 +39,13 @@ const SignUp = () => {
               </label>
             </div>
 
-            <button type="submit" className="btn btn-orange w-100 py-3 fw-bold text-white shadow">
-              Registrarse
-            </button>
+            <div className="position-relative">
+              <button type="button" className="btn btn-orange w-100 py-3 fw-bold text-white shadow">
+                Registrarse
+              </button>
+              <a href="/login" className="stretched-link"></a>
+            </div>
+            
           </form>
         </div>
       </main>

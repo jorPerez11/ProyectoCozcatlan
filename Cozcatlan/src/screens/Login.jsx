@@ -12,17 +12,17 @@ const Login = () => {
       <Nav />
       <div className="container-fluid p-0">
         <div className="row g-0 min-vh-100">
-          
-         
+
+
           <div className="col-lg-4 d-none d-lg-flex flex-column justify-content-center align-items-center left-panel text-white">
 
             <div className="top-visual-container">
-            <img 
-              src={logoCozcatlan} 
-              alt="Cozcatlán - El sabor de tu hogar" 
-              className="img-fluid top-full-img" 
-            />
-          </div>
+              <img
+                src={logoCozcatlan}
+                alt="Cozcatlán - El sabor de tu hogar"
+                className="img-fluid top-full-img"
+              />
+            </div>
 
 
             <div className="bottom-text-content text-center mt-auto mb-5">
@@ -31,7 +31,7 @@ const Login = () => {
             </div>
           </div>
 
-         
+
           <div className="col-lg-8 d-flex align-items-center justify-content-center right-panel">
             <div className="login-card p-4 p-md-5">
               <h1 className="text-success fw-bold">Bienvenido</h1>
@@ -39,22 +39,23 @@ const Login = () => {
               <hr className="mb-4" />
 
               <form>
-                <CustomInput 
-                  label="Dirección de correo electrónico" 
-                  placeholder="Ingresa tu correo electrónico" 
+                <CustomInput
+                  label="Dirección de correo electrónico"
+                  placeholder="Ingresa tu correo electrónico"
                 />
-                
+
                 <div className="position-relative">
-                    <CustomInput 
-                      label="Contraseña" 
-                      type="password" 
-                      placeholder="Ingresa tu contraseña" 
-                    />
-                    <i className="bi bi-eye position-absolute end-0 top-50 me-3 mt-2 cursor-pointer"></i>
+                  <CustomInput
+                    label="Contraseña"
+                    type="password"
+                    placeholder="Ingresa tu contraseña"
+                  />
+                  <i className="bi bi-eye position-absolute end-0 top-50 me-3 mt-2 cursor-pointer"></i>
                 </div>
 
-                <div className="mt-5">
+                <div className="mt-5 position-relative">
                   <PrimaryButton text="Iniciar Sesión" />
+                  <a href="/aboutUs" className="stretched-link"></a>
                 </div>
               </form>
             </div>

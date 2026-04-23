@@ -7,6 +7,7 @@
     padding: 20px;
   }
 
+
   
   .signup-card {
     background-color: rgba(255, 255, 255, 0.95);
@@ -34,6 +35,10 @@
     border: none;
     border-radius: 10px;
     transition: 0.3s;
+  }
+
+  .btn-orange a{
+    text-decoration: none;
   }
 
   .btn-orange:hover{
