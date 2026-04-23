@@ -7,7 +7,6 @@ export const AboutContent = () => {
     <section className="bg-[#F1F6DF] py-5 lg:py-6 font-['Montserrat'] overflow-hidden">
       <div className="container mx-auto px-6 md:px-12 lg:px-32">
         
-        {/* Bloque 1: Historia */}
         <div className="row align-items-center mb-6 lg:mb-10 g-5">
           <div className="col-12 col-lg-8">
             <p className="text-[#0F243B] text-sm md:text-base lg:text-[18px] leading-relaxed text-justify">
@@ -56,7 +55,6 @@ export const AboutContent = () => {
           </div>
         </div>
 
-        {/* Bloque 3: Texto final */}
         <div className="row mt-1">
           <div className="col-12">
             <p className="text-[#0F243B] text-sm md:text-base lg:text-[18px] leading-relaxed text-justify">

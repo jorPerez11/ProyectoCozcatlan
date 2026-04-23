@@ -6,7 +6,6 @@ import CozcaFooter from "../components/Footer/CozcaFooter.jsx";
 
 export const TermsAndConditionsPage = () => {
   return (
-    /* fondo general de la página */
     <main>
       <Navbar />
       <div className="bg-[#F1F6DF] min-h-screen py-12 md:py-20 px-6">

@@ -2,11 +2,9 @@ import React from 'react';
 
 export const ContactForm = () => {
   return (
-    /* Redondeado mayor para el contenedor principal conforme al diseño */
     <div className="bg-[#D9E9BE] p-8 rounded-[30px] shadow-sm">
       <form className="font-['Montserrat']">
         
-        {/* Nombre completo */}
         <div className="mb-4 text-start">
           <label className="block mb-2 text-[#0F243B] font-medium ml-1">
             Nombre completo
@@ -18,7 +16,6 @@ export const ContactForm = () => {
           />
         </div>
 
-        {/* Correo electrónico */}
         <div className="mb-4 text-start">
           <label className="block mb-2 text-[#0F243B] font-medium ml-1">
             Correo electrónico
@@ -30,7 +27,6 @@ export const ContactForm = () => {
           />
         </div>
 
-        {/* Mensaje */}
         <div className="mb-6 text-start">
           <label className="block mb-2 text-[#0F243B] font-medium ml-1">
             Mensaje
@@ -42,7 +38,6 @@ export const ContactForm = () => {
           ></textarea>
         </div>
 
-        {/* Botón Enviar */}
         <div className="text-end">
           <button 
             type="submit" 

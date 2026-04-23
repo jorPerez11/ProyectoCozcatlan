@@ -1,10 +1,8 @@
 import React from 'react';
-// Importamos la imagen
 import bannerBg from '../../assets/banner-pattern.png';
 
 export const HeroAbout = () => {
     return (
-        // Contenedor principal del banner
         <div
             className="relative w-full h-[200px] md:h-[250px] lg:h-[300px] bg-cover bg-center flex items-center justify-center shadow-md"
             style={{ backgroundImage: `url(${bannerBg})` }}
