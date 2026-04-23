@@ -55,7 +55,7 @@ const Login = () => {
 
                 <div className="mt-5 position-relative">
                   <PrimaryButton text="Iniciar Sesión" />
-                  <a href="/aboutUs" className="stretched-link"></a>
+                  <a href="/" className="stretched-link"></a>
                 </div>
               </form>
             </div>
