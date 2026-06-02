@@ -1,15 +1,18 @@
-import {Schema, model} from "mongoose";
+
+import mongoose, {Schema, model} from "mongoose";
 
 const productSchema = new Schema({
     name: {
         type: String
     },
-    images: [
-        
-    ],
-    type: {
-        type: String
-    },
+    images: [{
+        image: {
+            type: String
+        },
+        public_id: {
+            type: String
+        }
+    }],
     category: {
         type: String
     },
