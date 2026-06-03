@@ -14,10 +14,10 @@ productsController.getProducts = async (req, res) => {
     }
 }
 
-//INSERT de productos :O
+// INSERT de productos :O
 productsController.createProduct = async (req, res) => {
     try {
-        const {name, category, price, stock, description, supplier_id} = req.body;
+        const { name, category, price, stock, description, supplier_id }=req.body;
 
         const newProduct = new Producto({
             name,
@@ -27,15 +27,17 @@ productsController.createProduct = async (req, res) => {
             description,
             supplier_id,
             images: req.files.map(file => ({
-                image: file.path,
+                image: file.path, 
                 public_id: file.filename
             }))
         });
+
         await newProduct.save();
-        return res.status(200).json({message: "Product created successfully"});
+        return res.status(200).json({ message: "Product created successfully" });
+        
     } catch (error) {
-        console.log("error" + error)
-        return res.status(500).json({message: "Internal Server Error"});
+        console.log("error: " + error);
+        return res.status(500).json({ message: "Internal Server Error" });
     }
 };
 

@@ -24,4 +24,4 @@ const supplierSchema = new Schema({
     strict: false
 })
 
-export default model ("Proveedor", supplierSchema);
+export default model ("suppliers", supplierSchema);

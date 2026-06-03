@@ -27,7 +27,7 @@ const productSchema = new Schema({
     },
     supplier_id: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Proveedor"
+        ref: "suppliers"
     },
 
 }, {
@@ -35,4 +35,4 @@ const productSchema = new Schema({
     strict: false
 });
 
-export default model ("Producto", productSchema);
+export default model ("products", productSchema,"products");

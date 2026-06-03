@@ -1,12 +1,12 @@
 import express from 'express';
 import productsController from '../controller/productsController.js';
-
+import upload from "../utils/cloudinaryConfig.js"
 const router = express.Router();
 
 router
     .route("/")
     .get(productsController.getProducts)
-    .post(productsController.createProduct);
+    .post(upload.array("images.image"),productsController.createProduct);
 
 router
     .route("/:id")

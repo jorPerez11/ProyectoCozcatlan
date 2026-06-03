@@ -6,9 +6,9 @@ import { config } from "../../config.js"
 //Configuramos cloudinary con nuestras credenciales
 
 cloudinary.config({
-    cloud_name: config.cloudinary.cloudinary_name,
-    api_key: config.cloudinary.clodinary_api_key,
-    api_secret: config.cloudinary.clodinary_api_secret
+    cloud_name: config.CLOUDINARY.NAME,
+    api_key: config.CLOUDINARY.API_KEY,
+    api_secret: config.CLOUDINARY.API_SECRET
 })
 
 //#2 configuramos como guardar las imagenes
@@ -16,7 +16,7 @@ const storage = new CloudinaryStorage ({
     cloudinary,
     params: {
         folder: "grupo1B",
-        allowed_formats: ["jpg", "png", "jpeg", "gif"]
+        allowed_formats: ["jpg", "png", "jpeg", "gif", "webp"]
     }
 })
 
