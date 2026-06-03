@@ -2,7 +2,10 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+
+// Routes
 import productRoutes from "./src/routes/products.js";
+import orderRoutes from "./src/routes/order.js";
  
 //Constante EXPRESS
 const app = express();
@@ -21,10 +24,10 @@ app.use(
 //Para que acepte los json desde postman o API
 app.use(express.json());
 app.use(cookieParser())
-app.use("/api/products", productRoutes);    
- 
- 
- 
+
+// Endpoints
+app.use("/api/products", productRoutes);   
+app.use("/api/orders", orderRoutes) ;
  
 //Exportamos TODO
 export default app;

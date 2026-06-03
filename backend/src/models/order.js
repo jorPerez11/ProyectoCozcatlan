@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import mongoose, { Schema, model } from "mongoose";
 
 const orderSchema = new Schema({
     products: [
@@ -20,15 +20,7 @@ const orderSchema = new Schema({
     },
     total: {
         type: Number
-    },
-    discount: {
-        type: Number
-    },
-    total_with_discount: {
-        type: Number
     }
-
-
 }, {
     timestamps: true,
     strict: false
