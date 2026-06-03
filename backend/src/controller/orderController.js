@@ -1,5 +1,6 @@
 import orderModel from "../models/order.js";
 import productsModel from "../models/product.js";
+import "../models/client.js";
 
 // Array de funciones
 const orderController = {};

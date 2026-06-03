@@ -1,29 +1,33 @@
 import mongoose, { Schema, model } from "mongoose";
 
-const orderSchema = new Schema({
+const orderSchema = new Schema(
+  {
     products: [
-        {product_id: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Producto"
+      {
+        product_id: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "products",
         },
         amount: {
-            type: Number
+          type: Number,
         },
         sub_total: {
-            type: Number
-        }
-    }
+          type: Number,
+        },
+      },
     ],
     client_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Cliente"
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "clients",
     },
     total: {
-        type: Number
-    }
-}, {
+      type: Number,
+    },
+  },
+  {
     timestamps: true,
-    strict: false
-});
+    strict: false,
+  },
+);
 
-export default model ("Orden", orderSchema)
+export default model("orders", orderSchema, "orders");
