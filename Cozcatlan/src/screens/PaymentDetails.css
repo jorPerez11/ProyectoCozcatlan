@@ -1,0 +1,144 @@
+/* Paleta de colores basada en la UI de tu imagen */
+:root {
+  --bg-verde-tarjeta: #e2f0d9; /* Verde claro del fondo del form */
+  --verde-borde-input: #a1d183; /* Borde verde de los campos */
+  --verde-boton: #70c15c; /* Verde del botón Finalizar Compra */
+  --verde-boton-hover: #5ba848;
+  --texto-verde-oscuro: #2e5920; /* Color de las etiquetas */
+  --linea-naranja: #e29578; /* Color de la línea de Datos Personales */
+}
+
+
+/* Etiquetas del formulario */
+.text-dark-green {
+  color: var(--texto-verde-oscuro);
+}
+
+/* Inputs personalizados */
+.custom-input {
+  background-color: #fcfcfc;
+  border: 1.5px solid var(--verde-borde-input);
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  color: #495057;
+}
+
+.custom-input:focus {
+  border-color: var(--verde-boton);
+  box-shadow: 0 0 0 0.25rem rgba(112, 193, 92, 0.25);
+  background-color: #ffffff;
+}
+
+/* Marcador de posición (Placeholder) */
+.custom-input::placeholder {
+  color: #c0c0c0;
+}
+
+/* Línea divisoria naranja junto a 'Datos personales' */
+.divider-line {
+  height: 1.5px;
+  background-color: var(--linea-naranja);
+}
+
+/* Botón Finalizar Compra */
+.btn-finalize {
+  background-color: var(--verde-boton);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.btn-finalize:hover {
+  background-color: var(--verde-boton-hover);
+  color: white;
+}
+
+.cart-page-wrapper {
+    background-color: #F1F6DF;
+    background-image: url('../assets/tropicalLeavesTransp.png');
+    background-repeat: no-repeat;
+    background-size: 110%;
+    background-position: bottom; 
+    background-attachment: fixed; 
+    min-height: 100vh;
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+.cart-title {
+    color: #1a3a13;
+    font-weight: 510;
+}
+
+.line-separator {
+    border: 0;
+    height: 2px;
+    background: linear-gradient(to right, #f47c3c, #f47c3c);
+    opacity: 0.8;
+}
+
+.btn-delete-all {
+    color: #7a917e;
+    font-size: 0.9rem;
+}
+
+/* Tarjeta de Items */
+.cart-items-card {
+    background: #E2EFD6;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+}
+
+.item-img-placeholder {
+    width: 80px;
+    height: 80px;
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #eee;
+}
+
+.quantity-selector {
+    background: #c8d9b2;
+    border-radius: 8px;
+    padding: 2px 8px;
+}
+
+.btn-qty {
+    border: none;
+    background: transparent;
+    color: #1a3a13;
+    font-size: 1.2rem;
+}
+
+.text-dark-green {
+    color: #0D6002;
+}
+
+.summary-card {
+    background: #c8d9b2;
+    border-radius: 15px;
+    color: #1a3a13;
+}
+
+.btn-finish-purchase {
+    background-color: #8bbd5e;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-finish-purchase:hover {
+    background-color: #7aa552;
+    transform: translateY(-2px);
+}
+
+.continue-shopping {
+    color: #f47c3c;
+    text-decoration: none;
+    font-size: 0.9rem;
+}

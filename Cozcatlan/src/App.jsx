@@ -22,6 +22,7 @@ import DashboardPrivate from './screens/Dashboard.jsx'
 import RecoveryPassword from './screens/RecoverPassword.jsx'
 import RecoveryPasswordPin from './screens/RecoverPasswordPin.jsx'
 import RecoveryNewPassword from './screens/RecoverNewPassword.jsx'
+import PaymentDetails from './screens/PaymentDetails.jsx'
 
 
 function App() {
@@ -48,7 +49,7 @@ function App() {
           <Route path="/recoveryPassword" element={<RecoveryPassword />} />
           <Route path="/recoveryPasswordPin" element={<RecoveryPasswordPin />} />
           <Route path="/recoveryNewPassword" element={<RecoveryNewPassword />} />
-
+          <Route path="/paymentDetails" element={<PaymentDetails />} />
 
 
 
