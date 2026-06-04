@@ -9,7 +9,7 @@ productsController.getProducts = async (req, res) => {
         const products = await Producto.find();
         return res.status(200).json(products);
     }catch (error) {
-        console.log("error" + error)
+        console.log("error:", error)
         return res.status(500).json({message: "Internal Server Error"});
     }
 }
@@ -36,7 +36,7 @@ productsController.createProduct = async (req, res) => {
         return res.status(200).json({ message: "Product created successfully" });
         
     } catch (error) {
-        console.log("error: " + error);
+        console.log("error:", error);
         return res.status(500).json({ message: "Internal Server Error" });
     }
 };
@@ -44,20 +44,22 @@ productsController.createProduct = async (req, res) => {
 //DELETE de productos :O
 productsController.deleteProduct = async (req, res) => {
     try {
-        const productFound = await Producto .findById(req.params.id);
+        const productFound = await Producto.findById(req.params.id);
 
-        await clodinary.uploader.destroy(productFound.public_id);
-
-        const productDeleted = await Producto.findByIdAndDelete(req.params.id);
-
-        if (!productDeleted) {
+        if (!productFound) {
             return res.status(404).json({message: "Product not found"});
         }
+
+        for (const img of productFound.images) {
+            await clodinary.uploader.destroy(img.public_id);
+        }
+
+        await Producto.findByIdAndDelete(req.params.id);
 
         return res.status(200).json({message: "Product deleted successfully"});
 
     } catch (error) {
-        console.log("error" + error)
+        console.log("error:", error)
         return res.status(500).json({message: "Internal Server Error"});
     }
 };
@@ -72,10 +74,14 @@ productsController.updateProduct = async (req, res) => {
             name, category, price, stock, description, supplier_id
         }
 
-        if(req.file){
-            await clodinary.uploader.destroy(product.public_id);
-            updatedData.images = req.file.path;
-            updatedData.public_id = req.file.filename;
+        if (req.files && req.files.length > 0) {
+            for (const img of product.images) {
+                await clodinary.uploader.destroy(img.public_id);
+            }
+            updatedData.images = req.files.map(file => ({
+                image: file.path,
+                public_id: file.filename
+            }));
         }
 
         await Producto.findByIdAndUpdate(
@@ -84,7 +90,7 @@ productsController.updateProduct = async (req, res) => {
             {new: true});
             return res.status(200).json({message: "Product updated successfully"});
     } catch (error) {
-        console.log("error" + error)
+        console.log("error:", error)
         return res.status(500).json({message: "Internal Server Error"});
     }
 };

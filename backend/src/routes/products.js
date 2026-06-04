@@ -10,6 +10,7 @@ router
 
 router
     .route("/:id")
-    .delete(productsController.deleteProduct);
+    .delete(productsController.deleteProduct)
+    .put(upload.array("images.image"), productsController.updateProduct)
 
 export default router;

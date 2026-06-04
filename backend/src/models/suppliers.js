@@ -1,7 +1,7 @@
 import {Schema, model} from "mongoose";
 
 const supplierSchema = new Schema({
-    supplier_name: {
+    suppliers_name: {
         type: String
     },
     type_supplier:{
@@ -14,14 +14,15 @@ const supplierSchema = new Schema({
         type: String
     },
     address:{
-        type: String
+        street: { type: String },
+        neighborhood: { type: String }
     },
     status:{
-        type: String
+        type: Boolean
     }
 }, {
     timestamps: true,
     strict: false
 })
 
-export default model ("suppliers", supplierSchema);
+export default model ("suppliers", supplierSchema, "suppliers");
