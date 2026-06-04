@@ -1,10 +1,10 @@
 import { Schema, model } from "mongoose";
 
 const adminSchema = new Schema({
-    first_name: {
+    firstName: {
         type: String
     },
-    last_name: {
+    lastName: {
         type: String
     },
     email: {
@@ -27,4 +27,4 @@ const adminSchema = new Schema({
     strict: false
 })
 
-export default model("Admin", adminSchema, "Admin")
+export default model("admin", adminSchema, "admin")

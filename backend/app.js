@@ -7,6 +7,8 @@ import cors from "cors";
 import productRoutes from "./src/routes/products.js";
 import orderRoutes from "./src/routes/order.js";
 import suppliersRoutes from "./src/routes/suppliers.js"
+import admin from "./src/routes/adminRoute.js"
+
  
 //Constante EXPRESS
 const app = express();
@@ -30,6 +32,8 @@ app.use(cookieParser())
 app.use("/api/products", productRoutes);   
 app.use("/api/orders", orderRoutes) ;
 app.use("/api/suppliers", suppliersRoutes)
+app.use("/api/admin", admin)
+
  
 //Exportamos TODO
 export default app;
