@@ -1,4 +1,4 @@
-import {Schema, model} from "mongoose";
+import { Schema, model } from "mongoose";
 
 const clientSchema = new Schema({
     first_name: {
@@ -12,11 +12,20 @@ const clientSchema = new Schema({
     },
     email: {
         type: String
-    }
+    },
+    isVerified: {
+        type: Boolean
+    },
+    loginAttempts: {
+        type: Number
+    },
+    timeOut: {
+        type: Date
+    },
 
 }, {
     timestamps: true,
     strict: false
 })
 
-export default model("clients", clientSchema)
+export default model("clients", clientSchema, "clients")

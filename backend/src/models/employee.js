@@ -1,4 +1,4 @@
-import {Schema, model} from "mongoose";
+import { Schema, model } from "mongoose";
 
 const employeeSchema = new Schema({
     first_name: {
@@ -31,13 +31,18 @@ const employeeSchema = new Schema({
     afp: { //número único previsional del empleado
         type: String
     },
-    status: {
-        type: String
-    }
-
+    isVerified: {
+        type: Boolean
+    },
+    loginAttempts: {
+        type: Number
+    },
+    timeOut: {
+        type: Date
+    },
 }, {
     timestamps: true,
     strict: false
 });
 
-export default model ("Empleado", employeeSchema);
+export default model("employees", employeeSchema, "employees");
