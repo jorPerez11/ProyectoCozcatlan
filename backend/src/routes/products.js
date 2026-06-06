@@ -10,6 +10,7 @@ router
 
 router
     .route("/:id")
+    .get(productsController.getProductById)
     .delete(productsController.deleteProduct)
     .put(upload.array("images.image"), productsController.updateProduct)
 

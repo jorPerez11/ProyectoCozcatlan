@@ -70,7 +70,7 @@
     position: relative;
     display: flex;
     align-items: center;
-    background: #f1f6df; 
+    background: #f1f6df;
     border-radius: 30px;
     border: 1px solid #0D253C;
 }
@@ -93,8 +93,20 @@
     background-color: #0D253C !important;
     color: white !important;
     border-radius: 10px;
-    padding: 12px 25px;
+    padding: 5px 12px;
+    font-size: 0.78rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
+
+.dropdown-wrapper .dropdown-menu {
+    min-width: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    font-size: 0.85rem;
+}
+
 
 .form-control{
 

@@ -5,35 +5,85 @@
 }
 
 .header-actions {
+    position: relative;
+    z-index: 2;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    flex-wrap: wrap; /* Permite que bajen en móviles */
+    flex-wrap: wrap;
     gap: 15px;
     margin-bottom: 30px;
 }
 
 .products-grid-flex {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 25px;
-    justify-items: center; 
+    max-width: 1350px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+@media (max-width: 992px) {
+    .products-grid-flex {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (max-width: 576px) {
     .header-actions {
-        flex-direction: column; 
+        flex-direction: column;
         align-items: stretch;
     }
 
     .header-actions > * {
-        width: 100%; 
+        width: 100%;
     }
 
     .products-grid-flex {
-       
         grid-template-columns: 1fr;
     }
+}
+
+.admin-product-card-placeholder {
+    border-radius: 16px;
+    border: 2px dashed rgba(229, 121, 55, 0.3);
+    background-color: rgba(229, 121, 55, 0.05);
+    min-height: 280px;
+}
+
+.btn-add-product {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #E57937;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    padding: 10px 24px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.4px;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(229, 121, 55, 0.4);
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    white-space: nowrap;
+}
+
+.btn-add-product:hover {
+    background-color: #cf6a2a;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(229, 121, 55, 0.5);
+}
+
+.btn-add-product:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 10px rgba(229, 121, 55, 0.35);
+}
+
+.btn-add-product svg {
+    flex-shrink: 0;
 }
 
 .break {

@@ -1,0 +1,117 @@
+.search-bar-wrapper {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 50px;
+    border: 1.5px solid rgba(14, 120, 0, 0.2);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07);
+    height: 46px;
+    min-width: 340px;
+}
+
+.search-category-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 16px;
+    height: 100%;
+    background: transparent;
+    border: none;
+    border-right: 1.5px solid rgba(14, 120, 0, 0.15);
+    border-radius: 50px 0 0 50px;
+    color: #0E7800;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.2s ease;
+    flex-shrink: 0;
+}
+
+.search-category-btn:hover {
+    background-color: rgba(14, 120, 0, 0.06);
+}
+
+.search-input {
+    flex: 1;
+    height: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 0 14px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.875rem;
+    color: #1a3a13;
+    min-width: 0;
+}
+
+.search-input::placeholder {
+    color: #aab8a2;
+}
+
+.search-submit-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 20px;
+    height: 100%;
+    background-color: #E57937;
+    border: none;
+    border-radius: 0 50px 50px 0;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.2s ease;
+    flex-shrink: 0;
+}
+
+.search-submit-btn:hover {
+    background-color: #cf6a2a;
+}
+
+.search-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    background: #fff;
+    border: 1.5px solid rgba(14, 120, 0, 0.15);
+    border-radius: 14px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    min-width: 160px;
+    z-index: 100;
+    overflow: hidden;
+}
+
+.search-dropdown ul {
+    list-style: none;
+    margin: 0;
+    padding: 6px;
+}
+
+.search-dropdown ul li a {
+    display: block;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #1a3a13;
+    text-decoration: none;
+    transition: background-color 0.15s ease;
+}
+
+.search-dropdown ul li a:hover {
+    background-color: rgba(14, 120, 0, 0.07);
+    color: #0E7800;
+}
+
+.search-category-wrapper {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
