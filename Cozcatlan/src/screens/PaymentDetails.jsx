@@ -3,9 +3,12 @@ import "./ShoppingCart.css";
 import Nav from "../components/PublicNavbar/Nav.jsx";
 import FinishBtn from "../components/ShoppingCart/FinishBtn.jsx";
 import CozcaFooter from "../components/Footer/CozcaFooter.jsx";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const PaymentForm = () => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     direccion: "",
     titular: "",
@@ -30,20 +33,68 @@ const PaymentForm = () => {
     setFormData({ ...formData, [name]: formattedValue });
   };
 
-  const handleSubmit = (e) => {
+  //funcion handleSubmit convertida en async para el fetch de API
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Datos de compra:", formData);
 
-    // Aquí procesas el pago (llamada a tu API, etc.)
+    try {
+      // prepara el objeto con los datos que el controller espera recibir
+      const saleData = {
+        delivery_address: formData.direccion,
+        payment_method: "Tarjeta de Crédito/Débito",
+      };
 
-    // Disparamos la alerta solo cuando el formulario se envía con éxito
-    Swal.fire({
-      title: "¡Éxito!",
-      text: "Su compra ha sido procesada exitosamente.",
-      icon: "success",
-      confirmButtonText: "OK",
-      confirmButtonColor: "#70c15c", // Opcional: El verde de tu paleta
-    });
+      // petición HTTP POST a backend
+      const response = await fetch("http://localhost:4000/api/sales", {
+        method: "POST", 
+        headers: {
+          "Content-Type": "application/json", 
+        },
+        body: JSON.stringify(saleData),
+      });
+
+      const data = await response.json();
+
+      // validacion de resultado
+      if (response.ok) {
+        Swal.fire({
+          title: "¡Éxito!",
+          text: "Su compra ha sido procesada exitosamente.",
+          icon: "success",
+          confirmButtonText: "OK",
+          confirmButtonColor: "#70c15c",
+        }).then((result) => {
+          // si el usuario presionó el botón OK (o confirmo la alerta)
+          if (result.isConfirmed) {
+            navigate("/products"); // redirige a la ruta de productos
+          }
+        });
+
+        // Limpiar formulario
+        setFormData({
+          direccion: "",
+          titular: "",
+          numeroTarjeta: "",
+          vencimiento: "",
+          cvv: ""
+        });
+      } else {
+        // Si el servidor responde con un error estructurado (ej. 400 o 500)
+        throw new Error(data.message || "Error en el servidor");
+      }
+
+    } catch (error) {
+      console.error("Error al conectar con el backend:", error);
+
+      // 6. Si algo falla (Error de servidor, problemas de red, etc.), disparamos alerta de error
+      Swal.fire({
+        title: "Error",
+        text: error.message || "No se pudo procesar la compra.",
+        icon: "error",
+        confirmButtonText: "Entendido",
+        confirmButtonColor: "#d33",
+      });
+    }
   };
 
   const formatCardNumber = (value) => {

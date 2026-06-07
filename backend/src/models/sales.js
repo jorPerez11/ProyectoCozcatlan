@@ -5,24 +5,20 @@ const salesSchema = new Schema ({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Orden"
     },
-    employee_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Empleado"
-    },
     delivery_address:{
         type: String
     },
-    payment_method:{
-        type: String
-    },
     payment_status: {
-        type: String
+        type: String,
+        default: "Pendiente"
     },
     purchase_date: {
-        type: Date
+        type: Date,
+        default: Date.now
     },
     delivery_status: {
-        type: String
+        type: String,
+        default: "Pendiente"
     }
 
 }, {
@@ -30,3 +26,4 @@ const salesSchema = new Schema ({
     strict: false
 });
 
+export default model("sales", salesSchema, "sales");
