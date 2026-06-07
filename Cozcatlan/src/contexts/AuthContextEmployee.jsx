@@ -4,22 +4,18 @@ import { toast } from "sonner";
 
 const AuthContext = createContext(null);
 export { AuthContext };
+const API_EMPLOYEE = "http://localhost:4000/api/employee";
+const API_ADMIN = "http://localhost:4000/api/admin";
 
-const API_URL = "http://localhost:4000/api/employee";
-const STORAGE_KEY = "accessTokenEmployee";
+const TOKEN_EMPLOYEE = "accessTokenEmployee";
+const TOKEN_ADMIN = "accessTokenAdmin";
 const REMEMBER_KEY = "rememberDeviceEmployee";
 
 const decodeJwtPayload = (token) => {
-    if (!token) {
-        return null;
-    }
-
+    if (!token) return null;
     try {
         const tokenParts = token.split(".");
-        if (tokenParts.length !== 3) {
-            return null;
-        }
-
+        if (tokenParts.length !== 3) return null;
         const base64Url = tokenParts[1];
         const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
         const normalized = base64.padEnd(base64.length + ((4 - (base64.length % 4)) % 4), "=");
@@ -33,7 +29,6 @@ const extractAuthData = (payload) => {
     if (!payload || typeof payload !== "object") {
         return { accessToken: null, user: null };
     }
-
     const data = payload.data && typeof payload.data === "object" ? payload.data : payload;
     return {
         accessToken: data.accessToken || data.token || null,
@@ -45,34 +40,41 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [authCookie, setAuthCookie] = useState(null);
     const [loading, setLoading] = useState(true);
-
     const navigate = useNavigate();
 
-    const getStoredToken = useCallback(
-        () => localStorage.getItem(STORAGE_KEY) || sessionStorage.getItem(STORAGE_KEY),
-        [],
-    );
+    // Busca cualquier token válido que exista en el navegador
+    const getStoredToken = useCallback(() => {
+        return localStorage.getItem(TOKEN_ADMIN) ||
+            sessionStorage.getItem(TOKEN_ADMIN) ||
+            localStorage.getItem(TOKEN_EMPLOYEE) ||
+            sessionStorage.getItem(TOKEN_EMPLOYEE);
+    }, []);
 
-    const persistToken = useCallback((token, rememberMe) => {
-        if (!token) {
-            return;
-        }
+    const getApiUrl = useCallback((userTypeInput = null) => {
+        const currentRole = userTypeInput || user?.userType;
+        return currentRole === "admin" ? API_ADMIN : API_EMPLOYEE;
+    }, [user]);
+
+    const persistToken = useCallback((token, rememberMe, role = "employee") => {
+        if (!token) return;
+        const key = role === "admin" ? TOKEN_ADMIN : TOKEN_EMPLOYEE;
 
         if (rememberMe) {
-            localStorage.setItem(STORAGE_KEY, token);
-            sessionStorage.removeItem(STORAGE_KEY);
+            localStorage.setItem(key, token);
+            sessionStorage.removeItem(key);
             localStorage.setItem(REMEMBER_KEY, "1");
-            return;
+        } else {
+            sessionStorage.setItem(key, token);
+            localStorage.removeItem(key);
+            localStorage.setItem(REMEMBER_KEY, "0");
         }
-
-        sessionStorage.setItem(STORAGE_KEY, token);
-        localStorage.removeItem(STORAGE_KEY);
-        localStorage.setItem(REMEMBER_KEY, "0");
     }, []);
 
     const clearSession = useCallback(() => {
-        localStorage.removeItem(STORAGE_KEY);
-        sessionStorage.removeItem(STORAGE_KEY);
+        localStorage.removeItem(TOKEN_EMPLOYEE);
+        sessionStorage.removeItem(TOKEN_EMPLOYEE);
+        localStorage.removeItem(TOKEN_ADMIN);
+        sessionStorage.removeItem(TOKEN_ADMIN);
         localStorage.removeItem(REMEMBER_KEY);
         setUser(null);
         setAuthCookie(null);
@@ -84,7 +86,8 @@ export const AuthProvider = ({ children }) => {
 
         try {
             if (callApi) {
-                await fetch(`${API_URL}/logout`, {
+                const targetUrl = getApiUrl();
+                await fetch(`${targetUrl}/logout`, {
                     method: "POST",
                     credentials: "include",
                 });
@@ -94,22 +97,22 @@ export const AuthProvider = ({ children }) => {
         } finally {
             clearSession();
             navigate("/");
-
             if (reason === "expired") {
                 toast.error("Tu sesión expiró. Inicia sesión nuevamente");
             } else {
                 toast.success("Sesión cerrada correctamente");
             }
         }
-    }, [clearSession, navigate]);
+    }, [clearSession, navigate, getApiUrl]);
 
-    const login = async (email, password, rememberMe = false) => {
+    // detecta si la petición debe ir a admin o employee
+    const login = async (email, password, rememberMe = false, isAdminLogin = false) => {
         try {
-            const response = await fetch(`${API_URL}/loginEmployee`, {
+            const targetUrl = isAdminLogin ? `${API_ADMIN}/loginAdmin` : `${API_EMPLOYEE}/loginEmployee`;
+
+            const response = await fetch(targetUrl, {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, password }),
                 credentials: "include",
             });
@@ -117,35 +120,24 @@ export const AuthProvider = ({ children }) => {
             const payload = await response.json().catch(() => ({}));
 
             if (!response.ok) {
-                toast.error("Error al iniciar sesión");
+                toast.error("Error al iniciar sesión. Verifica tus credenciales.");
                 return false;
             }
 
             const { accessToken, user: userFromApi } = extractAuthData(payload);
+            const decodedToken = decodeJwtPayload(accessToken);
+            const userRole = decodedToken?.userType || (isAdminLogin ? "admin" : "employee");
+
             if (accessToken) {
-                persistToken(accessToken, rememberMe);
+                persistToken(accessToken, rememberMe, userRole);
                 setAuthCookie(accessToken);
             }
 
-            if (userFromApi) {
-                setUser(userFromApi);
-            } else {
-                const decodedToken = decodeJwtPayload(accessToken);
-                setUser(
-                    decodedToken
-                        ? {
-                                id: decodedToken.id,
-                                userType: decodedToken.userType,
-                            }
-                        : null,
-                );
-            }
-
+            setUser(userFromApi || (decodedToken ? { id: decodedToken.id, userType: userRole } : null));
             toast.success("Inicio de sesión exitoso");
             navigate("/dashboard");
             return true;
         } catch (error) {
-            // Error de conexión silencioso
             toast.error("Error de conexión con el servidor");
             return false;
         }
@@ -164,8 +156,8 @@ export const AuthProvider = ({ children }) => {
                 }
 
                 const decodedToken = decodeJwtPayload(token);
-                const isTokenExpired =
-                    decodedToken?.exp && decodedToken.exp * 1000 <= Date.now();
+                const isTokenExpired = decodedToken?.exp && decodedToken.exp * 1000 <= Date.now();
+                const userRole = decodedToken?.userType || "employee";
 
                 if (!decodedToken || isTokenExpired) {
                     clearSession();
@@ -173,7 +165,16 @@ export const AuthProvider = ({ children }) => {
                     return;
                 }
 
-                const response = await fetch(`${API_URL}`, {
+                if (userRole === "admin") {
+                    if (isMounted) {
+                        setAuthCookie(token);
+                        setUser({ id: decodedToken.id, userType: "admin" });
+                    }
+                    return;
+                }
+
+                // Flujo nativo original solo para Empleados
+                const response = await fetch(`${API_EMPLOYEE}`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
@@ -183,18 +184,12 @@ export const AuthProvider = ({ children }) => {
                 });
 
                 if (!response.ok) {
-                    if (response.status === 401) {
-                        clearSession();
-                        navigate("/");
-                        return;
-                    }
                     clearSession();
+                    navigate("/");
                     return;
                 }
 
-                if (!isMounted) {
-                    return;
-                }
+                if (!isMounted) return;
 
                 const payload = await response.json().catch(() => ({}));
                 const { accessToken } = extractAuthData(payload);
@@ -202,19 +197,15 @@ export const AuthProvider = ({ children }) => {
                 const rememberMe = localStorage.getItem(REMEMBER_KEY) === "1";
 
                 if (effectiveToken) {
-                    persistToken(effectiveToken, rememberMe);
+                    persistToken(effectiveToken, rememberMe, "employee");
                     setAuthCookie(effectiveToken);
                 }
 
                 const decoded = decodeJwtPayload(effectiveToken);
                 if (decoded) {
-                    setUser({
-                        id: decoded.id,
-                        userType: decoded.userType,
-                    });
+                    setUser({ id: decoded.id, userType: "employee" });
                 }
             } catch (error) {
-                // Error de validación silencioso
                 clearSession();
             } finally {
                 if (isMounted) {
@@ -239,7 +230,7 @@ export const AuthProvider = ({ children }) => {
                 logout,
                 login,
                 loading,
-                API: API_URL,
+                API: getApiUrl(),
             }}
         >
             {children}

@@ -30,7 +30,7 @@ import { AuthProvider as AuthProviderClient } from "./contexts/AuthContextClient
 import { AuthProvider as AuthProviderEmployee } from "./contexts/AuthContextEmployee.jsx";
 import { AuthProvider as AuthProviderAdmin } from "./contexts/AuthContextAdmin.jsx";
 import VerifyEmailCode from './screens/VerifyEmailCode.jsx'
-
+import VerifyEmailCodeEmployee from './screens/VerifyEmailCodeEmployee.jsx'
 import { Toaster } from "sonner";
 
 
@@ -55,6 +55,7 @@ function App() {
                 <Route path="/recoveryPasswordPin" element={<RecoveryPasswordPin />} />
                 <Route path="/recoveryNewPassword" element={<RecoveryNewPassword />} />
                 <Route path="/admins/verifyEmail" element={<VerifyEmailCode />} />
+                <Route path="/employees/verifyEmail" element={<VerifyEmailCodeEmployee />} />
 
 
                 {/* --- Rutas Públicas --- */}
