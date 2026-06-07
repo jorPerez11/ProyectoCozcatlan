@@ -22,13 +22,43 @@ const ProductDetail = () => {
   const handleAddToCart = () => {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const existing = cart.find(item => item.id === id);
+
+    // Calcular cuánto habría en total si sumamos lo nuevo
+    const currentInCart = existing ? existing.quantity : 0;
+    const totalProposed = currentInCart + quantity;
+
+    // Validar si la suma supera el stock disponible
+    if (totalProposed > product.stock) {
+      const disponibleParaAgregar = product.stock - currentInCart;
+
+      if (disponibleParaAgregar <= 0) {
+        Swal.fire(
+          "Sin stock suficiente",
+          `Ya tienes el máximo disponible (${product.stock} u.) en tu carrito.`,
+          "error"
+        );
+      } else {
+        Swal.fire(
+          "Límite de stock",
+          `No puedes agregar ${quantity} unidades. Solo quedan ${disponibleParaAgregar} disponibles para añadir (ya tienes ${currentInCart} en el carrito).`,
+          "warning"
+        );
+      }
+      return; // Detiene la ejecución para que no se guarde nada ilegal
+    }
+
+    // Si pasa la validación, se guarda en el localStorage
     if (existing) {
-      existing.quantity += quantity;
+      existing.quantity = totalProposed;
     } else {
       cart.push({ id, quantity });
     }
+
     localStorage.setItem('cart', JSON.stringify(cart));
     Swal.fire("Agregado", `${product.name} añadido al carrito.`, "success");
+
+    // Reiniciar el contador a 1
+    setQuantity(1);
   };
 
   if (!product) return <div className="text-center mt-5">Cargando...</div>;
@@ -64,7 +94,7 @@ const ProductDetail = () => {
                 <span className="qty-number mx-3">{quantity}</span>
                 <button
                   className="btn-qty-action"
-                  onClick={() => setQuantity(q => q + 1)}
+                  onClick={() => setQuantity(q => Math.min(product.stock, q + 1))}
                 >+</button>
               </div>
               <AddBtn text={"Añadir al carrito"} onClick={handleAddToCart} />
