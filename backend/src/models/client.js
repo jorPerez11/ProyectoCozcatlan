@@ -1,10 +1,10 @@
 import { Schema, model } from "mongoose";
 
 const clientSchema = new Schema({
-    first_name: {
+    firstName: {
         type: String
     },
-    last_name: {
+    lastName: {
         type: String
     },
     password: {

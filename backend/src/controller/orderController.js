@@ -79,7 +79,11 @@ orderController.insertOrder = async (req, res) => {
     // Guardamos todo en la base de datos
     await newOrder.save();
 
-    return res.status(200).json({ message: "Order created" });
+    // Retornamos el mensaje y el ID generado
+    return res.status(200).json({ 
+      message: "Order created", 
+      orderId: newOrder._id // MongoDB genera el id en la propiedad _id
+    });
   } catch (error) {
     console.log("error " + error);
     return res.status(500).json({ message: "Internal server error" });

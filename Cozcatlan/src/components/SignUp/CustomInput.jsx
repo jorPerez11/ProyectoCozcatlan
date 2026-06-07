@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CustomInput = ({ label, type = "text", placeholder, icon }) => {
+const CustomInput = ({ label, type = "text", placeholder, icon,value,onChange }) => {
   return (
     <div className="mb-3 text-start">
       <label className="form-label small fw-bold text-secondary mb-1">
@@ -12,6 +12,8 @@ const CustomInput = ({ label, type = "text", placeholder, icon }) => {
           type={type} 
           className={`form-control custom-input ${icon ? 'border-start-0' : ''}`} 
           placeholder={placeholder} 
+          value={value}
+          onChange={onChange}
         />
       </div>
     </div>
