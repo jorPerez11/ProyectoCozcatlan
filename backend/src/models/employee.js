@@ -1,13 +1,13 @@
 import { Schema, model } from "mongoose";
 
 const employeeSchema = new Schema({
-    first_name: {
+    firstName: {
         type: String
     },
-    last_name: {
+    lastName: {
         type: String
     },
-    nit: {
+    dui: {
         type: String
     },
     birthday: {
@@ -20,15 +20,9 @@ const employeeSchema = new Schema({
         type: String
     },
     phone: {
-        type: Number
-    },
-    password: {
         type: String
     },
-    salary: {
-        type: Number
-    },
-    afp: { //número único previsional del empleado
+    password: {
         type: String
     },
     isVerified: {
