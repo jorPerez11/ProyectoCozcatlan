@@ -6,9 +6,15 @@ import Placeholder from '../assets/placeholder.png';
 import Nav from '../components/PublicNavbar/Nav.jsx';
 import FinishBtn from '../components/ShoppingCart/FinishBtn.jsx';
 import CozcaFooter from "../components/Footer/CozcaFooter.jsx";
+import { useNavigate } from "react-router";
+import useOrders from "../hooks/useOrders.jsx";
 
 const ShoppingCart = () => {
     const [cartItems, setCartItems] = useState([]);
+    const navigate = useNavigate();
+
+    // Desestructuras la función que creamos
+    const { createOrder, loading } = useOrders();
 
     const loadCart = async () => {
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -66,12 +72,32 @@ const ShoppingCart = () => {
         setCartItems([]);
     };
 
+    // Crea el manejador del clic para finalizar la compra
+    const handleCheckout = async () => {
+        // ID temporal simulado de un cliente de la BD para probar (luego cambiara al estado de login Auth)
+        const mockClientId = "6a2055dd823b2c1632b08e8c";
+
+        // Intentamos crear la orden en el backend
+        const orderData = await createOrder(mockClientId);
+
+        // Si el backend respondió con éxito
+        if (orderData) {
+            setCartItems([]); // Limpiamos la vista local
+
+            // Redirigimos mandando el ID de la orden en el estado de navegación
+            // Puedes usar orderData._id u orderData.orderId según cómo lo mande tu backend
+            navigate("/paymentDetails", {
+                state: { orderId: orderData.orderId || orderData._id }
+            });
+        }
+    };
+
     const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
     return (
-        <div className="cart-page-wrapper min-vh-100">
+        <main className="cart-page-wrapper d-flex flex-column min-vh-100">
             <Nav />
-            <div className="container py-5">
+            <div className="container py-5 flex-grow-1">
                 <div className="d-flex justify-content-between align-items-end mb-3">
                     <h1 className="cart-title m-0">Mi Carrito</h1>
                     <button className="btn-delete-all border-0 bg-transparent d-flex" onClick={handleRemoveAll}>
@@ -135,7 +161,11 @@ const ShoppingCart = () => {
                                     <span className="fw-bold">Total</span>
                                     <span className="fw-bold fs-5 text-dark-green">${subtotal.toFixed(2)}</span>
                                 </div>
-                                <FinishBtn text={"Finalizar Compra"} />
+                                <FinishBtn
+                                    text={loading ? "Procesando..." : "Finalizar Compra"}
+                                    onClick={handleCheckout}
+                                    disabled={loading} // Evita doble envío si el internet está lento
+                                />
                             </div>
                             <div className="text-center mt-3">
                                 <a href="/products" className="continue-shopping">Continuar comprando</a>
@@ -145,7 +175,7 @@ const ShoppingCart = () => {
                 )}
             </div>
             <CozcaFooter />
-        </div>
+        </main>
     );
 };
 

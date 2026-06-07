@@ -1,11 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./ShoppingCart.css";
 import Nav from "../components/PublicNavbar/Nav.jsx";
 import FinishBtn from "../components/ShoppingCart/FinishBtn.jsx";
 import CozcaFooter from "../components/Footer/CozcaFooter.jsx";
+import { useLocation, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 
 const PaymentForm = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // Extraer el orderId enviado desde la pantalla anterior
+  const orderId = location.state?.orderId;
+
+  // Validación de seguridad: si no hay orden, no hay qué pagar
+  useEffect(() => {
+    if (!orderId) {
+      Swal.fire("Acceso denegado", "No hay ninguna orden activa para pagar.", "error");
+      navigate("/cart"); // Redirige de vuelta al carrito de compras
+    }
+  }, [orderId, navigate]);
+
+  // Comprobar que se mando el id de la orden:
+  useEffect(() => {
+    console.log("ID de la orden recibido con éxito ->", orderId);
+  }, [orderId]);
+
   const [formData, setFormData] = useState({
     direccion: "",
     titular: "",
