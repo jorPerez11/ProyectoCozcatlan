@@ -29,7 +29,7 @@ import LoginAdmin from './screens/LoginAdmin.jsx'
 import { AuthProvider as AuthProviderClient } from "./contexts/AuthContextClient.jsx";
 import { AuthProvider as AuthProviderEmployee } from "./contexts/AuthContextEmployee.jsx";
 import { AuthProvider as AuthProviderAdmin } from "./contexts/AuthContextAdmin.jsx";
-
+import VerifyEmailCode from './screens/VerifyEmailCode.jsx'
 
 import { Toaster } from "sonner";
 
@@ -54,6 +54,8 @@ function App() {
                 <Route path="/recoveryPassword" element={<RecoveryPassword />} />
                 <Route path="/recoveryPasswordPin" element={<RecoveryPasswordPin />} />
                 <Route path="/recoveryNewPassword" element={<RecoveryNewPassword />} />
+                <Route path="/admins/verifyEmail" element={<VerifyEmailCode />} />
+
 
                 {/* --- Rutas Públicas --- */}
                 <Route path="/" element={<Home />} />
@@ -87,12 +89,7 @@ function App() {
               />
 
             </AuthProviderAdmin>
-
-
           </AuthProviderEmployee>
-
-
-
         </AuthProviderClient>
       </Router>
 

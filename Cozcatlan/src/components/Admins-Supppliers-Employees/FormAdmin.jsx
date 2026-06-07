@@ -1,24 +1,47 @@
 import React, { useState } from "react";
+
 const FormAdmin = ({ formData, setFormData, isEditing }) => {
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword] = useState(false); // Mantén tu lógica del ojo de contraseña si la usas
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    // Manejo especial si es un select de verificación
+    if (name === "isVerified") {
+      setFormData({ ...formData, [name]: value === "true" });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
 
   return (
     <div className="container-fluid px-0">
       <div className="row g-3">
+        
+        {/* NOMBRE - Conectado a firstName */}
         <div className="col-md-6">
-          <label className="cozca-label mb-1">Nombre Completo:</label>
+          <label className="cozca-label mb-1">Nombre:</label>
           <input 
             type="text" 
-            name="nombre"
+            name="firstName" // <-- Cambiado a firstName para tu hook
             className="form-control cozca-input" 
-            value={formData.nombre || ""}
+            value={formData.firstName || ""}
             onChange={handleChange}
           />
         </div>
+
+        {/* APELLIDO - Conectado a lastName */}
+        <div className="col-md-6">
+          <label className="cozca-label mb-1">Apellido:</label>
+          <input 
+            type="text" 
+            name="lastName" // <-- Agregado para que funcione el map de tu tabla
+            className="form-control cozca-input" 
+            value={formData.lastName || ""}
+            onChange={handleChange}
+          />
+        </div>
+
+        {/* CORREO - Conectado a email */}
         <div className="col-md-6">
           <label className="cozca-label mb-1">Correo electrónico:</label>
           <input 
@@ -29,52 +52,28 @@ const FormAdmin = ({ formData, setFormData, isEditing }) => {
             onChange={handleChange}
           />
         </div>
-        <div className="col-md-4">
-        <label className="cozca-label mb-1">Contraseña:</label>
-        <div className="position-relative">
+
+        {/* CONTRASEÑA - ¡YA CONECTADA! */}
+        <div className="col-md-6">
+          <label className="cozca-label mb-1">Contraseña:</label>
+          <div className="position-relative">
             <input 
-            type={showPassword ? "text" : "password"} 
-            className="form-control cozca-input" 
-            placeholder="**********"
+              type={showPassword ? "text" : "password"} 
+              name="password" // <-- IMPORTANTE
+              className="form-control cozca-input" 
+              placeholder={isEditing ? "Dejar en blanco para no cambiar" : "**********"}
+              value={formData.password || ""} // <-- IMPORTANTE
+              onChange={handleChange} // <-- IMPORTANTE
+              disabled={isEditing} // Tradicionalmente en los PUT no mandas la contraseña por esta vía
             />
-            <button 
-            type="button"
-            className="position-absolute end-0 top-50 translate-middle-y me-2 btn border-0"
-            onClick={() => setShowPassword(!showPassword)} 
-            >
-            {showPassword ? "👁️‍🗨️" : "👁️"} 
-            </button>
-        </div>
-        </div>
-        <div className="col-md-4">
-            <label className="cozca-label mb-1">Fecha nacimiento:</label>
-            <input 
-                type="date" 
-                className="form-control cozca-input cozca-calendar-input"/>
-            </div>
-        <div className="col-md-4">
-          <label className="cozca-label mb-1">DUI:</label>
-          <input type="text" className="form-control cozca-input" placeholder="12345678-9" />
-        </div>
-        <div className={isEditing ? "col-md-4" : "col-md-4"}>
-          <label className="cozca-label mb-1">Teléfono:</label>
-          <input type="text" className="form-control cozca-input" placeholder="6875-5412" />
-        </div>
-        
-        <div className={isEditing ? "col-md-4" : "col-md-8"}>
-          <label className="cozca-label mb-1">Dirección:</label>
-          <input type="text" className="form-control cozca-input" />
+          </div>
         </div>
 
-        {isEditing && (
-          <div className="col-md-4">
-            <label className="cozca-label mb-1">Estado:</label>
-            <select className="form-select cozca-input">
-              <option value="activo">Activo</option>
-              <option value="inactivo">Inactivo</option>
-            </select>
-          </div>
-        )}
+        
+
+      
+
+        
       </div>
     </div>
   );
