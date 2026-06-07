@@ -10,7 +10,7 @@ const registerEmployeeController = {}; // Se crea el array de funciones
 
 registerEmployeeController.register = async (req, res) => {
     //#1 Se solicitan los datos del employee
-    const { firstName, lastName, phone, email, password, DUI, address } = req.body;
+    const { firstName, lastName, phone, email, password, DUI, address,birthday } = req.body;
     try {
         // Se valida que el correo no exista en la base de datis
         const existsEmployee = await employeeModel.findOne({ email });
@@ -34,6 +34,7 @@ registerEmployeeController.register = async (req, res) => {
                 email,
                 password: passwordHashed,
                 DUI,
+                birthday,
                 address,
                 isActive: true
             },
@@ -95,6 +96,7 @@ registerEmployeeController.verifyCode = async (req, res) => {
             email,
             password,
             DUI,
+            birthday,
             address,
             isVerified,
         } = decoded;
@@ -111,6 +113,7 @@ registerEmployeeController.verifyCode = async (req, res) => {
             password,
             DUI,
             address,
+            birthday,
             isActive: true,
             isVerified: true,
         });
