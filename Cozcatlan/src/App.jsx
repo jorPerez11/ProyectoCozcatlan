@@ -43,6 +43,10 @@ import RecoverPasswordPinAdmin from './screens/RecoverPasswordPinAdmin.jsx'
 import RecoverNewPasswordAdmin from './screens/RecoverNewPasswordAdmin.jsx'
 import { Toaster } from "sonner";
 
+import { ProtectedRouteAdmin } from './components/ProtectedRoutes/ProtectedRouteAdmin.jsx';
+import { ProtectedRouteEmployee } from './components/ProtectedRoutes/ProtectedRouteEmployee.jsx';
+import { ProtectedRouteShared } from './components/ProtectedRoutes/ProtectedRouteShared.jsx'; //   rutas compartidas
+
 
 
 function App() {
@@ -50,13 +54,12 @@ function App() {
   return (
     <>
       <Router>
-        {/* El AuthProvider envuelve TODO lo que está dentro del Router */}
         <AuthProviderClient>
           <AuthProviderEmployee>
             <AuthProviderAdmin>
-              {/*  Un solo bloque de Routes para toda la aplicación */}
+
               <Routes>
-                {/* --- Rutas de Autenticación --- */}
+                {/* --- Rutas de Autenticación(sin login) --- */}
                 <Route path="/loginEmployee" element={<LoginEmployee />} />
                 <Route path="/loginClient" element={<LoginClient />} />
                 <Route path="/loginAdmin" element={<LoginAdmin />} />
@@ -64,8 +67,6 @@ function App() {
                 <Route path="/recoveryPassword" element={<RecoveryPassword />} />
                 <Route path="/recoveryPasswordPin" element={<RecoveryPasswordPin />} />
                 <Route path="/recoveryNewPassword" element={<RecoveryNewPassword />} />
-                <Route path="/admins/verifyEmail" element={<VerifyEmailCode />} />
-                <Route path="/employees/verifyEmail" element={<VerifyEmailCodeEmployee />} />
                 <Route path="/client/verifyEmail" element={<VerifyEmailClient />} />
                 <Route path="/recoveryPasswordClient" element={<RecoverPasswordClient />} />
                 <Route path="/recoveryPasswordPinClient" element={<RecoverPasswordPinClient />} />
@@ -87,12 +88,28 @@ function App() {
                 <Route path="/productdetail/:id" element={<ProductDetail />} />
                 <Route path="/paymentDetails" element={<PaymentDetails />} />
 
-                {/* --- Rutas Privadas --- */}
-                <Route path="/admins" element={<Admins />} />
-                <Route path="/employees" element={<Employees />} />
-                <Route path="/suppliers" element={<Suppliers />} />
-                <Route path="/productosprivados" element={<ProductsPrivate />} />
-                <Route path="/dashboardPrivate" element={<DashboardPrivate />} />
+
+                {/* --- BLOQUE DE RUTAS PROTEGIDAS PARA ADMINISTRADORES --- */}
+                <Route element={<ProtectedRouteAdmin />}>
+                  <Route path="/admins" element={<Admins />} />
+                  <Route path="/employees" element={<Employees />} />
+                  <Route path="/admins/verifyEmail" element={<VerifyEmailCode />} />
+                  <Route path="/employees/verifyEmail" element={<VerifyEmailCodeEmployee />} />
+                </Route>
+
+
+                {/* --- BLOQUE DE RUTAS PROTEGIDAS PARA EMPLEADOS --- */}
+                <Route element={<ProtectedRouteEmployee />}>
+                  <Route path="/dashboardPrivateEmployee" element={<DashboardPrivate />} />
+                </Route>
+
+                {/* --- BLOQUE DE RUTAS COMPARTIDAS (ADMIN o EMPLEADO) --- */}
+                <Route element={<ProtectedRouteShared />}>
+                  <Route path="/suppliers" element={<Suppliers />} />
+                  <Route path="/productosprivados" element={<ProductsPrivate />} />
+                  <Route path="/paymentDetails" element={<PaymentDetails />} />
+                  <Route path="/dashboardPrivate" element={<DashboardPrivate />} />
+                </Route>
               </Routes>
 
               <Toaster

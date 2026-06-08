@@ -1,10 +1,17 @@
-import React, { createContext, useState, useEffect, useCallback } from "react";
+import React, { createContext, useState, useEffect, useCallback, useContext } from "react";
 import { useNavigate } from "react-router";
 import { toast } from "sonner";
 
 const AuthContext = createContext(null);
 export { AuthContext };
-
+// 2. Creamos el hook usando 'useContext' (la función de React) pasando 'AuthContext' (nuestro contexto)
+export const useAuthAdmin = () => {
+    const context = useContext(AuthContext); // <-- Asegúrate de que diga 'useContext' aquí
+    if (!context) {
+        throw new Error("useAuthAdmin debe ser usado dentro de un AuthProviderAdmin");
+    }
+    return context;
+};
 const API_URL = "http://localhost:4000/api/admin";
 const STORAGE_KEY = "accessTokenAdmin";
 const REMEMBER_KEY = "rememberDeviceAdmin";
@@ -134,15 +141,15 @@ export const AuthProvider = ({ children }) => {
                 setUser(
                     decodedToken
                         ? {
-                                id: decodedToken.id,
-                                userType: decodedToken.userType,
-                            }
+                            id: decodedToken.id,
+                            userType: decodedToken.userType,
+                        }
                         : null,
                 );
             }
 
             toast.success("Inicio de sesión exitoso");
-            navigate("/dashboard");
+            navigate("/dashboardPrivate");
             return true;
         } catch (error) {
             // Error de conexión silencioso
@@ -156,6 +163,7 @@ export const AuthProvider = ({ children }) => {
 
         const checkAuth = async () => {
             try {
+               
                 const token = getStoredToken();
 
                 if (!token) {
