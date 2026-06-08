@@ -1,4 +1,4 @@
-//Importamos las librerías necesarias para realizar recuperación exitosa
+// Importamos las librerías necesarias para realizar recuperación exitosa
 import jsonwebtoken from "jsonwebtoken";
 import crypto from "crypto";
 import nodemailer from "nodemailer";
@@ -7,18 +7,18 @@ import bcrypt from "bcryptjs";
 import clientModel from "../models/client.js";
 import HTMLPasswordRecovery from "../utils/SenderMail.js";
 
-//Creamos un array de métodos DENTRO de la carpeta controlador
+// Creamos un array de métodos DENTRO de la carpeta controlador
 const clientRecoveryPasswordController = {};
 
-//Realizamos la función para la recuperación de contraseña
+// Realizamos la función para la recuperación de contraseña
 clientRecoveryPasswordController.requestCode = async (req, res) => {
-  //Solicitamos los datos
+  // Solicitamos los datos
   const { email } = req.body;
 
-  //Validamos el formato del código
+  // Validamos el formato del código
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  //Comparamos
+  // Comparamos
   if (!email || !emailRegex.test(email)) {
     return res.status(400).json({
       status: false,
@@ -27,10 +27,10 @@ clientRecoveryPasswordController.requestCode = async (req, res) => {
   }
 
   try {
-    //Buscamos si el correo existe
+    // Buscamos si el correo existe
     const clientFound = await clientModel.findOne({ email });
 
-    //Si no existe el correo en la base de datos
+    // Si no existe el correo en la base de datos
     if (!clientFound) {
       return res.status(404).json({
         status: false,
@@ -38,10 +38,10 @@ clientRecoveryPasswordController.requestCode = async (req, res) => {
       });
     }
 
-    //Generamos un código aleatorio para la verificación del correo
+    // Generamos un código aleatorio para la verificación del correo
     const verificationCode = crypto.randomBytes(3).toString("hex");
 
-    //Guardamos en un token el código de verificación y el correo del usuario
+    // Guardamos en un token el código de verificación y el correo del usuario
     const token = jsonwebtoken.sign(
       {
         email,
@@ -53,12 +53,15 @@ clientRecoveryPasswordController.requestCode = async (req, res) => {
       { expiresIn: "15m" },
     );
 
-    //Lo guardamos en la cookie
+    // CAMBIO 1: Configuración de la cookie para Cross-Origin en entorno de desarrollo local
     res.cookie("recoveryCookie", token, {
-      maxAge: 15 * 60 * 1000,
+      maxAge: 15 * 60 * 1000, // 15 minutos
+      httpOnly: true,         // Evita que JS del cliente acceda a la cookie por seguridad
+      secure: true,           // ¡OBLIGATORIO para sameSite: 'none'! Permite que se guarde entre puertos distintos
+      sameSite: "none"        // ¡OBLIGATORIO! Permite transferir la cookie de localhost:4000 a localhost:5173
     });
 
-    //Enviamos el correo electrónico
+    // Enviamos el correo electrónico
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -67,7 +70,7 @@ clientRecoveryPasswordController.requestCode = async (req, res) => {
       },
     });
 
-    //Se crea el MAIL OPTIONS
+    // Se crea el MAIL OPTIONS
     const mailOptions = {
       from: config.EMAIL.USER,
       to: email,
@@ -75,25 +78,18 @@ clientRecoveryPasswordController.requestCode = async (req, res) => {
       text: `Hola, tu código de verificación es: ${verificationCode} y expirará en 15 minutos. Por favor, ingresa este código en la aplicación para completar tu recuperación de contraseña.`,
       html: HTMLPasswordRecovery.HTMLRecoveryEmail(
         verificationCode,
-        null //Se utilizará la ruta pertinente a la recuperación de contraseña
+        null 
       )
     };
 
-    //Enviamos el correo
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        return res.status(400).json({
-          status: false,
-          message: "Error sending email",
-          error: error.message
-        });
-      }
+    // Usamos await para controlar de forma asíncrona y segura el envío del correo electrónico
+    await transporter.sendMail(mailOptions);
 
-      return res.status(200).json({
-        status: true,
-        message: "Verification email sent successfully"
-      });
+    return res.status(200).json({
+      status: true,
+      message: "Email de Verificación enviado al correo"
     });
+
   } catch (error) {
     //En caso de error
     return res.status(500).json({
@@ -104,19 +100,35 @@ clientRecoveryPasswordController.requestCode = async (req, res) => {
   }
 };
 
-//Verificar el código de verificación
+// Verificar el código de verificación
 clientRecoveryPasswordController.verifyCode = async (req, res) => {
-  //Solicitamos los datos
+  // Solicitamos los datos
   const { verificationCodeRequest } = req.body;
 
   try {
-    //Extraemos los datos del token
-    const token = req.cookies.recoveryCookie;
+    // Extraemos los datos del token de forma segura
+    const token = req.cookies ? req.cookies.recoveryCookie : null;
 
-    //Extraer la información del token
-    const decoded = jsonwebtoken.verify(token, config.JWT.SECRET);
+    if (!token) {
+      return res.status(400).json({
+        status: false,
+        message: "El navegador no envió la cookie de recuperación. Asegúrate de permitir cookies de terceros o revisar las credenciales."
+      });
+    }
+    
+    // CAMBIO 2: Envolvemos la verificación en un try/catch interno para atrapar tokens expirados sin dar error 500
+    let decoded;
+    try {
+      decoded = jsonwebtoken.verify(token, config.JWT.SECRET);
+    } catch (jwtError) {
+      return res.status(401).json({
+        status: false,
+        message: "El pin de recuperación ha expirado. Solicita un código nuevo.",
+        error: jwtError.message
+      });
+    }
 
-    //Validamos el código
+    // Validamos el código
     if (verificationCodeRequest !== decoded.verificationCode) {
       return res.status(401).json({
         status: false,
@@ -124,7 +136,7 @@ clientRecoveryPasswordController.verifyCode = async (req, res) => {
       });
     }
 
-    //Generamos un nuevo token
+    // Generamos un nuevo token
     const newToken = jsonwebtoken.sign(
       {
         email: decoded.email,
@@ -135,12 +147,15 @@ clientRecoveryPasswordController.verifyCode = async (req, res) => {
       { expiresIn: "15m" },
     );
 
-    //Lo guardamos en la cookie
+    // CAMBIO 3: Mantener consistencia de propiedades al reescribir la cookie procesada
     res.cookie("recoveryCookie", newToken, {
       maxAge: 15 * 60 * 1000,
+      httpOnly: true,
+      secure: true,
+      sameSite: "none"
     });
 
-    //Retornamos la respuesta
+    // Retornamos la respuesta
     return res.status(200).json({
       status: true,
       message: "Verification code verified successfully"
@@ -155,13 +170,13 @@ clientRecoveryPasswordController.verifyCode = async (req, res) => {
   }
 };
 
-//Creamos el método para restablecer la contraseña
+// Creamos el método para restablecer la contraseña
 clientRecoveryPasswordController.newPassword = async (req, res) => {
   try {
-    //Solicitamos los datos
+    // Solicitamos los datos
     const { newPassword, confirmPassword } = req.body;
 
-    //Comparamos las contraseñas
+    // Comparamos las contraseñas
     if (newPassword !== confirmPassword) {
       return res.status(400).json({
         status: false,
@@ -169,11 +184,19 @@ clientRecoveryPasswordController.newPassword = async (req, res) => {
       });
     }
 
-    //Comprobamos que la constante verified que está en el token ya esté en true
-    const token = req.cookies.recoveryCookie;
+    // Comprobamos que la constante verified que está en el token ya esté en true
+    const token = req.cookies ? req.cookies.recoveryCookie : null;
+    
+    if (!token) {
+      return res.status(400).json({
+        status: false,
+        message: "Sesión de cambio de contraseña expirada o inválida."
+      });
+    }
+
     const decoded = jsonwebtoken.verify(token, config.JWT.SECRET);
 
-    //Verificamos
+    // Verificamos
     if (!decoded.verified) {
       return res.status(403).json({
         status: false,
@@ -181,17 +204,17 @@ clientRecoveryPasswordController.newPassword = async (req, res) => {
       });
     }
 
-    //Encriptamos la contraseña
+    // Encriptamos la contraseña
     const passwordHash = await bcrypt.hash(newPassword, 10);
 
-    //Guardamos la contraseña
+    // Guardamos la contraseña
     const updatedClient = await clientModel.findOneAndUpdate(
       { email: decoded.email },
       { password: passwordHash },
       { new: true },
     );
 
-    //Validamos existencia
+    // Validamos existencia
     if (!updatedClient) {
       return res.status(404).json({
         status: false,
@@ -199,10 +222,14 @@ clientRecoveryPasswordController.newPassword = async (req, res) => {
       });
     }
 
-    //Limpiamos la cookie
-    res.clearCookie("recoveryCookie");
+    // Limpiamos la cookie utilizando los mismos parámetros de creación
+    res.clearCookie("recoveryCookie", {
+      httpOnly: true,
+      secure: true,
+      sameSite: "none"
+    });
 
-    //Retornamos la respuesta
+    // Retornamos la respuesta
     return res.status(200).json({
       status: true,
       message: "Password reset successfully"
@@ -217,5 +244,5 @@ clientRecoveryPasswordController.newPassword = async (req, res) => {
   }
 };
 
-//Exportamos la función
+// Exportamos la función
 export default clientRecoveryPasswordController;

@@ -6,12 +6,17 @@ import Placeholder from '../assets/placeholder.png';
 import Nav from '../components/PublicNavbar/Nav.jsx';
 import FinishBtn from '../components/ShoppingCart/FinishBtn.jsx';
 import CozcaFooter from "../components/Footer/CozcaFooter.jsx";
+import { useAuth } from "../hooks/UseAuthClient.js";
+import { toast } from "sonner";
 import { useNavigate } from "react-router";
-import useOrders from "../hooks/useOrders.jsx";
+import useOrders from "../hooks/UseOrders.jsx";
 
 const ShoppingCart = () => {
     const [cartItems, setCartItems] = useState([]);
     const navigate = useNavigate();
+
+    // EXTRAEMOS el usuario logueado desde el contexto global de autenticación
+    const { user } = useAuth();
 
     // Desestructuras la función que creamos
     const { createOrder, loading } = useOrders();
@@ -74,18 +79,25 @@ const ShoppingCart = () => {
 
     // Crea el manejador del clic para finalizar la compra
     const handleCheckout = async () => {
-        // ID temporal simulado de un cliente de la BD para probar (luego cambiara al estado de login Auth)
-        const mockClientId = "6a2055dd823b2c1632b08e8c";
+        // Verificamos si hay un usuario autenticado en la sesión
+        if (!user || !user.id) {
+            toast.error("Debes iniciar sesión para finalizar tu compra.");
+            navigate("/loginClient"); // Redirigimos al Login del cliente
+            return;
+        }
 
-        // Intentamos crear la orden en el backend
-        const orderData = await createOrder(mockClientId);
+        // Usamos el ID del cliente proveniente del Token JWT verificado
+        const realClientId = user.id;
+
+        // Intentamos crear la orden en el backend mandando el ID dinámico del cliente
+        const orderData = await createOrder(realClientId);
 
         // Si el backend respondió con éxito
         if (orderData) {
+            localStorage.removeItem('cart'); // Limpiamos el carrito local de las compras realizadas
             setCartItems([]); // Limpiamos la vista local
 
             // Redirigimos mandando el ID de la orden en el estado de navegación
-            // Puedes usar orderData._id u orderData.orderId según cómo lo mande tu backend
             navigate("/paymentDetails", {
                 state: { orderId: orderData.orderId || orderData._id }
             });

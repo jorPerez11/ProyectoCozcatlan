@@ -31,6 +31,10 @@ import { AuthProvider as AuthProviderEmployee } from "./contexts/AuthContextEmpl
 import { AuthProvider as AuthProviderAdmin } from "./contexts/AuthContextAdmin.jsx";
 import VerifyEmailCode from './screens/VerifyEmailCode.jsx'
 import VerifyEmailCodeEmployee from './screens/VerifyEmailCodeEmployee.jsx'
+import VerifyEmailClient from './screens/VerifyEmailCodeClient.jsx'
+import RecoverNewPasswordClient from './screens/RecoverNewPasswordClient.jsx'
+import RecoverPasswordClient from './screens/RecoverPasswordClient.jsx'
+import RecoverPasswordPinClient from './screens/RecoverPasswordPinClient.jsx'
 import { Toaster } from "sonner";
 
 
@@ -56,6 +60,10 @@ function App() {
                 <Route path="/recoveryNewPassword" element={<RecoveryNewPassword />} />
                 <Route path="/admins/verifyEmail" element={<VerifyEmailCode />} />
                 <Route path="/employees/verifyEmail" element={<VerifyEmailCodeEmployee />} />
+                <Route path="/client/verifyEmail" element={<VerifyEmailClient />} />
+                <Route path="/recoveryPasswordClient" element={<RecoverPasswordClient />} />
+                <Route path="/recoveryPasswordPinClient" element={<RecoverPasswordPinClient />} />
+                <Route path="/recoveryNewPasswordClient" element={<RecoverNewPasswordClient />} />
 
 
                 {/* --- Rutas Públicas --- */}
@@ -66,6 +74,7 @@ function App() {
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/terms-and-conditions" element={<TermsAndConditionsPage />} />
                 <Route path="/productdetail/:id" element={<ProductDetail />} />
+                <Route path="/paymentDetails" element={<PaymentDetails />} />
 
                 {/* --- Rutas Privadas --- */}
                 <Route path="/admins" element={<Admins />} />
@@ -73,7 +82,6 @@ function App() {
                 <Route path="/suppliers" element={<Suppliers />} />
                 <Route path="/productosprivados" element={<ProductsPrivate />} />
                 <Route path="/dashboardPrivate" element={<DashboardPrivate />} />
-                <Route path="/paymentDetails" element={<PaymentDetails />} />
               </Routes>
 
               <Toaster
@@ -82,10 +90,25 @@ function App() {
                 theme="dark"
                 toastOptions={{
                   style: {
-                    background: "#161616",
-                    border: "1px solid rgba(255,255,255,0.1)",
-                    color: "#ffffff",
+                    background: "#0D253C", // Tu Azul Oscuro de Cozcatlán como fondo de la tarjeta
+                    border: "1px solid rgba(255, 255, 255, 0.1)",
+                    color: "#FFFFFF",
                   },
+                  // Inyectamos dinámicamente las variables de color de éxito y error
+                  success: {
+                    style: {
+                      background: "#0D253C",
+                      border: "1px solid #6FC44C", // Borde Verde Cozca
+                      color: "#6FC44C",            // Texto Verde Cozca
+                    }
+                  },
+                  error: {
+                    style: {
+                      background: "#0D253C",
+                      border: "1px solid #E47528", // Borde Anaranjado Cozca
+                      color: "#E47528",            // Texto Anaranjado Cozca
+                    }
+                  }
                 }}
               />
 

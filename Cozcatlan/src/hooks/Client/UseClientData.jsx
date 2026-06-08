@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router";
 const UseAdminData = () => {
     const navigate = useNavigate();
     const API_BASE = "http://localhost:4000/api/client";
-    const API_REGISTER = `${API_BASE}/registerClient`;
+    const API_REGISTER = `http://localhost:4000/api/client/registerClient`;
     const API_USERS = `${API_BASE}`;
     const TOKEN_KEY = "accessTokenClient";
 
@@ -184,7 +184,7 @@ const UseAdminData = () => {
             toast.success(message || "Usuario registrado exitosamente");
             cleanForm();
             await fetchData();
-            navigate("/admins/verifyEmail");
+            navigate("/client/verifyEmail");
             setSuccess(message || "Usuario registrado exitosamente");
         } catch (error) {
             setError(error.message);
@@ -195,10 +195,13 @@ const UseAdminData = () => {
         }
     };
 
-
     useEffect(() => {
-        fetchData();
-    }, []);
+        // Solo busca usuarios en la API si el admin está logueado mirando la lista.
+        // Esto evita que tumbe la pantalla de SignUp al no encontrar un token.
+        if (activeTab === "list" && getAccessToken()) {
+            fetchData();
+        }
+    }, [activeTab]); // Se ejecutará cuando cambies de pestaña en el panel de control
 
     const deleteUser = async (userId) => {
         if (!userId) {

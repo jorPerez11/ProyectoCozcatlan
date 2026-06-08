@@ -49,7 +49,7 @@ const Products = () => {
   };
 
   return (
-    <div className="store-wrapper">
+    <div className="store-wrapper d-flex flex-column min-vh-100">
       <Navbar />
       <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
         <div className="carousel-inner mb-4">
@@ -114,7 +114,7 @@ const Products = () => {
         </div>
       </div>
 
-      <div className="container">
+      <div className="container flex-grow-1">
         <div className="row">
           {paginated.map(product => (
             <ProductCard
