@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
-import { useAuth } from "../UseAuthEmployee.js";
+import { useAuth } from "../UseAuthAdmin.js";
 import { Link, useNavigate } from "react-router";
 
 const UseClientData = () => {
@@ -8,7 +8,7 @@ const UseClientData = () => {
     const API_BASE = "http://localhost:4000/api/employee";
     const API_REGISTER = `${API_BASE}/registerEmployee`;
     const API_USERS = `${API_BASE}`;
-    const TOKEN_KEY = "accessTokenEmployee";
+    const TOKEN_KEY = "accessTokenAdmin";
 
     const [activeTab, setActiveTab] = useState("list");
     // Campos de Admin

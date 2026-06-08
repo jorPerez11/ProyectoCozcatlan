@@ -8,7 +8,6 @@ import NavPrivate from "../components/privateNavBar/NavPrivate.jsx";
 import './3Screens.css';
 
 import UseEmployeeData from "../hooks/Employee/UseEmployeeData.jsx" // Hook para la logica del CRUD
-import { useAuth } from "../hooks/UseAuthEmployee.js"  // Hook para la logica del CRUD
 const Employees = () => {
   const {
     users = [],
