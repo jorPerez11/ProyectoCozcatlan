@@ -35,6 +35,12 @@ import VerifyEmailClient from './screens/VerifyEmailCodeClient.jsx'
 import RecoverNewPasswordClient from './screens/RecoverNewPasswordClient.jsx'
 import RecoverPasswordClient from './screens/RecoverPasswordClient.jsx'
 import RecoverPasswordPinClient from './screens/RecoverPasswordPinClient.jsx'
+import RecoverPasswordEmployee from './screens/RecoverPasswordEmployee.jsx'
+import RecoverPasswordPinEmployee from './screens/RecoverPasswordPinEmployee.jsx'
+import RecoverNewPasswordEmployee from './screens/RecoverNewPasswordEmployee.jsx'
+import RecoverPasswordAdmin from './screens/RecoverPasswordAdmin.jsx'
+import RecoverPasswordPinAdmin from './screens/RecoverPasswordPinAdmin.jsx'
+import RecoverNewPasswordAdmin from './screens/RecoverNewPasswordAdmin.jsx'
 import { Toaster } from "sonner";
 
 
@@ -64,7 +70,12 @@ function App() {
                 <Route path="/recoveryPasswordClient" element={<RecoverPasswordClient />} />
                 <Route path="/recoveryPasswordPinClient" element={<RecoverPasswordPinClient />} />
                 <Route path="/recoveryNewPasswordClient" element={<RecoverNewPasswordClient />} />
-
+                <Route path="/recoveryPasswordEmployee" element={<RecoverPasswordEmployee />} />
+                <Route path="/recoveryPasswordPinEmployee" element={<RecoverPasswordPinEmployee />} />
+                <Route path="/recoveryNewPasswordEmployee" element={<RecoverNewPasswordEmployee />} />
+                <Route path="/recoveryPasswordAdmin" element={<RecoverPasswordAdmin />} />
+                <Route path="/recoveryPasswordPinAdmin" element={<RecoverPasswordPinAdmin />} /> //A
+                <Route path="/recoveryNewPasswordAdmin" element={<RecoverNewPasswordAdmin />} /> //B
 
                 {/* --- Rutas Públicas --- */}
                 <Route path="/" element={<Home />} />

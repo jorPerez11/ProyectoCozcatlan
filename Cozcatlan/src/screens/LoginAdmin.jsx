@@ -24,15 +24,15 @@ const LoginAdmin = () => {
     event.preventDefault();
 
     if (!email.trim() || !password.trim()) {
-       // Validación básica para asegurarse de que el correo electrónico y la contraseña no estén vacíos
+      // Validación básica para asegurarse de que el correo electrónico y la contraseña no estén vacíos
       return;
     }
-  
+
     const ok = await login(email.trim(), password); // Llamada a la función de inicio de sesión del hook personalizado
     if (!ok) {
       return;
     }
-   
+
     navigate("/dashboardPrivate"); // Navegación al dashboard si el inicio de sesión es exitoso
   };
 
@@ -87,15 +87,21 @@ const LoginAdmin = () => {
                   <i className="bi bi-eye position-absolute end-0 top-50 me-3 mt-2 cursor-pointer"></i>
                 </div>
 
+                <div className="text-end mb-4">
+                  <Link to="/recoveryPasswordAdmin" className="small text-orange fw-bold text-decoration-none">
+                    ¿Olvidaste tu contraseña?
+                  </Link>
+                </div>
+
                 <div className="mt-5 position-relative">
-                  <PrimaryButton text= {loading ? "Ingresando..." : "Iniciar sesión"}
+                  <PrimaryButton text={loading ? "Ingresando..." : "Iniciar sesión"}
                     disabled={loading}
 
 
 
                   />
                 </div>
-               
+
 
               </form>
             </div>
