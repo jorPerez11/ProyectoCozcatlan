@@ -1,27 +1,25 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import UseProductsData from "../hooks/Products/UseProductsData.jsx";
 import ProductCard from '../components/Products/ProductsCard.jsx';
 import CozcPromoBanner from '../assets/descuentosPromo.png';
 import Navbar from '../components/PublicNavbar/Nav.jsx';
 import CozcaFooter from "../components/Footer/CozcaFooter.jsx";
 import './Products.css';
 
-const ITEMS_PER_PAGE = 6;
-
 const Products = () => {
-  const [products, setProducts] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState(null);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
-
-  useEffect(() => {
-    fetch("http://localhost:4000/api/products")
-      .then(res => res.json())
-      .then(data => setProducts(data))
-      .catch(err => console.log("error:", err));
-  }, []);
+  const {
+    selectedCategory,
+    searchQuery,
+    currentPage,
+    setCurrentPage,
+    categories,
+    paginatedProducts,
+    totalPages,
+    handleCategorySelect,
+    handleSearch,
+  } = UseProductsData();
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const categories = [...new Set(products.map(p => p.category).filter(Boolean))];
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -30,23 +28,6 @@ const Products = () => {
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
-
-  const filtered = products
-    .filter(p => selectedCategory ? p.category === selectedCategory : true)
-    .filter(p => searchQuery ? p.name?.toLowerCase().includes(searchQuery.toLowerCase()) : true);
-
-  const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
-  const paginated = filtered.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
-
-  const handleCategorySelect = (category) => {
-    setSelectedCategory(category);
-    setCurrentPage(1);
-  };
-
-  const handleSearch = (e) => {
-    setSearchQuery(e.target.value);
-    setCurrentPage(1);
-  };
 
   return (
     <div className="store-wrapper d-flex flex-column min-vh-100">
@@ -116,7 +97,7 @@ const Products = () => {
 
       <div className="container flex-grow-1">
         <div className="row">
-          {paginated.map(product => (
+          {paginatedProducts.map(product => (
             <ProductCard
               key={product._id}
               id={product._id}

@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import Swal from "sweetalert2";
+import UseSuppliersData from "../hooks/Suppliers/UseSuppliersData.jsx";
 import ClientRow from "../components/Admins-Supppliers-Employees/ClientRow";
 import ButtonAdmin from '../components/Admins-Supppliers-Employees/ButtonAdmin';
 import FormSuppliers from "../components/Admins-Supppliers-Employees/FormSuppliers.jsx";
@@ -8,16 +9,20 @@ import CozcaFooterPrivate from "../components/Footer/CozcaFooterPrivate.jsx";
 import NavPrivate from "../components/privateNavBar/NavPrivate.jsx";
 import './3Screens.css';
 
-const API = "http://localhost:4000/api/suppliers";
-
 const ITEMS_PER_PAGE = 8;
 
 const Suppliers = () => {
+  const {
+    suppliers,
+    formData,
+    isEditing,
+    startCreate,
+    startEdit,
+    saveSupplier,
+    deleteSupplier,
+  } = UseSuppliersData();
+
   const [modalOpen, setModalOpen] = useState(false);
-  const [isEditing, setIsEditing] = useState(false);
-  const [formData, setFormData] = useState({});
-  const [suppliers, setSuppliers] = useState([]);
-  const [selectedId, setSelectedId] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
 
   const totalPages = Math.ceil(suppliers.length / ITEMS_PER_PAGE);
@@ -26,31 +31,13 @@ const Suppliers = () => {
     currentPage * ITEMS_PER_PAGE
   );
 
-  const fetchSuppliers = async () => {
-    try {
-      const res = await fetch(API);
-      const data = await res.json();
-      setSuppliers(data);
-      setCurrentPage(1);
-    } catch (error) {
-      console.log("error:", error);
-    }
-  };
-
-  useEffect(() => {
-    fetchSuppliers();
-  }, []);
-
   const handleAddClick = () => {
-    setIsEditing(false);
-    setFormData({});
+    startCreate();
     setModalOpen(true);
   };
 
   const handleEditClick = (supplier) => {
-    setIsEditing(true);
-    setSelectedId(supplier._id);
-    setFormData(supplier);
+    startEdit(supplier);
     setModalOpen(true);
   };
 
@@ -66,36 +53,12 @@ const Suppliers = () => {
 
     if (!result.isConfirmed) return;
 
-    try {
-      const res = await fetch(`${API}/${id}`, { method: "DELETE" });
-      if (res.ok) {
-        Swal.fire("Eliminado", "Proveedor eliminado correctamente.", "success");
-        fetchSuppliers();
-      }
-    } catch (error) {
-      console.log("error:", error);
-    }
+    await deleteSupplier(id);
   };
 
-  const handleSubmit = async () => {
-    const method = isEditing ? "PUT" : "POST";
-    const url = isEditing ? `${API}/${selectedId}` : API;
-
-    try {
-      const res = await fetch(url, {
-        method,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-
-      if (res.ok) {
-        Swal.fire("Éxito", isEditing ? "Proveedor actualizado." : "Proveedor agregado.", "success");
-        setModalOpen(false);
-        fetchSuppliers();
-      }
-    } catch (error) {
-      console.log("error:", error);
-    }
+  const handleValidSubmit = async (data) => {
+    const success = await saveSupplier(data);
+    if (success) setModalOpen(false);
   };
 
   return (
@@ -152,12 +115,12 @@ const Suppliers = () => {
         onClose={() => setModalOpen(false)}
         title={isEditing ? "Editar Proveedor" : "Agregar Proveedor"}
         onSubmitText={isEditing ? "Guardar Cambios" : "Agregar"}
-        onSubmit={handleSubmit}
+        formId="supplierForm"
       >
         <FormSuppliers
           formData={formData}
-          setFormData={setFormData}
           isEditing={isEditing}
+          onValidSubmit={handleValidSubmit}
         />
       </CozcaModal>
 

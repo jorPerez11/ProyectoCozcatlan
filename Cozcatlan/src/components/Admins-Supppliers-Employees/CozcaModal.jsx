@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"; 
 import '../Admins-Supppliers-Employees/CozcaModal.css'; 
 
-const CozcaModal = ({ isOpen, onClose, title, children, onSubmitText, onSubmit }) => {
+const CozcaModal = ({ isOpen, onClose, title, children, onSubmitText, onSubmit, formId }) => {
   useEffect(() => {
     const handleEsc = (event) => {
       if (event.keyCode === 27) { 
@@ -38,7 +38,12 @@ const CozcaModal = ({ isOpen, onClose, title, children, onSubmitText, onSubmit }
           <button className="btn-cozca-cancel" onClick={onClose}>
             Cancelar
           </button>
-          <button className="btn-cozca-submit" onClick={onSubmit}>
+          <button
+            className="btn-cozca-submit"
+            type={formId ? "submit" : "button"}
+            form={formId}
+            onClick={formId ? undefined : onSubmit}
+          >
             {onSubmitText}
           </button>
         </div>

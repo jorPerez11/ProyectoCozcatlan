@@ -1,10 +1,33 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { useForm } from "react-hook-form";
 import { BsArrowUpSquareFill } from "react-icons/bs";
 import './ProductModal.css';
 
-const FormProduct = ({ formData, setFormData, onSave, isEditing, selectedFiles, setSelectedFiles }) => {
+const FormProduct = ({ formData, isEditing, selectedFiles, setSelectedFiles, onValidSubmit }) => {
     const [suppliers, setSuppliers] = useState([]);
     const fileInputRef = useRef(null);
+
+    const {
+        register,
+        handleSubmit,
+        reset,
+        setError,
+        clearErrors,
+        formState: { errors },
+    } = useForm({ defaultValues: formData });
+
+    useEffect(() => {
+        reset(formData);
+    }, [formData, reset]);
+
+    const submitWithImageCheck = handleSubmit((data) => {
+        if (!isEditing && selectedFiles.length === 0) {
+            setError("images", { type: "manual", message: "Debes agregar al menos una imagen" });
+            return;
+        }
+        clearErrors("images");
+        onValidSubmit(data);
+    });
 
     useEffect(() => {
         fetch("http://localhost:4000/api/suppliers")
@@ -13,17 +36,14 @@ const FormProduct = ({ formData, setFormData, onSave, isEditing, selectedFiles, 
             .catch(err => console.log("error:", err));
     }, []);
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    };
-
     const handleFileChange = (e) => {
-        setSelectedFiles(Array.from(e.target.files));
+        const files = Array.from(e.target.files);
+        setSelectedFiles(files);
+        if (files.length > 0) clearErrors("images");
     };
 
     return (
-        <div className="container-fluid px-0 mt-2">
+        <form id="productForm" className="container-fluid px-0 mt-2" onSubmit={submitWithImageCheck} noValidate>
             <div className="row g-4 form-product-row px-4 pb-4 align-items-stretch">
                 <div className="col-md-5 d-flex flex-column">
                     <div
@@ -54,6 +74,7 @@ const FormProduct = ({ formData, setFormData, onSave, isEditing, selectedFiles, 
                         style={{ display: 'none' }}
                         onChange={handleFileChange}
                     />
+                    {errors.images && <span className="cozca-error-text text-center">{errors.images.message}</span>}
                 </div>
 
                 <div className="col-md-7 d-flex flex-column">
@@ -62,83 +83,84 @@ const FormProduct = ({ formData, setFormData, onSave, isEditing, selectedFiles, 
                             <label className="cozca-label mb-1">Nombre Producto:</label>
                             <input
                                 type="text"
-                                name="name"
                                 className="form-control cozca-input shadow-sm"
-                                value={formData.name || ""}
-                                onChange={handleChange}
+                                {...register("name", { required: "El nombre es obligatorio" })}
                             />
+                            {errors.name && <span className="cozca-error-text">{errors.name.message}</span>}
                         </div>
                         <div className="col-md-5">
                             <label className="cozca-label mb-1">Categoría:</label>
                             <select
-                                name="category"
                                 className="form-select cozca-input shadow-sm"
-                                value={formData.category || ""}
-                                onChange={handleChange}
+                                {...register("category", { required: "Selecciona una categoría" })}
                             >
                                 <option value="">...</option>
                                 <option value="granos">Granos</option>
                                 <option value="bebidas">Bebidas</option>
                             </select>
+                            {errors.category && <span className="cozca-error-text">{errors.category.message}</span>}
                         </div>
                         <div className="col-md-6">
                             <label className="cozca-label mb-1">Precio ($):</label>
                             <input
                                 type="number"
-                                name="price"
+                                step="0.01"
                                 className="form-control cozca-input shadow-sm"
                                 placeholder="0.00"
-                                value={formData.price || ""}
-                                onChange={handleChange}
+                                {...register("price", {
+                                    required: "El precio es obligatorio",
+                                    min: { value: 0.01, message: "El precio debe ser mayor a 0" },
+                                })}
                             />
+                            {errors.price && <span className="cozca-error-text">{errors.price.message}</span>}
                         </div>
                         <div className="col-md-6">
                             <label className="cozca-label mb-1">Stock:</label>
                             <input
                                 type="number"
-                                name="stock"
                                 className="form-control cozca-input shadow-sm"
                                 placeholder="0"
-                                value={formData.stock || ""}
-                                onChange={handleChange}
+                                {...register("stock", {
+                                    required: "El stock es obligatorio",
+                                    min: { value: 0, message: "El stock no puede ser negativo" },
+                                })}
                             />
+                            {errors.stock && <span className="cozca-error-text">{errors.stock.message}</span>}
                         </div>
                         <div className="col-md-12">
                             <label className="cozca-label mb-1">Descripción:</label>
                             <textarea
-                                name="description"
                                 className="form-control cozca-input shadow-sm"
                                 rows="2"
-                                value={formData.description || ""}
-                                onChange={handleChange}
+                                {...register("description", { required: "La descripción es obligatoria" })}
                             ></textarea>
+                            {errors.description && <span className="cozca-error-text">{errors.description.message}</span>}
                         </div>
                         <div className="col-md-12">
                             <label className="cozca-label mb-1">Proveedor:</label>
                             <select
-                                name="supplier_id"
                                 className="form-select cozca-input shadow-sm"
-                                value={formData.supplier_id || ""}
-                                onChange={handleChange}
+                                {...register("supplier_id", { required: "Selecciona un proveedor" })}
                             >
                                 <option value="">Seleccionar...</option>
                                 {suppliers.map(s => (
                                     <option key={s._id} value={s._id}>{s.suppliers_name}</option>
                                 ))}
                             </select>
+                            {errors.supplier_id && <span className="cozca-error-text">{errors.supplier_id.message}</span>}
                         </div>
                     </div>
                     <div className="w-100 d-flex gap-3 justify-content-center mt-auto pt-4 pb-0">
                         <button type="button" className="btn btn-custom-pill btn-cancel" data-bs-dismiss="modal">
                             Cancelar
                         </button>
-                        <button type="button" className="btn btn-custom-pill btn-add" onClick={onSave}>
+                        <button type="submit" className="btn btn-custom-pill btn-add">
                             {isEditing ? "Guardar Cambios" : "Agregar"}
                         </button>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     );
 };
 

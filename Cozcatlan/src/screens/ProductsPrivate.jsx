@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
 import { Modal } from "bootstrap";
 import Swal from "sweetalert2";
+import UseProductsPrivateData from "../hooks/ProductsPrivate/UseProductsPrivateData.jsx";
 import CardProducts from "../components/ProductsPrivate/CardProducts";
 import './CardProductsPrivate.css';
 import './3Screens.css';
@@ -10,52 +10,26 @@ import SearchButton from "../components/ProductsPrivate/SearchButton";
 import CozcaFooterPrivate from "../components/Footer/CozcaFooterPrivate";
 import NavPrivate from "../components/privateNavBar/NavPrivate";
 
-const API = "http://localhost:4000/api/products";
-
-const ITEMS_PER_PAGE = 9;
-
 const ProductsPrivate = () => {
-    const [products, setProducts] = useState([]);
-    const [formData, setFormData] = useState({});
-    const [isEditing, setIsEditing] = useState(false);
-    const [selectedId, setSelectedId] = useState(null);
-    const [selectedFiles, setSelectedFiles] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [searchTerm, setSearchTerm] = useState("");
-    const [selectedCategory, setSelectedCategory] = useState("");
-
-    const categories = [...new Set(products.map(p => p.category).filter(Boolean))];
-
-    const filteredProducts = products.filter(p => {
-        const matchesSearch = p.name?.toLowerCase().includes(searchTerm.toLowerCase());
-        const matchesCategory = !selectedCategory || p.category === selectedCategory;
-        return matchesSearch && matchesCategory;
-    });
-
-    const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
-    const paginatedProducts = filteredProducts.slice(
-        (currentPage - 1) * ITEMS_PER_PAGE,
-        currentPage * ITEMS_PER_PAGE
-    );
-
-    const fetchProducts = async () => {
-        try {
-            const res = await fetch(API);
-            const data = await res.json();
-            setProducts(data);
-            setCurrentPage(1);
-        } catch (error) {
-            console.log("error:", error);
-        }
-    };
-
-    useEffect(() => {
-        fetchProducts();
-    }, []);
-
-    useEffect(() => {
-        setCurrentPage(1);
-    }, [searchTerm, selectedCategory]);
+    const {
+        formData,
+        isEditing,
+        selectedFiles,
+        setSelectedFiles,
+        currentPage,
+        setCurrentPage,
+        searchTerm,
+        setSearchTerm,
+        selectedCategory,
+        setSelectedCategory,
+        categories,
+        paginatedProducts,
+        totalPages,
+        startCreate,
+        startEdit,
+        saveProduct,
+        deleteProduct,
+    } = UseProductsPrivateData();
 
     const openModal = () => {
         const modal = new Modal(document.getElementById("createProductModal"));
@@ -69,24 +43,12 @@ const ProductsPrivate = () => {
     };
 
     const handleAddClick = () => {
-        setIsEditing(false);
-        setFormData({});
-        setSelectedFiles([]);
+        startCreate();
         openModal();
     };
 
     const handleEditClick = (product) => {
-        setIsEditing(true);
-        setSelectedId(product._id);
-        setFormData({
-            name: product.name,
-            category: product.category,
-            price: product.price,
-            stock: product.stock,
-            description: product.description,
-            supplier_id: product.supplier_id,
-        });
-        setSelectedFiles([]);
+        startEdit(product);
         openModal();
     };
 
@@ -102,43 +64,12 @@ const ProductsPrivate = () => {
 
         if (!result.isConfirmed) return;
 
-        try {
-            const res = await fetch(`${API}/${id}`, { method: "DELETE" });
-            if (res.ok) {
-                Swal.fire("Eliminado", "Producto eliminado correctamente.", "success");
-                fetchProducts();
-            }
-        } catch (error) {
-            console.log("error:", error);
-        }
+        await deleteProduct(id);
     };
 
-    const handleSaveProduct = async () => {
-        const data = new FormData();
-        data.append("name", formData.name || "");
-        data.append("category", formData.category || "");
-        data.append("price", formData.price || "");
-        data.append("stock", formData.stock || "");
-        data.append("description", formData.description || "");
-        data.append("supplier_id", formData.supplier_id || "");
-
-        for (const file of selectedFiles) {
-            data.append("images.image", file);
-        }
-
-        const method = isEditing ? "PUT" : "POST";
-        const url = isEditing ? `${API}/${selectedId}` : API;
-
-        try {
-            const res = await fetch(url, { method, body: data });
-            if (res.ok) {
-                Swal.fire("Éxito", isEditing ? "Producto actualizado." : "Producto agregado.", "success");
-                closeModal();
-                fetchProducts();
-            }
-        } catch (error) {
-            console.log("error:", error);
-        }
+    const handleValidSubmit = async (data) => {
+        const success = await saveProduct(data);
+        if (success) closeModal();
     };
 
     return (
@@ -196,11 +127,10 @@ const ProductsPrivate = () => {
                 </div>
                 <ProductCreateModal
                     formData={formData}
-                    setFormData={setFormData}
-                    onSave={handleSaveProduct}
                     isEditing={isEditing}
                     selectedFiles={selectedFiles}
                     setSelectedFiles={setSelectedFiles}
+                    onValidSubmit={handleValidSubmit}
                 />
                 <CozcaFooterPrivate />
             </main>

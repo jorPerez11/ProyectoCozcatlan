@@ -2,7 +2,7 @@ import React from 'react';
 import FormProduct from "./FormProduct.jsx";
 import './ProductModal.css';
 
-const ProductCreateModal = ({ formData, setFormData, onSave, isEditing, selectedFiles, setSelectedFiles }) => {
+const ProductCreateModal = ({ formData, isEditing, selectedFiles, setSelectedFiles, onValidSubmit }) => {
     return (
         <div className="modal fade" id="createProductModal" tabIndex="-1" aria-hidden="true">
             <div className="modal-dialog modal-xl modal-dialog-centered">
@@ -16,11 +16,10 @@ const ProductCreateModal = ({ formData, setFormData, onSave, isEditing, selected
                     <div className="modal-body border-0 p-0">
                         <FormProduct
                             formData={formData}
-                            setFormData={setFormData}
-                            onSave={onSave}
                             isEditing={isEditing}
                             selectedFiles={selectedFiles}
                             setSelectedFiles={setSelectedFiles}
+                            onValidSubmit={onValidSubmit}
                         />
                     </div>
                 </div>
