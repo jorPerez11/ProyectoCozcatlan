@@ -32,12 +32,12 @@ const LoginEmployee = () => {
 
   return (
     <div className="login-wrapper">
-      <Nav />
+      <Nav showButton={false} />
       <div className="container-fluid p-0">
         <div className="row g-0 min-vh-100">
 
 
-          <div className="col-lg-4 d-none d-lg-flex flex-column justify-content-center align-items-center left-panel text-white">
+          <div className="col-lg-4 d-none d-lg-flex flex-column justify-content-center align-items-center left-panel bg-[#0F243B]! text-white">
 
             <div className="top-visual-container">
               <img
@@ -57,7 +57,7 @@ const LoginEmployee = () => {
 
           <div className="col-lg-8 d-flex align-items-center justify-content-center right-panel">
             <div className="login-card p-4 p-md-5">
-              <h1 className="text-success fw-bold">Bienvenido</h1>
+              <h1 className="text-[#2AC1DB]! fw-bold">Bienvenido</h1>
               <p className="text-muted mb-4">Inicia sesión en tu cuenta</p>
               <hr className="mb-4" />
 
