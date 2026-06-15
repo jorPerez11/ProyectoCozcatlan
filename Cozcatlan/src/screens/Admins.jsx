@@ -11,7 +11,7 @@ import { useAuth } from "../hooks/UseAuthAdmin.js"; // Hook para la logica del C
 import Swal from "sweetalert2";
 
 const Admins = () => {
-  // 2. Extraemos todo lo necesario del Hook
+  // Extraemos todo lo necesario del Hook
   const {
     users = [],
     loading,

@@ -102,8 +102,8 @@ export const VerifyEmailCode = () => {
         <div className="signup-wrapper">
             <main className="container d-flex align-items-center justify-content-center min-vh-100">
                 <div className="signup-card p-4 p-md-5 shadow-lg">
-                    <h3 className="text-success fw-bold mb-0">Verifiación de cuenta</h3>
-                    <p className="text-muted small mb-4">Bienvenido. Empecemos con la Verifiación de su cuenta</p>
+                    <h3 className="text-success fw-bold mb-0">Verificación de cuenta</h3>
+                    <p className="text-muted small mb-4">Bienvenido. Empecemos con la Verificación de su cuenta</p>
 
                     <form onSubmit={handleSubmit}>
                         <CustomInput

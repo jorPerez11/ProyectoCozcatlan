@@ -30,7 +30,7 @@ const Employees = () => {
   const indexOfLastRecord = currentPage * recordsPerPage;
   const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
 
-  // 🔥 CLAVE 1: Usar este array filtrado para renderizar la tabla
+  // Array filtrado para renderizar la tabla
   const currentRecords = users.slice(indexOfFirstRecord, indexOfLastRecord);
   const totalPages = Math.ceil(users.length / recordsPerPage) || 1;
 
@@ -167,7 +167,7 @@ const Employees = () => {
         </div>
       </div>
 
-      {/* MODAL CORREGIDO */}
+      {/* MODAL */}
       <CozcaModal
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
