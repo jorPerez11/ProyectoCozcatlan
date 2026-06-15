@@ -7,7 +7,7 @@ const UseOrders = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
 
-    // Función para registrar la orden en la Base de Datos
+    // Función para registrar la orden 
     const createOrder = async (clientId) => {
         // Obtener los productos actuales del localStorage
         const cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -18,7 +18,7 @@ const UseOrders = () => {
             return false;
         }
 
-        // Validar que haya un cliente activo (simulado o desde auth)
+        // Validar que haya un cliente activo
         if (!clientId) {
             Swal.fire("Error de sesión", "Debes iniciar sesión para comprar.", "error");
             return false;
@@ -29,8 +29,6 @@ const UseOrders = () => {
             setError("");
 
             // Mapear el formato del localStorage al formato que espera el Backend
-            // LocalStorage usa: { id, quantity } 
-            // el Controller espera: { product_id, amount }
             const payloadProducts = cart.map((item) => ({
                 product_id: item.id,
                 amount: item.quantity,
@@ -63,7 +61,7 @@ const UseOrders = () => {
                 title: "Orden Creada",
                 text: "Tu orden ha sido registrada. Continua con el pago.",
                 icon: "success",
-                confirmButtonColor: "#4A7844" // El color verde lindo de Cozcatlán
+                confirmButtonColor: "#4A7844" // El color verde de Cozcatlán
             });
             return data;
             return true; // Indica a la vista que todo salió perfecto

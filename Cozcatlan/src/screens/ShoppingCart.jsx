@@ -87,10 +87,10 @@ const ShoppingCart = () => {
         }
 
         // Usamos el ID del cliente proveniente del Token JWT verificado
-        const realClientId = user.id;
+        const ClientId = user.id;
 
-        // Intentamos crear la orden en el backend mandando el ID dinámico del cliente
-        const orderData = await createOrder(realClientId);
+        // Intentamos crear la orden en el backend mandando el ID del cliente
+        const orderData = await createOrder(ClientId);
 
         // Si el backend respondió con éxito
         if (orderData) {
