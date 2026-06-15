@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import ClientRow from "../components/Admins-Supppliers-Employees/ClientRow";
-import ButtonAdmin from '../components/Admins-Supppliers-Employees/ButtonAdmin';
+import ButtonAdmin from "../components/Admins-Supppliers-Employees/ButtonAdmin";
 import FormEmployee from "../components/Admins-Supppliers-Employees/FormEmployees.jsx";
 import CozcaModal from "../components/Admins-Supppliers-Employees/CozcaModal.jsx";
 import CozcaFooterPrivate from "../components/Footer/CozcaFooterPrivate.jsx";
-import NavPrivate from "../components/privateNavBar/NavPrivate.jsx";
-import './3Screens.css';
+import Swal from "sweetalert2";
+import NavPrivate from "../components/PrivateNavBar/NavPrivate.jsx";
+import "./3Screens.css";
 
-import UseEmployeeData from "../hooks/Employee/UseEmployeeData.jsx" // Hook para la logica del CRUD
+import UseEmployeeData from "../hooks/Employee/UseEmployeeData.jsx"; // Hook para la logica del CRUD
 const Employees = () => {
   const {
     users = [],
@@ -44,7 +45,7 @@ const Employees = () => {
       phone: "",
       dui: "",
       address: "",
-      isVerified: false
+      isVerified: false,
     });
     setSelectedId(null);
     setModalOpen(true);
@@ -84,11 +85,21 @@ const Employees = () => {
   };
 
   const handleDelete = async (id) => {
-    if (window.confirm("¿Estás seguro de que deseas eliminar este empleado?")) {
-      await deleteUser(id);
-      if (currentRecords.length === 1 && currentPage > 1) {
-        setCurrentPage(currentPage - 1);
-      }
+    const result = await Swal.fire({
+      title: "¿Estás seguro de que deseas eliminar este empleado?",
+      text: "Esta acción no se puede deshacer.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Eliminar",
+      cancelButtonText: "Cancelar",
+    });
+    if (!result.isConfirmed) {
+      return;
+    }
+    await deleteUser(id);
+    // Si eliminas el único elemento de una página alta, regresamos una página
+    if (currentRecords.length === 1 && currentPage > 1) {
+      setCurrentPage(currentPage - 1);
     }
   };
 
@@ -102,7 +113,7 @@ const Employees = () => {
         <div className="header-container">
           <div className="d-flex justify-content-between align-items-center w-100 mb-2 px-2">
             <h1 className="cozca-page-title mb-0">Empleados</h1>
-            <div style={{ width: '180px' }}>
+            <div style={{ width: "180px" }}>
               <ButtonAdmin
                 text={<span>Agregar +</span>}
                 className="btn-cozca-add"
@@ -116,17 +127,19 @@ const Employees = () => {
         {/* LISTADO DE EMPLEADOS */}
         <div className="cozca-main-card mt-5">
           {/* Mapeamos currentRecords */}
-          {currentRecords.map(employee => (
+          {currentRecords.map((employee) => (
             <ClientRow
               key={employee.id || employee._id}
               title={`${employee.firstName} ${employee.lastName}`}
               subtitle={employee.email}
               onEdit={() => handleEditClick(employee)}
-              onDelete={() => handleDelete(employee.id || employee._id)} 
+              onDelete={() => handleDelete(employee.id || employee._id)}
             />
           ))}
           {currentRecords.length === 0 && (
-            <div className="text-center py-4 text-muted">No hay empleados registrados.</div>
+            <div className="text-center py-4 text-muted">
+              No hay empleados registrados.
+            </div>
           )}
         </div>
 
@@ -135,15 +148,19 @@ const Employees = () => {
           <button
             className="cozca-page-btn"
             disabled={currentPage === 1}
-            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
           >
             <span>←</span>
           </button>
-          <div className="cozca-page-number">{currentPage} de {totalPages}</div>
+          <div className="cozca-page-number">
+            {currentPage} de {totalPages}
+          </div>
           <button
             className="cozca-page-btn"
             disabled={currentPage === totalPages}
-            onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+            onClick={() =>
+              setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+            }
           >
             <span>→</span>
           </button>
@@ -156,7 +173,7 @@ const Employees = () => {
         onClose={() => setModalOpen(false)}
         title={isEditing ? "Editar Empleado" : "Agregar Empleado"}
         onSubmitText={isEditing ? "Guardar Cambios" : "Agregar"}
-        onSubmit={handleFormSubmit} 
+        onSubmit={handleFormSubmit}
       >
         <FormEmployee
           formData={formData}

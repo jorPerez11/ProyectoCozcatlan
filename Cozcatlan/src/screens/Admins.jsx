@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import ClientRow from "../components/Admins-Supppliers-Employees/ClientRow";
-import ButtonAdmin from '../components/Admins-Supppliers-Employees/ButtonAdmin';
-import FormAdmin from '../components/Admins-Supppliers-Employees/FormAdmin.jsx';
+import ButtonAdmin from "../components/Admins-Supppliers-Employees/ButtonAdmin";
+import FormAdmin from "../components/Admins-Supppliers-Employees/FormAdmin.jsx";
 import CozcaModal from "../components/Admins-Supppliers-Employees/CozcaModal.jsx";
 import CozcaFooterPrivate from "../components/Footer/CozcaFooterPrivate.jsx";
-import NavPrivate from "../components/privateNavBar/NavPrivate.jsx";
-import './3Screens.css';
-import UseAdminData from "../hooks/Admin/UseAdminData.jsx" // Hook para la logica del CRUD
-import { useAuth } from "../hooks/UseAuthAdmin.js"  // Hook para la logica del CRUD
+import NavPrivate from "../components/PrivateNavBar/NavPrivate.jsx";
+import "./3Screens.css";
+import UseAdminData from "../hooks/Admin/UseAdminData.jsx"; // Hook para la logica del CRUD
+import { useAuth } from "../hooks/UseAuthAdmin.js"; // Hook para la logica del CRUD
+import Swal from "sweetalert2";
 
 const Admins = () => {
   // 2. Extraemos todo lo necesario del Hook
@@ -31,7 +32,6 @@ const Admins = () => {
   const indexOfLastRecord = currentPage * recordsPerPage;
   const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
 
-
   // Elementos que se van a renderizar en la página actual
   const currentRecords = users.slice(indexOfFirstRecord, indexOfLastRecord);
 
@@ -45,7 +45,7 @@ const Admins = () => {
       lastName: "",
       email: "",
       password: "",
-      isVerified: false
+      isVerified: false,
     });
     setSelectedId(null);
     setModalOpen(true);
@@ -81,12 +81,21 @@ const Admins = () => {
   };
 
   const handleDelete = async (id) => {
-    if (window.confirm("¿Estás seguro de que deseas eliminar este administrador?")) {
-      await deleteUser(id);
-      // Si eliminas el único elemento de una página alta, regresamos una página
-      if (currentRecords.length === 1 && currentPage > 1) {
-        setCurrentPage(currentPage - 1);
-      }
+    const result = await Swal.fire({
+      title: "¿Estás seguro de que deseas eliminar este administrador?",
+      text: "Esta acción no se puede deshacer.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Eliminar",
+      cancelButtonText: "Cancelar",
+    });
+    if (!result.isConfirmed) {
+      return;
+    }
+    await deleteUser(id);
+    // Si eliminas el único elemento de una página alta, regresamos una página
+    if (currentRecords.length === 1 && currentPage > 1) {
+      setCurrentPage(currentPage - 1);
     }
   };
 
@@ -99,9 +108,17 @@ const Admins = () => {
         <div className="header-container">
           <div className="d-flex justify-content-between align-items-center w-100 mb-2 px-2">
             <h1 className="cozca-page-title mb-0">Administradores</h1>
-            <div style={{ width: '180px' }}>
+            <div style={{ width: "180px" }}>
               <ButtonAdmin
-                text={loading ? "Cargando..." : <><span>Agregar</span> +</>}
+                text={
+                  loading ? (
+                    "Cargando..."
+                  ) : (
+                    <>
+                      <span>Agregar</span> +
+                    </>
+                  )
+                }
                 className="btn-cozca-add"
                 onClick={handleAddClick}
                 disabled={loading}
@@ -116,9 +133,11 @@ const Admins = () => {
           {loading && users.length === 0 ? (
             <p className="text-center p-4">Cargando administradores...</p>
           ) : currentRecords.length === 0 ? (
-            <p className="text-center p-4">No se encontraron administradores con el formato requerido.</p>
+            <p className="text-center p-4">
+              No se encontraron administradores con el formato requerido.
+            </p>
           ) : (
-            currentRecords.map(admin => (
+            currentRecords.map((admin) => (
               <ClientRow
                 key={admin.id || admin._id}
                 title={`${admin.firstName} ${admin.lastName}`}
@@ -134,7 +153,7 @@ const Admins = () => {
         <div className="cozca-pagination-container mt-4">
           <button
             className="cozca-page-btn"
-            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
             disabled={currentPage === 1 || loading}
           >
             <span>←</span>
@@ -146,7 +165,9 @@ const Admins = () => {
 
           <button
             className="cozca-page-btn"
-            onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+            onClick={() =>
+              setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+            }
             disabled={currentPage === totalPages || loading}
           >
             <span>→</span>
@@ -158,7 +179,9 @@ const Admins = () => {
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
         title={isEditing ? "Editar Administrador" : "Agregar Administrador"}
-        onSubmitText={loading ? "Procesando..." : (isEditing ? "Guardar Cambios" : "Agregar")}
+        onSubmitText={
+          loading ? "Procesando..." : isEditing ? "Guardar Cambios" : "Agregar"
+        }
         onSubmit={handleFormSubmit}
       >
         <FormAdmin

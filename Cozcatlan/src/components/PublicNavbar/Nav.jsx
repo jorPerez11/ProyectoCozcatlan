@@ -18,9 +18,6 @@ const Navbar = () => {
           <a href="/shoppingcart" className="nav-icon">
             <img src={shoppingC} alt="Carrito" style={{ width: '30px', height: 'auto' }} />
           </a>
-          <a href="/settings" className="nav-icon">
-            <img src={Config} alt="Configuración" style={{ width: '30px', height: 'auto' }} />
-          </a>
           
           <button 
             className="navbar-toggler border-0 shadow-none" 

@@ -18,7 +18,7 @@ import photoIconDate from '../assets/Iconofecha.svg'
 import photoIconRider from '../assets/IconoRider.svg'
 import photoIconSelect from '../assets/IconSelect.svg'
 import CozcaFooterPrivate from "../components/Footer/CozcaFooterPrivate.jsx";
-import NavPrivate from "../components/privateNavBar/NavPrivate";
+import NavPrivate from "../components/PrivateNavBar/NavPrivate.jsx";
 
 
 

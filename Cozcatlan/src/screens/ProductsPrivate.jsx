@@ -8,7 +8,7 @@ import ProductCreateModal from "../components/ProductsPrivate/ProductCreateModal
 import photoProduct from '../assets/PhotoProduct.webp';
 import SearchButton from "../components/ProductsPrivate/SearchButton";
 import CozcaFooterPrivate from "../components/Footer/CozcaFooterPrivate";
-import NavPrivate from "../components/privateNavBar/NavPrivate";
+import NavPrivate from "../components/PrivateNavBar/NavPrivate.jsx";
 
 const ProductsPrivate = () => {
     const {

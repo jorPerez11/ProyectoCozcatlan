@@ -6,7 +6,7 @@ import ButtonAdmin from '../components/Admins-Supppliers-Employees/ButtonAdmin';
 import FormSuppliers from "../components/Admins-Supppliers-Employees/FormSuppliers.jsx";
 import CozcaModal from "../components/Admins-Supppliers-Employees/CozcaModal.jsx";
 import CozcaFooterPrivate from "../components/Footer/CozcaFooterPrivate.jsx";
-import NavPrivate from "../components/privateNavBar/NavPrivate.jsx";
+import NavPrivate from "../components/PrivateNavBar/NavPrivate.jsx";
 import './3Screens.css';
 
 const ITEMS_PER_PAGE = 8;
