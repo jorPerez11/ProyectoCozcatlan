@@ -1,6 +1,6 @@
 import express from "express";
 //Importamos el controlador PARA REFERENCIAR CADA ENDPOINT
-import clientController from "../controller/ClientController.js";
+import clientController from "../controller/clientController.js";
 
 //Acá nos ayudará Router() que contendrá todos los endpoints
 const router = express.Router();

@@ -1,5 +1,5 @@
 import express from "express"; // Se importa la libreria express
-import employeeRecoveryPasswordController from "../controller/EmployeeRecoveryPasswordController.js";
+import employeeRecoveryPasswordController from "../controller/employeeRecoveryPasswordController.js";
 
 const router = express.Router();
 

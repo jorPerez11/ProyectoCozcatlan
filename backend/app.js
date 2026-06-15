@@ -11,20 +11,20 @@ import admin from "./src/routes/adminRoute.js"
 import sales from "./src/routes/sales.js"
 
 //Employee
-import employeeRegisterRoutes from "./src/routes/EmployeeRegisterRoute.js";
-import employeeRoutes from "./src/routes/EmployeeRoute.js";
-import employeeLoginRoutes from "./src/routes/EmployeeLoginRoute.js";
-import employeeRecoveryPasswordRoutes from "./src/routes/EmployeeRecoveryPasswordRoute.js";
+import employeeRegisterRoutes from "./src/routes/employeeRegisterRoute.js";
+import employeeRoutes from "./src/routes/employeeRoute.js";
+import employeeLoginRoutes from "./src/routes/employeeLoginRoute.js";
+import employeeRecoveryPasswordRoutes from "./src/routes/employeeRecoveryPasswordRoute.js";
 //Client
-import clientRegisterRoutes from "./src/routes/ClientRegisterRoute.js";
-import clientRoutes from "./src/routes/ClientRoute.js";
-import clientLoginRoutes from "./src/routes/ClientLoginRoute.js";
-import clientRecoveryPasswordRoutes from "./src/routes/ClientRecoveryPasswordRoute.js";
+import clientRegisterRoutes from "./src/routes/clientRegisterRoute.js";
+import clientRoutes from "./src/routes/clientRoute.js";
+import clientLoginRoutes from "./src/routes/clientLoginRoute.js";
+import clientRecoveryPasswordRoutes from "./src/routes/clientRecoveryPasswordRoute.js";
 //Admin
-import adminRegisterRoutes from "./src/routes/AdminRegisterRoute.js";
-import adminRoutes from "./src/routes/AdminRoute.js";
-import adminLoginRoutes from "./src/routes/AdminLoginRoute.js";
-import adminRecoveryPasswordRoutes from "./src/routes/AdminRecoveryPasswordRoute.js";
+import adminRegisterRoutes from "./src/routes/adminRegisterRoute.js";
+import adminRoutes from "./src/routes/adminRoute.js";
+import adminLoginRoutes from "./src/routes/adminLoginRoute.js";
+import adminRecoveryPasswordRoutes from "./src/routes/adminRecoveryPasswordRoute.js";
  
 //Constante EXPRESS
 const app = express();

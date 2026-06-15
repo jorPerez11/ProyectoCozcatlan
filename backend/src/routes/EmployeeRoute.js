@@ -1,5 +1,5 @@
 import express from "express"; // Se importa la libreria Express
-import employeeController from "../controller/EmployeeController.js"; // Se importa el employee controller
+import employeeController from "../controller/employeeController.js"; // Se importa el employee controller
 
 const router = express.Router(); // Se implementa Router() de la libreria de express para definir los métodos HTTP 
 
