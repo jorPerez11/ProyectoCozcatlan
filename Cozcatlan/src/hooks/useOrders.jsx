@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 
 const API_URL = "http://localhost:4000/api/orders";
 
-const useOrders = () => {
+const UseOrders = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
 
@@ -85,4 +85,4 @@ const useOrders = () => {
     };
 };
 
-export default useOrders;
+export default UseOrders;

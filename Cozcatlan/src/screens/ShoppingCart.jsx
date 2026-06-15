@@ -9,7 +9,7 @@ import CozcaFooter from "../components/Footer/CozcaFooter.jsx";
 import { useAuth } from "../hooks/UseAuthClient.js";
 import { toast } from "sonner";
 import { useNavigate } from "react-router";
-import useOrders from "../hooks/UseOrders.jsx";
+import UseOrders from "../hooks/UseOrders.jsx";
 
 const ShoppingCart = () => {
     const [cartItems, setCartItems] = useState([]);
@@ -19,7 +19,7 @@ const ShoppingCart = () => {
     const { user } = useAuth();
 
     // Desestructuras la función que creamos
-    const { createOrder, loading } = useOrders();
+    const { createOrder, loading } = UseOrders();
 
     const loadCart = async () => {
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
