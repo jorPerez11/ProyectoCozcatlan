@@ -15,7 +15,7 @@ const Nav = () => {
                 </button>
                 </a>
 
-                <a href="/login">
+                <a href="/loginClient">
                 <button className="btn btnLogin btn-outline-success bg-white px-4 py-2 fw-medium shadow-sm">
                     Iniciar sesión
                 </button>

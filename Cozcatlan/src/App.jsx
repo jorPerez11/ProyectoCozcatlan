@@ -45,6 +45,7 @@ import { Toaster } from "sonner";
 
 import { ProtectedRouteAdmin } from './components/ProtectedRoutes/ProtectedRouteAdmin.jsx';
 import { ProtectedRouteEmployee } from './components/ProtectedRoutes/ProtectedRouteEmployee.jsx';
+import { PrivateRouteClient } from "./components/ProtectedRoutes/PrivateRouteClient";
 import { ProtectedRouteShared } from './components/ProtectedRoutes/ProtectedRouteShared.jsx'; //   rutas compartidas
 
 
@@ -79,14 +80,16 @@ function App() {
                 <Route path="/recoveryNewPasswordAdmin" element={<RecoverNewPasswordAdmin />} /> //B
 
                 {/* --- Rutas Públicas --- */}
-                <Route path="/" element={<Home />} />
-                <Route path="/products" element={<Products />} />
-                <Route path="/shoppingCart" element={<ShoppingCart />} />
-                <Route path="/aboutUs" element={<AboutUs />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/terms-and-conditions" element={<TermsAndConditionsPage />} />
-                <Route path="/productdetail/:id" element={<ProductDetail />} />
-                <Route path="/paymentDetails" element={<PaymentDetails />} />
+                <Route element={<PrivateRouteClient />}>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/products" element={<Products />} />
+                  <Route path="/shoppingCart" element={<ShoppingCart />} />
+                  <Route path="/aboutUs" element={<AboutUs />} />
+                  <Route path="/contact" element={<Contact />} />
+                  <Route path="/terms-and-conditions" element={<TermsAndConditionsPage />} />
+                  <Route path="/productdetail/:id" element={<ProductDetail />} />
+                  <Route path="/paymentDetails" element={<PaymentDetails />} />
+                </Route>
 
 
                 {/* --- BLOQUE DE RUTAS PROTEGIDAS PARA ADMINISTRADORES --- */}
