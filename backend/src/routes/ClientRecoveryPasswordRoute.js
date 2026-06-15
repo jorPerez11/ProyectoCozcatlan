@@ -1,6 +1,6 @@
 //Importamos EXPRESS y todo lo necesario
 import express from "express";
-import clientRecoveryPasswordController from "../controller/ClientRecoveryPasswordController.js";
+import clientRecoveryPasswordController from "../controller/clientRecoveryPasswordController.js";
 
 //Inicializamos el router
 const router = express.Router();
