@@ -50,7 +50,7 @@ employeeRecoveryPasswordController.requestCode = async (req, res) => {
             to: email,   //config.EMAIL.USER
             subject: "Código de recuperación",
             text: `tu código de verificación es: ${randomCode} y expirará en 15 minutos. Por favor, ingresa este código en la aplicación para completar tu registro.`,
-            html: HTMLPasswordRecovery.HTMLPasswordRecovery(randomCode, null/*`${config.FRONTEND_URL}/admin/verify-email`*/), //Se utilizará cuando se tenga la pantalla necesaria de redireccionamiento
+            html: HTMLPasswordRecovery.HTMLRecoveryEmail(randomCode, null/*`${config.FRONTEND_URL}/admin/verify-email`*/), //Se utilizará cuando se tenga la pantalla necesaria de redireccionamiento
         };
 
         // Se envia el correo 
@@ -69,7 +69,7 @@ employeeRecoveryPasswordController.requestCode = async (req, res) => {
 employeeRecoveryPasswordController.verifyCode = async (req, res) => {
     try {
         //Se solicitan los datos
-        const { code } = req.body;
+        const { verificationCodeRequest } = req.body;
 
         // Se obtiene la informacion que esta dentro del token
 
@@ -79,7 +79,7 @@ employeeRecoveryPasswordController.verifyCode = async (req, res) => {
 
         // Lo siguiente es comparar el código que el usuario escribio
         // Con el que esta dentro del token
-        if (code !== decoded.randomCode) {
+        if (verificationCodeRequest !== decoded.randomCode) {
             return res.status(400).json({ message: "Invalid code" });
         }
 
@@ -105,9 +105,9 @@ employeeRecoveryPasswordController.verifyCode = async (req, res) => {
 employeeRecoveryPasswordController.newPassword = async (req, res) => {
     try {
         // Se solicitan los datos
-        const { newPassword, confirmNewPassword } = req.body;
+        const { newPassword, confirmPassword } = req.body;
         // Se comparan las respuestas
-        if (newPassword !== confirmNewPassword) {
+        if (newPassword !== confirmPassword) {
             return res.status(400).json({ message: "The passwords do not match" });
         }
         // Se va a comprobar que en la constante verified que esta en el token

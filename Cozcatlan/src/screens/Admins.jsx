@@ -66,13 +66,13 @@ const Admins = () => {
     setModalOpen(true);
   };
 
-  const handleFormSubmit = async () => {
+  const handleValidSubmit = async (data) => {
     let success = false;
 
     if (isEditing) {
-      success = await updateAdmin(formData, selectedId);
+      success = await updateAdmin(data, selectedId);
     } else {
-      success = await createAdmin(formData);
+      success = await createAdmin(data);
     }
 
     if (success) {
@@ -182,12 +182,12 @@ const Admins = () => {
         onSubmitText={
           loading ? "Procesando..." : isEditing ? "Guardar Cambios" : "Agregar"
         }
-        onSubmit={handleFormSubmit}
+        formId="adminForm"
       >
         <FormAdmin
           formData={formData}
-          setFormData={setFormData}
           isEditing={isEditing}
+          onValidSubmit={handleValidSubmit}
         />
       </CozcaModal>
       <CozcaFooterPrivate />

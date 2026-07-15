@@ -70,13 +70,13 @@ const Employees = () => {
     setModalOpen(true);
   };
 
-  const handleFormSubmit = async () => {
+  const handleValidSubmit = async (data) => {
     let success = false;
 
     if (isEditing) {
-      success = await updateEmployee(formData, selectedId);
+      success = await updateEmployee(data, selectedId);
     } else {
-      success = await createEmployee(formData);
+      success = await createEmployee(data);
     }
 
     if (success) {
@@ -173,12 +173,12 @@ const Employees = () => {
         onClose={() => setModalOpen(false)}
         title={isEditing ? "Editar Empleado" : "Agregar Empleado"}
         onSubmitText={isEditing ? "Guardar Cambios" : "Agregar"}
-        onSubmit={handleFormSubmit}
+        formId="employeeForm"
       >
         <FormEmployee
           formData={formData}
-          setFormData={setFormData}
           isEditing={isEditing}
+          onValidSubmit={handleValidSubmit}
         />
       </CozcaModal>
 

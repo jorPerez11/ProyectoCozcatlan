@@ -81,6 +81,13 @@ const LoginEmployee = () => {
                   <i className="bi bi-eye position-absolute end-0 top-50 me-3 mt-2 cursor-pointer"></i>
                 </div>
 
+                                {/* Olvidaste tu contraseña */}
+                                <div className="text-end mb-4">
+                                  <Link to="/recoveryPasswordEmployee" className="small text-orange fw-bold text-decoration-none">
+                                    ¿Olvidaste tu contraseña?
+                                  </Link>
+                                </div>
+
                 <div className="mt-5 position-relative">
                   <PrimaryButton text={loading ? "Ingresando..." : "Iniciar sesión"}
                     disabled={loading}
