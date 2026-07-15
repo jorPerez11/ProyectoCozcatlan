@@ -81,6 +81,9 @@ const Navbar = () => {
             <li className="nav-item">
               <a className="nav-link-custom" href="/contact">Contacto</a>
             </li>
+            <li className="nav-item">
+              <a className="nav-link-custom" href="/myOrders">Mis pedidos</a>
+            </li>
           </ul>
         </div>
 

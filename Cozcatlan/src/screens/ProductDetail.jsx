@@ -6,6 +6,7 @@ import Nav from '../components/PublicNavbar/Nav.jsx';
 import Placeholder from '../assets/placeholder.png';
 import AddBtn from '../components/ShoppingCart/FinishBtn.jsx';
 import CozcaFooter from "../components/Footer/CozcaFooter.jsx";
+import ProductReviews from "../components/Products/ProductReviews.jsx";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -108,6 +109,15 @@ const ProductDetail = () => {
 
         </div>
       </div>
+
+      <div className="container py-5">
+        <div className="row justify-content-center">
+          <div className="col-md-11">
+            <ProductReviews productId={id} />
+          </div>
+        </div>
+      </div>
+
       <CozcaFooter />
     </>
   );

@@ -1,9 +1,43 @@
 import orderModel from "../models/order.js";
 import productsModel from "../models/product.js";
+import salesModel from "../models/sales.js";
 import "../models/client.js";
 
 // Array de funciones
 const orderController = {};
+
+// SELECT historial de pedidos de un cliente (con el estado de entrega/pago si existe)
+orderController.getOrdersByClient = async (req, res) => {
+  try {
+    const orders = await orderModel
+      .find({ client_id: req.params.clientId })
+      .populate("products.product_id", "name price images")
+      .sort({ createdAt: -1 });
+
+    const orderIds = orders.map((order) => order._id);
+    const sales = await salesModel.find({ order_id: { $in: orderIds } });
+    const saleByOrderId = new Map(sales.map((sale) => [String(sale.order_id), sale]));
+
+    const history = orders.map((order) => {
+      const sale = saleByOrderId.get(String(order._id));
+
+      return {
+        _id: order._id,
+        products: order.products,
+        total: order.total,
+        createdAt: order.createdAt,
+        delivery_status: sale?.delivery_status || "Pendiente",
+        payment_status: sale?.payment_status || "Pendiente",
+        delivery_address: sale?.delivery_address || null,
+      };
+    });
+
+    return res.status(200).json(history);
+  } catch (error) {
+    console.log("error " + error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};
 
 // SELECT
 orderController.getOrders = async (req, res) => {

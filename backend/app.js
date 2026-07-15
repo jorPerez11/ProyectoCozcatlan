@@ -9,6 +9,7 @@ import orderRoutes from "./src/routes/order.js";
 import suppliersRoutes from "./src/routes/suppliers.js"
 import admin from "./src/routes/adminRoute.js"
 import sales from "./src/routes/sales.js"
+import reviewRoutes from "./src/routes/reviews.js"
 
 //Employee
 import employeeRegisterRoutes from "./src/routes/employeeRegisterRoute.js";
@@ -52,6 +53,7 @@ app.use("/api/products", productRoutes);
 app.use("/api/orders", orderRoutes) ;
 app.use("/api/suppliers", suppliersRoutes)
 app.use("/api/sales", sales)
+app.use("/api/reviews", reviewRoutes)
 
 
 //CRUD COMPLETO CON REGISTRO, LOGIN Y RECUPERACION DE CONTRASEÑA

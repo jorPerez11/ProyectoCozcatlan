@@ -14,6 +14,7 @@ import Home from './screens/Home.jsx'
 import Contact from './screens/Contact.jsx'
 import { TermsAndConditionsPage } from './screens/TermsAndConditions.jsx';
 import ProductDetail from './screens/ProductDetail.jsx';
+import OrderHistoryClient from './screens/OrderHistoryClient.jsx';
 import Admins from './screens/Admins.jsx'
 import Employees from './screens/Employees.jsx'
 import Suppliers from './screens/Suppliers.jsx'
@@ -89,6 +90,7 @@ function App() {
                   <Route path="/terms-and-conditions" element={<TermsAndConditionsPage />} />
                   <Route path="/productdetail/:id" element={<ProductDetail />} />
                   <Route path="/paymentDetails" element={<PaymentDetails />} />
+                  <Route path="/myOrders" element={<OrderHistoryClient />} />
                 </Route>
 
 

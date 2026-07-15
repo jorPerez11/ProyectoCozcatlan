@@ -1,0 +1,36 @@
+.status-pill {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    white-space: nowrap;
+}
+
+.status-pendiente {
+    background: #fdecd2;
+    color: #b5690a;
+}
+
+.status-preparando {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.status-encamino {
+    background: #e0e7ff;
+    color: #4338ca;
+}
+
+.status-entregado {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.order-history-item-img {
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
+    border-radius: 8px;
+}
