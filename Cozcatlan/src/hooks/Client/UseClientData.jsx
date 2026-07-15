@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
-import { useAuth } from "../UseAuthClient.js";
+import { useAuthClient } from "../../contexts/AuthContextClient.jsx";
 import { Link, useNavigate } from "react-router";
 
 const UseAdminData = () => {
@@ -24,7 +24,7 @@ const UseAdminData = () => {
     const [success, setSuccess] = useState(null);
     const [loading, setLoading] = useState(false);
     const [users, setUsers] = useState([]);
-    const { logout } = useAuth();
+    const { logout } = useAuthClient();
     const authExpiredHandledRef = useRef(false);
 
     const handleUnauthorized = useCallback(async () => {

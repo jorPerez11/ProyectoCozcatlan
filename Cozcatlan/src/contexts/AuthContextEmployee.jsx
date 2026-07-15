@@ -5,7 +5,6 @@ import { toast } from "sonner";
 const AuthContextEmployee = createContext(null);
 export { AuthContextEmployee };
 
-// Hook exclusivo usando el contexto de este archivo
 export const useAuthEmployee = () => {
     const context = useContext(AuthContextEmployee);
     if (!context) {
@@ -43,7 +42,6 @@ const extractAuthData = (payload) => {
     };
 };
 
-// Usamos "AuthProvider" igual que en el de Admin para manejar el alias limpiamente en App.jsx
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [authCookie, setAuthCookie] = useState(null);
@@ -58,23 +56,33 @@ export const AuthProvider = ({ children }) => {
 
     const persistToken = useCallback((token, rememberMe) => {
         if (!token) return;
-
         if (rememberMe) {
             localStorage.setItem(STORAGE_KEY, token);
             sessionStorage.removeItem(STORAGE_KEY);
             localStorage.setItem(REMEMBER_KEY, "1");
             return;
         }
-
         sessionStorage.setItem(STORAGE_KEY, token);
         localStorage.removeItem(STORAGE_KEY);
         localStorage.setItem(REMEMBER_KEY, "0");
     }, []);
 
-    const clearSession = useCallback(() => {
+    const clearSession = useCallback((everything = true) => {
         localStorage.removeItem(STORAGE_KEY);
         sessionStorage.removeItem(STORAGE_KEY);
         localStorage.removeItem(REMEMBER_KEY);
+
+        if (everything) {
+            const keysToClear = [
+                "accessTokenAdmin", "rememberDeviceAdmin",
+                "accessTokenClient", "rememberDeviceClient"
+            ];
+            keysToClear.forEach(key => {
+                localStorage.removeItem(key);
+                sessionStorage.removeItem(key);
+            });
+        }
+
         setUser(null);
         setAuthCookie(null);
     }, []);
@@ -85,15 +93,15 @@ export const AuthProvider = ({ children }) => {
 
         try {
             if (callApi) {
-                await fetch(`${API_URL}/logout`, {
+                await fetch(`http://localhost:4000/api/logout`, {
                     method: "POST",
                     credentials: "include",
                 });
             }
         } catch (error) {
-            // Error silencioso
+            // Silencioso
         } finally {
-            clearSession();
+            clearSession(true); // Borrado total al salir manualmente
             navigate("/");
 
             if (reason === "expired") {
@@ -108,9 +116,7 @@ export const AuthProvider = ({ children }) => {
         try {
             const response = await fetch(`${API_URL}/loginEmployee`, {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, password }),
                 credentials: "include",
             });
@@ -133,12 +139,7 @@ export const AuthProvider = ({ children }) => {
             } else {
                 const decodedToken = decodeJwtPayload(accessToken);
                 setUser(
-                    decodedToken
-                        ? {
-                            id: decodedToken.id,
-                            userType: decodedToken.userType || "employee",
-                        }
-                        : null,
+                    decodedToken ? { id: decodedToken.id, userType: decodedToken.userType || "employee" } : null
                 );
             }
 
@@ -155,26 +156,23 @@ export const AuthProvider = ({ children }) => {
         let isMounted = true;
 
         const checkAuth = async () => {
+            const token = getStoredToken();
+
+            // Si no hay token, apagamos carga local y salimos sin limpiar a otros
+            if (!token) {
+                if (isMounted) {
+                    setUser(null);
+                    setLoading(false);
+                }
+                return;
+            }
+
             try {
-                // SI HAY UN TOKEN DE ADMIN ACTIVO, EL EMPLEADO SE QUEDA QUIETO Y SE APAGA
-                if (localStorage.getItem("accessTokenAdmin") || sessionStorage.getItem("accessTokenAdmin")) {
-                    setLoading(false); // Apagamos el loading del empleado
-                    return; // Nos salimos sin borrar nada
-                }
-                const token = getStoredToken();
-
-                if (!token) {
-                    clearSession();
-                    return;
-                }
-
                 const decodedToken = decodeJwtPayload(token);
-                const isTokenExpired =
-                    decodedToken?.exp && decodedToken.exp * 1000 <= Date.now();
+                const isTokenExpired = decodedToken?.exp && decodedToken.exp * 1000 <= Date.now();
 
                 if (!decodedToken || isTokenExpired) {
-                    clearSession();
-                    navigate("/");
+                    clearSession(false);
                     return;
                 }
 
@@ -188,12 +186,7 @@ export const AuthProvider = ({ children }) => {
                 });
 
                 if (!response.ok) {
-                    if (response.status === 401) {
-                        clearSession();
-                        navigate("/");
-                        return;
-                    }
-                    clearSession();
+                    clearSession(false);
                     return;
                 }
 
@@ -217,7 +210,7 @@ export const AuthProvider = ({ children }) => {
                     });
                 }
             } catch (error) {
-                clearSession();
+                clearSession(false);
             } finally {
                 if (isMounted) {
                     setLoading(false);
@@ -230,20 +223,10 @@ export const AuthProvider = ({ children }) => {
         return () => {
             isMounted = false;
         };
-    }, [clearSession, getStoredToken, navigate, persistToken]);
+    }, [clearSession, getStoredToken, persistToken]);
 
     return (
-        <AuthContextEmployee.Provider
-            value={{
-                user,
-                setUser,
-                authCookie,
-                logout,
-                login,
-                loading,
-                API: API_URL,
-            }}
-        >
+        <AuthContextEmployee.Provider value={{ user, setUser, authCookie, logout, login, loading, API: API_URL }}>
             {children}
         </AuthContextEmployee.Provider>
     );

@@ -1,39 +1,36 @@
-import React, { createContext, useState, useEffect, useCallback } from "react";
+import React, { createContext, useState, useEffect, useCallback, useContext } from "react";
 import { useNavigate } from "react-router";
 import { toast } from "sonner";
 
-const AuthContext = createContext(null);
-export { AuthContext };
+const AuthContextClient = createContext(null);
+export { AuthContextClient };
 
-const API_URL = "http://localhost:4000/api/client";
+export const useAuthClient = () => {
+    const context = useContext(AuthContextClient);
+    if (!context) {
+        throw new Error("useAuthClient debe ser usado dentro de un AuthProviderClient");
+    }
+    return context;
+};
+
+const API_URL = "http://localhost:4000/api/client"; // Ajusta según tus rutas de cliente
 const STORAGE_KEY = "accessTokenClient";
 const REMEMBER_KEY = "rememberDeviceClient";
 
 const decodeJwtPayload = (token) => {
-    if (!token) {
-        return null;
-    }
-
+    if (!token) return null;
     try {
         const tokenParts = token.split(".");
-        if (tokenParts.length !== 3) {
-            return null;
-        }
-
+        if (tokenParts.length !== 3) return null;
         const base64Url = tokenParts[1];
         const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
         const normalized = base64.padEnd(base64.length + ((4 - (base64.length % 4)) % 4), "=");
         return JSON.parse(atob(normalized));
-    } catch {
-        return null;
-    }
+    } catch { return null; }
 };
 
 const extractAuthData = (payload) => {
-    if (!payload || typeof payload !== "object") {
-        return { accessToken: null, user: null };
-    }
-
+    if (!payload || typeof payload !== "object") return { accessToken: null, user: null };
     const data = payload.data && typeof payload.data === "object" ? payload.data : payload;
     return {
         accessToken: data.accessToken || data.token || null,
@@ -41,11 +38,10 @@ const extractAuthData = (payload) => {
     };
 };
 
-export const AuthProvider = ({ children }) => {
+export const AuthProviderClient = ({ children }) => {
     const [user, setUser] = useState(null);
     const [authCookie, setAuthCookie] = useState(null);
     const [loading, setLoading] = useState(true);
-
     const navigate = useNavigate();
 
     const getStoredToken = useCallback(
@@ -54,26 +50,33 @@ export const AuthProvider = ({ children }) => {
     );
 
     const persistToken = useCallback((token, rememberMe) => {
-        if (!token) {
-            return;
-        }
-
+        if (!token) return;
         if (rememberMe) {
             localStorage.setItem(STORAGE_KEY, token);
             sessionStorage.removeItem(STORAGE_KEY);
             localStorage.setItem(REMEMBER_KEY, "1");
             return;
         }
-
         sessionStorage.setItem(STORAGE_KEY, token);
         localStorage.removeItem(STORAGE_KEY);
         localStorage.setItem(REMEMBER_KEY, "0");
     }, []);
 
-    const clearSession = useCallback(() => {
+    const clearSession = useCallback((everything = true) => {
         localStorage.removeItem(STORAGE_KEY);
         sessionStorage.removeItem(STORAGE_KEY);
         localStorage.removeItem(REMEMBER_KEY);
+
+        if (everything) {
+            const keysToClear = [
+                "accessTokenAdmin", "rememberDeviceAdmin",
+                "accessTokenEmployee", "rememberDeviceEmployee"
+            ];
+            keysToClear.forEach(key => {
+                localStorage.removeItem(key);
+                sessionStorage.removeItem(key);
+            });
+        }
         setUser(null);
         setAuthCookie(null);
     }, []);
@@ -81,20 +84,18 @@ export const AuthProvider = ({ children }) => {
     const logout = useCallback(async (options = {}) => {
         const reason = options?.reason || "manual";
         const callApi = options?.callApi ?? true;
-
         try {
             if (callApi) {
-                await fetch(`${API_URL}/logout`, {
+                await fetch(`http://localhost:4000/api/logout`, {
                     method: "POST",
                     credentials: "include",
                 });
             }
         } catch (error) {
-            // Error silencioso
+            // Silencioso
         } finally {
-            clearSession();
+            clearSession(true);
             navigate("/");
-
             if (reason === "expired") {
                 toast.error("Tu sesión expiró. Inicia sesión nuevamente");
             } else {
@@ -105,17 +106,14 @@ export const AuthProvider = ({ children }) => {
 
     const login = async (email, password, rememberMe = false) => {
         try {
-            const response = await fetch(`${API_URL}/loginClient`, {
+            const response = await fetch(`${API_URL}/loginClient`, { // Ajusta tu endpoint exacto
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, password }),
                 credentials: "include",
             });
 
             const payload = await response.json().catch(() => ({}));
-
             if (!response.ok) {
                 toast.error("Error al iniciar sesión");
                 return false;
@@ -131,21 +129,13 @@ export const AuthProvider = ({ children }) => {
                 setUser(userFromApi);
             } else {
                 const decodedToken = decodeJwtPayload(accessToken);
-                setUser(
-                    decodedToken
-                        ? {
-                                id: decodedToken.id,
-                                userType: decodedToken.userType,
-                            }
-                        : null,
-                );
+                setUser(decodedToken ? { id: decodedToken.id, userType: decodedToken.userType || "client" } : null);
             }
 
             toast.success("Inicio de sesión exitoso");
-            navigate("/dashboard");
+            navigate("/"); // O la ruta principal de tus clientes
             return true;
         } catch (error) {
-            // Error de conexión silencioso
             toast.error("Error de conexión con el servidor");
             return false;
         }
@@ -153,23 +143,22 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         let isMounted = true;
-
         const checkAuth = async () => {
-            try {
-                const token = getStoredToken();
-
-                if (!token) {
-                    clearSession();
-                    return;
+            const token = getStoredToken();
+            if (!token) {
+                if (isMounted) {
+                    setUser(null);
+                    setLoading(false);
                 }
+                return;
+            }
 
+            try {
                 const decodedToken = decodeJwtPayload(token);
-                const isTokenExpired =
-                    decodedToken?.exp && decodedToken.exp * 1000 <= Date.now();
+                const isTokenExpired = decodedToken?.exp && decodedToken.exp * 1000 <= Date.now();
 
                 if (!decodedToken || isTokenExpired) {
-                    clearSession();
-                    navigate("/");
+                    clearSession(false);
                     return;
                 }
 
@@ -183,18 +172,11 @@ export const AuthProvider = ({ children }) => {
                 });
 
                 if (!response.ok) {
-                    if (response.status === 401) {
-                        clearSession();
-                        navigate("/");
-                        return;
-                    }
-                    clearSession();
+                    clearSession(false);
                     return;
                 }
 
-                if (!isMounted) {
-                    return;
-                }
+                if (!isMounted) return;
 
                 const payload = await response.json().catch(() => ({}));
                 const { accessToken } = extractAuthData(payload);
@@ -208,41 +190,22 @@ export const AuthProvider = ({ children }) => {
 
                 const decoded = decodeJwtPayload(effectiveToken);
                 if (decoded) {
-                    setUser({
-                        id: decoded.id,
-                        userType: decoded.userType,
-                    });
+                    setUser({ id: decoded.id, userType: decoded.userType || "client" });
                 }
             } catch (error) {
-                // Error de validación silencioso
-                clearSession();
+                clearSession(false);
             } finally {
-                if (isMounted) {
-                    setLoading(false);
-                }
+                if (isMounted) setLoading(false);
             }
         };
 
         checkAuth();
-
-        return () => {
-            isMounted = false;
-        };
-    }, [clearSession, getStoredToken, navigate, persistToken]);
+        return () => { isMounted = false; };
+    }, [clearSession, getStoredToken, persistToken]);
 
     return (
-        <AuthContext.Provider
-            value={{
-                user,
-                setUser,
-                authCookie,
-                logout,
-                login,
-                loading,
-                API: API_URL,
-            }}
-        >
+        <AuthContextClient.Provider value={{ user, setUser, authCookie, logout, login, loading, API: API_URL }}>
             {children}
-        </AuthContext.Provider>
+        </AuthContextClient.Provider>
     );
 };

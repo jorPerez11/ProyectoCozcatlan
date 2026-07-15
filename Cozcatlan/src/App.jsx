@@ -26,9 +26,9 @@ import PaymentDetails from './screens/PaymentDetails.jsx'
 import LoginEmployee from './screens/LoginEmployee.jsx'
 import LoginClient from './screens/LoginClient.jsx'
 import LoginAdmin from './screens/LoginAdmin.jsx'
-import { AuthProvider as AuthProviderClient } from "./contexts/AuthContextClient.jsx";
-import { AuthProvider as AuthProviderEmployee } from "./contexts/AuthContextEmployee.jsx";
-import { AuthProvider as AuthProviderAdmin } from "./contexts/AuthContextAdmin.jsx";
+import { AuthProviderClient } from "./contexts/AuthContextClient.jsx";
+import { AuthProvider as AuthProviderEmployee } from "./contexts/AuthContextEmployee.jsx"; // El de empleado se exportaba como AuthProvider originalmente
+import { AuthProviderAdmin } from "./contexts/AuthContextAdmin.jsx";
 import VerifyEmailCode from './screens/VerifyEmailCode.jsx'
 import VerifyEmailCodeEmployee from './screens/VerifyEmailCodeEmployee.jsx'
 import VerifyEmailClient from './screens/VerifyEmailCodeClient.jsx'

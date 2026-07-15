@@ -25,6 +25,9 @@ import adminRegisterRoutes from "./src/routes/adminRegisterRoute.js";
 import adminRoutes from "./src/routes/adminRoute.js";
 import adminLoginRoutes from "./src/routes/adminLoginRoute.js";
 import adminRecoveryPasswordRoutes from "./src/routes/adminRecoveryPasswordRoute.js";
+
+//Logout
+import logoutRoutes from "./src/routes/logout.js";
  
 //Constante EXPRESS
 const app = express();
@@ -70,6 +73,8 @@ app.use("/api/client", clientRoutes);
 app.use("/api/client/loginClient", clientLoginRoutes);
 app.use("/api/client/recoveryPasswordClient", clientRecoveryPasswordRoutes);
 
+// Logout
+app.use("/api/logout", logoutRoutes);
 
  
 //Exportamos TODO
