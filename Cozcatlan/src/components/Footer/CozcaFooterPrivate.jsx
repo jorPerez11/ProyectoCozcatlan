@@ -3,8 +3,19 @@ import { FaInstagram, FaFacebookF, FaTwitter, FaYoutube, FaWhatsapp, FaEnvelope 
 import logoCozcatlan from '../../assets/logo-cozcatlan.png';
 import './CozcaFooter.css';
 
+// Importamos ambos hooks de autenticación, igual que en NavPrivate
+import { useAuthAdmin } from "../../contexts/AuthContextAdmin";
+import { useAuthEmployee } from "../../contexts/AuthContextEmployee";
+
 const CozcaFooterPrivate = () => {
   const currentYear = new Date().getFullYear();
+
+  // Detectamos dinámicamente cuál de los dos contextos tiene una sesión activa
+  const adminAuth = useAuthAdmin();
+  const employeeAuth = useAuthEmployee();
+  const activeAuth = adminAuth?.user ? adminAuth : employeeAuth;
+  const currentUser = activeAuth?.user;
+  const isAdmin = currentUser?.userType?.toLowerCase() === "admin";
 
   return (
     <footer className="cozca-footer py-5 mt-auto">
@@ -25,8 +36,15 @@ const CozcaFooterPrivate = () => {
           <div className="col-12 col-md-4 text-center mb-4 mb-md-0">
             <nav className="footer-nav d-flex flex-wrap justify-content-center gap-4">
               <a href="/dashboardPrivate" className="footer-link">Inicio</a>
-              <a href="/admins" className="footer-link">Administradores</a>
-              <a href="/employees" className="footer-link">Empleados</a>
+
+              {/* Si es empleado, este bloque se oculta automáticamente */}
+              {isAdmin && (
+                <>
+                  <a href="/admins" className="footer-link">Administradores</a>
+                  <a href="/employees" className="footer-link">Empleados</a>
+                </>
+              )}
+
               <a href="/suppliers" className="footer-link">Proveedores</a>
               <a href="/productosprivados" className="footer-link">Productos</a>
             </nav>

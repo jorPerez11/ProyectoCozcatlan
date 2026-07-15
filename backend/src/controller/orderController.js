@@ -10,7 +10,7 @@ orderController.getOrders = async (req, res) => {
   try {
     const orders = await orderModel
       .find()
-      .populate("client_id", "first_name last_name email")
+      .populate("client_id", "firstName lastName first_name last_name email")
       .populate("products.product_id", "name price");
 
     return res.status(200).json(orders);
@@ -25,7 +25,7 @@ orderController.getOrderById = async (req, res) => {
   try {
     const order = await orderModel
       .findById(req.params.id)
-      .populate("client_id", "first_name last_name email")
+      .populate("client_id", "firstName lastName first_name last_name email")
       .populate("products.product_id", "name price");
 
     if (!order) {
@@ -55,8 +55,8 @@ orderController.insertOrder = async (req, res) => {
       // Buscar el producto en la base de datos
       const productFound = await productsModel.findById(products[i].product_id);
 
-      // Calcular el subtotal
-      const sub_total = productFound.price * products[i].amount;
+      // Calcular el subtotal (redondeado a centavos para evitar errores de coma flotante)
+      const sub_total = Math.round(productFound.price * products[i].amount * 100) / 100;
 
       // Calcular el total
       total += sub_total;
@@ -73,7 +73,7 @@ orderController.insertOrder = async (req, res) => {
     const newOrder = new orderModel({
       client_id,
       products: newProducts,
-      total
+      total: Math.round(total * 100) / 100,
     });
 
     // Guardamos todo en la base de datos
@@ -107,8 +107,8 @@ orderController.updateOrder = async (req, res) => {
       // Buscar producto
       const productFound = await productsModel.findById(products[i].product_id);
 
-      // Calcuñar el subtotal
-      const sub_total = productFound.price * products[i].amount;
+      // Calcuñar el subtotal (redondeado a centavos para evitar errores de coma flotante)
+      const sub_total = Math.round(productFound.price * products[i].amount * 100) / 100;
 
       // Suma total
       total += sub_total;
@@ -127,7 +127,7 @@ orderController.updateOrder = async (req, res) => {
       {
         client_id,
         products: newProducts,
-        total
+        total: Math.round(total * 100) / 100,
       },
       { new: true },
     );

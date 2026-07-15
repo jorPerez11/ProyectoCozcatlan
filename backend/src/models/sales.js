@@ -3,7 +3,7 @@ import mongoose, {Schema, model} from "mongoose";
 const salesSchema = new Schema ({
     order_id: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Orden"
+        ref: "orders"
     },
     delivery_address:{
         type: String

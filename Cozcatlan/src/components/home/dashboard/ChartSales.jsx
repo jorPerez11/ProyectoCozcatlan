@@ -1,7 +1,9 @@
 import React from "react";
 import Chart from 'react-apexcharts';
 
-const ChartSales = () => {
+const DEFAULT_CATEGORIES = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+
+const ChartSales = ({ categories = DEFAULT_CATEGORIES, data = Array(12).fill(0) }) => {
     const options = {
         chart: {
             id: "mi-grafico",
@@ -15,18 +17,22 @@ const ChartSales = () => {
             width: 3
         },
         xaxis: {
-            categories: ['Enero', 'Febrero','Marzo' ,'Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], // Lo que aparece abajo
+            categories, // Lo que aparece abajo
             title: { text: 'Meses' }
         },
         yaxis: {
-            title: { text: 'Cantidad de ventas' }
+            title: { text: 'Ventas ($)' },
+            labels: {
+                formatter: (value) => `$${Math.round(value).toLocaleString('es-SV')}`
+            }
         },
         tooltip: {
             theme: 'dark', // Cambia el cuadrito que sale al pasar el ratón
-            x: { show: true }
+            x: { show: true },
+            y: { formatter: (value) => `$${value.toFixed(2)}` }
         }
     };
-    const series = [{ name: "ventas totales", data: [45, 52, 6, 56, 15, 29, 30, 94, 56, 10, 50, 20] }];
+    const series = [{ name: "Ventas totales", data }];
 
     return (
 

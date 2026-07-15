@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect, useCallback, useContext } from "react";
 import { useNavigate } from "react-router";
 import { toast } from "sonner";
+import { translateLoginError } from "../utils/authErrorMessages.js";
 
 const AuthContextEmployee = createContext(null);
 export { AuthContextEmployee };
@@ -124,7 +125,7 @@ export const AuthProvider = ({ children }) => {
             const payload = await response.json().catch(() => ({}));
 
             if (!response.ok) {
-                toast.error("Error al iniciar sesión");
+                toast.error(translateLoginError(payload.message));
                 return false;
             }
 
