@@ -1,0 +1,36 @@
+{
+  "expo": {
+    "name": "Cozcatlán",
+    "slug": "cozcatlan-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.cozcatlan.mobile"
+    },
+    "android": {
+      "package": "com.cozcatlan.mobile",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundColor": "#0D253C"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash-icon.png",
+          "imageWidth": 220,
+          "resizeMode": "contain",
+          "backgroundColor": "#0D253C"
+        }
+      ],
+      "expo-font"
+    ]
+  }
+}
