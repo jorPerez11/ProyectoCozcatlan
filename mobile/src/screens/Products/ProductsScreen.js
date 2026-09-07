@@ -6,7 +6,7 @@ import ProductCard from "../../components/ProductCard";
 import EmptyState from "../../components/EmptyState";
 import LoadingOverlay from "../../components/LoadingOverlay";
 import colors from "../../constants/colors";
-import { productsApi } from "../../api/productsApi";
+import { productsApi } from "../../hooks/productsApi";
 
 export default function ProductsScreen({ navigation }) {
   const [products, setProducts] = useState([]);

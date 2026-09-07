@@ -14,7 +14,7 @@ import TextField from "../../components/TextField";
 import Button from "../../components/Button";
 import colors from "../../constants/colors";
 import { useAuth } from "../../context/AuthContext";
-import { ApiError } from "../../api/client";
+import { ApiError } from "../../hooks/client";
 
 const logo = require("../../../assets/splash-icon.png");
 

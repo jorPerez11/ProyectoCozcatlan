@@ -1,7 +1,7 @@
 import React, { createContext, useCallback, useContext, useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { authApi } from "../api/authApi";
-import { TOKEN_KEY } from "../api/client";
+import { authApi } from "../hooks/authApi";
+import { TOKEN_KEY } from "../hooks/client";
 import { decodeJwtPayload, isTokenExpired } from "../utils/jwt";
 
 const AuthContext = createContext(null);

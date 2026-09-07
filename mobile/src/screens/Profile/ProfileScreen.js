@@ -7,8 +7,8 @@ import Button from "../../components/Button";
 import LoadingOverlay from "../../components/LoadingOverlay";
 import colors from "../../constants/colors";
 import { useAuth } from "../../context/AuthContext";
-import { clientApi } from "../../api/clientApi";
-import { ApiError } from "../../api/client";
+import { clientApi } from "../../hooks/clientApi";
+import { ApiError } from "../../hooks/client";
 
 const MENU_ITEMS = [
   { label: "Mis pedidos", icon: "receipt-outline", route: "OrderHistory" },

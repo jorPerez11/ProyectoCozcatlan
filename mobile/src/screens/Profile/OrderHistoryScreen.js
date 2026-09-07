@@ -5,7 +5,7 @@ import EmptyState from "../../components/EmptyState";
 import LoadingOverlay from "../../components/LoadingOverlay";
 import colors from "../../constants/colors";
 import { useAuth } from "../../context/AuthContext";
-import { ordersApi } from "../../api/ordersApi";
+import { ordersApi } from "../../hooks/ordersApi";
 import { formatCurrency, formatDate } from "../../utils/format";
 
 const placeholder = require("../../../assets/placeholder.png");

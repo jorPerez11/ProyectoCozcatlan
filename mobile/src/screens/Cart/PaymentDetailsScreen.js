@@ -4,9 +4,9 @@ import Screen from "../../components/Screen";
 import TextField from "../../components/TextField";
 import Button from "../../components/Button";
 import colors from "../../constants/colors";
-import { ordersApi } from "../../api/ordersApi";
-import { salesApi } from "../../api/salesApi";
-import { ApiError } from "../../api/client";
+import { ordersApi } from "../../hooks/ordersApi";
+import { salesApi } from "../../hooks/salesApi";
+import { ApiError } from "../../hooks/client";
 import { useCart } from "../../context/CartContext";
 import { useAuth } from "../../context/AuthContext";
 

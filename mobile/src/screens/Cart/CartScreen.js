@@ -8,7 +8,7 @@ import LoadingOverlay from "../../components/LoadingOverlay";
 import colors from "../../constants/colors";
 import { useCart } from "../../context/CartContext";
 import { useAuth } from "../../context/AuthContext";
-import { productsApi } from "../../api/productsApi";
+import { productsApi } from "../../hooks/productsApi";
 import { formatCurrency } from "../../utils/format";
 
 export default function CartScreen({ navigation }) {

@@ -5,8 +5,8 @@ import Screen from "../../components/Screen";
 import TextField from "../../components/TextField";
 import Button from "../../components/Button";
 import colors from "../../constants/colors";
-import { authApi } from "../../api/authApi";
-import { ApiError } from "../../api/client";
+import { authApi } from "../../hooks/authApi";
+import { ApiError } from "../../hooks/client";
 
 export default function SignUpScreen({ navigation }) {
   const [firstName, setFirstName] = useState("");

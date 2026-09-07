@@ -5,12 +5,12 @@ import Button from "../../components/Button";
 import StarRating from "../../components/StarRating";
 import LoadingOverlay from "../../components/LoadingOverlay";
 import colors from "../../constants/colors";
-import { productsApi } from "../../api/productsApi";
-import { reviewsApi } from "../../api/reviewsApi";
+import { productsApi } from "../../hooks/productsApi";
+import { reviewsApi } from "../../hooks/reviewsApi";
 import { useCart } from "../../context/CartContext";
 import { useAuth } from "../../context/AuthContext";
 import { formatCurrency, formatDate } from "../../utils/format";
-import { ApiError } from "../../api/client";
+import { ApiError } from "../../hooks/client";
 
 const placeholder = require("../../../assets/placeholder.png");
 
