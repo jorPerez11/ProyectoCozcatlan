@@ -82,7 +82,7 @@ loginClientController.login = async (req, res) => {
 
     //Generamos el token JWT
     const token = jsonwebtoken.sign(
-      { id: clientFound._id, userType: "Client" },
+      { id: clientFound._id, userType: "Client", firstName: clientFound.firstName },
       config.JWT.SECRET,
       { expiresIn: "30d" },
     );

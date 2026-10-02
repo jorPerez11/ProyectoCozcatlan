@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }) => {
         const token = await AsyncStorage.getItem(TOKEN_KEY);
         const decoded = decodeJwtPayload(token);
         if (decoded && !isTokenExpired(decoded)) {
-          setUser({ id: decoded.id, userType: decoded.userType || "Client" });
+          setUser({ id: decoded.id, userType: decoded.userType || "Client", firstName: decoded.firstName });
         } else if (token) {
           await AsyncStorage.removeItem(TOKEN_KEY);
         }
@@ -39,7 +39,7 @@ export const AuthProvider = ({ children }) => {
 
     await AsyncStorage.setItem(TOKEN_KEY, token);
     const decoded = decodeJwtPayload(token);
-    setUser({ id: decoded?.id, userType: decoded?.userType || "Client" });
+    setUser({ id: decoded?.id, userType: decoded?.userType || "Client", firstName: decoded.firstName, });
     return true;
   }, []);
 

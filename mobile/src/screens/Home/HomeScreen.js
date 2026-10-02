@@ -3,19 +3,25 @@ import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
 import Screen from "../../components/Screen";
 import Button from "../../components/Button";
 import colors from "../../constants/colors";
+import { useAuth } from "../../context/AuthContext";
 
 const hero = require("../../../assets/hero.jpg");
 const pupusas = require("../../../assets/pupusas-salvadorenas.jpg");
 const riguas = require("../../../assets/riguas.jpg");
 
 export default function HomeScreen({ navigation }) {
+  const { user } = useAuth();
+  const nombre = user?.firstName;
+
   return (
     <Screen edges={["top"]}>
       <ScrollView contentContainerStyle={styles.content}>
         <Image source={hero} style={styles.hero} resizeMode="cover" />
 
         <View style={styles.section}>
-          <Text style={styles.title}>Bienvenidos a Cōzcatlan</Text>
+          <Text style={styles.title}>
+            {nombre ? `¡Hola, ${nombre}!` : "Bienvenidos a Cōzcatlan"}
+          </Text>
           <Text style={styles.paragraph}>
             Es un placer para nosotros dar a conocer nuestro país con nuestro sazón tradicional que
             viene impregnado con nuestra historia, compartiendo el sabor de nuestro hogar a todas
