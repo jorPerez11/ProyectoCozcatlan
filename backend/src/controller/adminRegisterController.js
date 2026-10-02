@@ -4,7 +4,7 @@ import crypto from "crypto";
 import jsonwebtoken from "jsonwebtoken";
 import bcryptjs from "bcryptjs";
 import adminsModel from "../models/admin.js";
-import registerCodeModelHTML from "../utils/SenderMail.js";
+import registerCodeModelHTML from "../utils/senderMail.js";
 import { config } from "../../config.js";
 
 const registerAdminController = {};

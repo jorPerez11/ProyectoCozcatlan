@@ -5,7 +5,7 @@ import nodemailer from "nodemailer";
 import { config } from "../../config.js";
 import bcrypt from "bcryptjs";
 import adminModel from "../models/admin.js";
-import HTMLPasswordRecovery from "../utils/SenderMail.js";
+import HTMLPasswordRecovery from "../utils/senderMail.js";
 
 //Creamos un array de métodos DENTRO de la carpeta controlador
 const adminRecoveryPasswordController = {};

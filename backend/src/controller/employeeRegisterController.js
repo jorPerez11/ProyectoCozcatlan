@@ -2,7 +2,7 @@ import nodemailer from "nodemailer"; // Se importa para enviar correos
 import crypto from "crypto"; // Se importa para generar los codigos aleatorios
 import jsonwebtoken from "jsonwebtoken"; // Se importa para tener acceso a la creación de token
 import bcrypt from "bcryptjs"; // Se importa para encriptar las contraseñas creadas
-import registerCodeModelHTML from "../utils/SenderMail.js";
+import registerCodeModelHTML from "../utils/senderMail.js";
 import employeeModel from "../models/employee.js"; // Se importa el modelo del employee
 import { config } from "../../config.js"; // Se importa para tener acceso al archivo config
 

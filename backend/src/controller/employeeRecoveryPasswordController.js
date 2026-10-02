@@ -5,7 +5,7 @@ import nodemailer from "nodemailer"; // Importar la libreria para enviar los cor
 import { config } from "../../config.js";
 import employeeModel from "../models/employee.js"; // Se importa el modelo del employee
 // Importar el archivo HTML
-import HTMLPasswordRecovery from "../utils/SenderMail.js";
+import HTMLPasswordRecovery from "../utils/senderMail.js";
 
 // Se crea el array de funciones 
 const employeeRecoveryPasswordController = {};
