@@ -13,7 +13,8 @@ export const config ={
     },
     EMAIL:{
         USER: process.env.EMAIL_USER,
-        PASS: process.env.EMAIL_PASS
+        PASS: process.env.EMAIL_PASS,
+        BREVO_API_KEY: process.env.BREVO_API_KEY
     },
     CLOUDINARY:{
         NAME: process.env.CLOUDINARY_CLOUD_NAME,

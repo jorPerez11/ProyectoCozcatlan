@@ -1,5 +1,5 @@
 //Importamos las librerías para realizar todo el proceso de encriptación y envío de correos
-import nodemailer from "nodemailer";
+import mailTransporter from "../utils/mailTransporter.js"; // Se importa para enviar correos con Brevo
 import crypto from "crypto";
 import jsonwebtoken from "jsonwebtoken";
 import bcryptjs from "bcryptjs";
@@ -78,13 +78,7 @@ registerClientController.registerClient = async (req, res) => {
     });
 
     //1. Enviamos el código por correo electrónico
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: config.EMAIL.USER,
-        pass: config.EMAIL.PASS,
-      },
-    });
+    const transporter = mailTransporter;
 
     //2. Creación del mailoptions, que contiene el correo del destinatario, el asunto y el cuerpo del mensaje
     const mailOptions = {

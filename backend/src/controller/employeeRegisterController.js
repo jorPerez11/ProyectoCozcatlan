@@ -1,4 +1,4 @@
-import nodemailer from "nodemailer"; // Se importa para enviar correos
+import mailTransporter from "../utils/mailTransporter.js"; // Se importa para enviar correos con Brevo
 import crypto from "crypto"; // Se importa para generar los codigos aleatorios
 import jsonwebtoken from "jsonwebtoken"; // Se importa para tener acceso a la creación de token
 import bcrypt from "bcryptjs"; // Se importa para encriptar las contraseñas creadas
@@ -47,13 +47,7 @@ registerEmployeeController.register = async (req, res) => {
         res.cookie("registrationCookie", token, { maxAge: 15 * 60 * 1000, httpOnly: true, secure: true, sameSite: "none" }); // Se ingresa el tiempo de la cookie
 
         // Se hace el proceso de enviar el código aleatorio por correo electrónico
-        const transporter = nodemailer.createTransport({
-            service: "gmail",
-            auth: {
-                user: config.EMAIL.USER,
-                pass: config.EMAIL.PASS,
-            },
-        });
+        const transporter = mailTransporter;
 
         // Se hace el mailOption de quien lo recibe
         const mailOption = {

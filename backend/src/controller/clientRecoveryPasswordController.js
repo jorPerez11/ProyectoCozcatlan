@@ -1,7 +1,7 @@
 // Importamos las librerías necesarias para realizar recuperación exitosa
 import jsonwebtoken from "jsonwebtoken";
 import crypto from "crypto";
-import nodemailer from "nodemailer";
+import mailTransporter from "../utils/mailTransporter.js"; // Se importa para enviar correos con Brevo
 import { config } from "../../config.js";
 import bcrypt from "bcryptjs";
 import clientModel from "../models/client.js";
@@ -62,13 +62,7 @@ clientRecoveryPasswordController.requestCode = async (req, res) => {
     });
 
     // Enviamos el correo electrónico
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: config.EMAIL.USER,
-        pass: config.EMAIL.PASS,
-      },
-    });
+    const transporter = mailTransporter;
 
     // Se crea el MAIL OPTIONS
     const mailOptions = {
