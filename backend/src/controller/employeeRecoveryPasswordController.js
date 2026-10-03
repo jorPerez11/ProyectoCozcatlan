@@ -1,7 +1,7 @@
 import jsonwebtoken from "jsonwebtoken"; // Importar la libreria para generar el token
 import bcrypt from "bcryptjs"; // Importar la libreria para la encriptacion de la contraseña
 import crypto, { verify } from "crypto"; // Importar la libreria para generar codigos aleatorios
-import nodemailer from "nodemailer"; // Importar la libreria para enviar los correos
+import mailTransporter from "../utils/mailTransporter.js"; // Se importa para enviar correos con Brevo
 import { config } from "../../config.js";
 import employeeModel from "../models/employee.js"; // Se importa el modelo del employee
 // Importar el archivo HTML
@@ -36,13 +36,7 @@ employeeRecoveryPasswordController.requestCode = async (req, res) => {
         res.cookie("recoveryCookie", token, { maxAge: 15 * 60 * 1000, httpOnly: true, secure: true, sameSite: "none" });
 
         // Se enviara el correo con el código aleatorio
-        const transporter = nodemailer.createTransport({
-            service: "gmail",
-            auth: {
-                user: config.EMAIL.USER,
-                pass: config.EMAIL.PASS,
-            },
-        });
+        const transporter = mailTransporter;
 
         // mailOptions a quien se envia y como lo hace
         const mailOptions = {
@@ -54,11 +48,12 @@ employeeRecoveryPasswordController.requestCode = async (req, res) => {
         };
 
         // Se envia el correo 
-        transporter.sendMail(mailOptions, (error, info) => {
-            if (error) {
-                return res.status(500).json({ message: "Error sending email" });
-            }
-        });
+        try {
+            await transporter.sendMail(mailOptions);
+        }
+        catch (error) {
+            return res.status(500).json({ message: "Error sending email" });
+        }
         return res.status(200).json({ message: "Email sent" });
     }
     catch (error) {
