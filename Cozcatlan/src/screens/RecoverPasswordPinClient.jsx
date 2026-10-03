@@ -9,7 +9,7 @@ export const RecoverPasswordPinClient = () => {
     const [pin, setPin] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const API_VERIFY_CODE = "http://localhost:4000/api/client/recoveryPasswordClient/verifyCode";
+    const API_VERIFY_CODE = "https://proyectocozcatlan.onrender.com/api/client/recoveryPasswordClient/verifyCode";
 
     const handleNext = async (e) => {
         e.preventDefault(); 

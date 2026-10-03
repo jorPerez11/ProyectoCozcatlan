@@ -12,7 +12,7 @@ export const RecoverNewPasswordEmployee = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     // Endpoint adaptado para guardar la nueva contraseña del empleado
-    const API_NEW_PASSWORD = "http://localhost:4000/api/employee/recoveryPasswordEmployee/newPassword";
+    const API_NEW_PASSWORD = "https://proyectocozcatlan.onrender.com/api/employee/recoveryPasswordEmployee/newPassword";
 
     const handleNext = async (e) => {
         e.preventDefault();

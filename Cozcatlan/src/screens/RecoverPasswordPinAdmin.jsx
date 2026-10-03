@@ -10,7 +10,7 @@ export const RecoverPasswordPinAdmin = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     // Endpoint adaptado para la verificación de administradores
-    const API_VERIFY_CODE = "http://localhost:4000/api/admin/recoveryPasswordAdmin/verifyCode";
+    const API_VERIFY_CODE = "https://proyectocozcatlan.onrender.com/api/admin/recoveryPasswordAdmin/verifyCode";
 
     const handleNext = async (e) => {
         e.preventDefault(); 

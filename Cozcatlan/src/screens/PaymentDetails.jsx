@@ -63,7 +63,7 @@ const PaymentForm = () => {
       };
 
       // petición HTTP POST a backend
-      const response = await fetch("http://localhost:4000/api/sales", {
+      const response = await fetch("https://proyectocozcatlan.onrender.com/api/sales", {
         method: "POST", 
         headers: {
           "Content-Type": "application/json", 

@@ -30,7 +30,7 @@ const ShoppingCart = () => {
         try {
             const products = await Promise.all(
                 cart.map(item =>
-                    fetch(`http://localhost:4000/api/products/${item.id}`)
+                    fetch(`https://proyectocozcatlan.onrender.com/api/products/${item.id}`)
                         .then(res => res.json())
                         .then(product => ({ ...product, quantity: item.quantity }))
                 )

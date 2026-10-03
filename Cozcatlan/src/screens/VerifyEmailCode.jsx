@@ -10,8 +10,8 @@ import { toast } from "sonner"; // Importación de la biblioteca de notificacion
 export const VerifyEmailCode = () => {
 
     const navigate = useNavigate(); // Inicializamos la función de navegación
-    const API_VERIFY = "http://localhost:4000/api/admin/registerAdmin/verifyCodeEmail"; // URL del endpoint para verificar el código OTP
-    const API_REGISTER = "http://localhost:4000/api/admin/registerAdmin"; // URL del endpoint para registrar un nuevo usuario (utilizado para reenviar el código OTP)
+    const API_VERIFY = "https://proyectocozcatlan.onrender.com/api/admin/registerAdmin/verifyCodeEmail"; // URL del endpoint para verificar el código OTP
+    const API_REGISTER = "https://proyectocozcatlan.onrender.com/api/admin/registerAdmin"; // URL del endpoint para registrar un nuevo usuario (utilizado para reenviar el código OTP)
     const [otpCode, setOtpCode] = useState(""); // Estado local para almacenar el código OTP ingresado por el usuario
     const [isSubmitting, setIsSubmitting] = useState(false); // Estado local para manejar el estado de envío del formulario de verificación OTP
     const [isResending, setIsResending] = useState(false); // Estado local para manejar el estado de reenvío del código OTP

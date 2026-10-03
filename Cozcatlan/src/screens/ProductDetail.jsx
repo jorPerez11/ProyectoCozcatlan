@@ -14,7 +14,7 @@ const ProductDetail = () => {
   const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
-    fetch(`http://localhost:4000/api/products/${id}`)
+    fetch(`https://proyectocozcatlan.onrender.com/api/products/${id}`)
       .then(res => res.json())
       .then(data => setProduct(data))
       .catch(err => console.log("error:", err));

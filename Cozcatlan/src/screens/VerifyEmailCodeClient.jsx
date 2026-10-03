@@ -8,8 +8,8 @@ export const VerifyEmailCode = () => {
     const navigate = useNavigate(); 
     
     // Endpoints apuntando correctamente al flujo del cliente
-    const API_VERIFY = "http://localhost:4000/api/client/registerClient/verifyCodeEmail"; 
-    const API_REGISTER = "http://localhost:4000/api/client/registerClient"; 
+    const API_VERIFY = "https://proyectocozcatlan.onrender.com/api/client/registerClient/verifyCodeEmail"; 
+    const API_REGISTER = "https://proyectocozcatlan.onrender.com/api/client/registerClient"; 
 
     const [otpCode, setOtpCode] = useState(""); 
     const [isSubmitting, setIsSubmitting] = useState(false); 

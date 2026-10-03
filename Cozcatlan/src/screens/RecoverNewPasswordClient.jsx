@@ -11,7 +11,7 @@ export const RecoverNewPasswordClient = () => {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const API_NEW_PASSWORD = "http://localhost:4000/api/client/recoveryPasswordClient/newPassword";
+    const API_NEW_PASSWORD = "https://proyectocozcatlan.onrender.com/api/client/recoveryPasswordClient/newPassword";
 
     const handleNext = async (e) => {
         e.preventDefault();

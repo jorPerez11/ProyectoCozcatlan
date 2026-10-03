@@ -12,7 +12,7 @@ export const RecoverNewPasswordAdmin = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     // Endpoint adaptado para guardar la nueva contraseña del administrador
-    const API_NEW_PASSWORD = "http://localhost:4000/api/admin/recoveryPasswordAdmin/newPassword";
+    const API_NEW_PASSWORD = "https://proyectocozcatlan.onrender.com/api/admin/recoveryPasswordAdmin/newPassword";
 
     const handleNext = async (e) => {
         e.preventDefault();

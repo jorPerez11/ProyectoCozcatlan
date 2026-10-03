@@ -10,7 +10,7 @@ export const RecoverPasswordPinEmployee = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     // Endpoint adaptado para la verificación de empleados
-    const API_VERIFY_CODE = "http://localhost:4000/api/employee/recoveryPasswordEmployee/verifyCode";
+    const API_VERIFY_CODE = "https://proyectocozcatlan.onrender.com/api/employee/recoveryPasswordEmployee/verifyCode";
 
     const handleNext = async (e) => {
         e.preventDefault(); 

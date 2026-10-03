@@ -10,7 +10,7 @@ export const RecoverPasswordAdmin = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     // Endpoint adaptado para el administrador
-    const API_REQUEST_CODE = "http://localhost:4000/api/admin/recoveryPasswordAdmin/requestCode";
+    const API_REQUEST_CODE = "https://proyectocozcatlan.onrender.com/api/admin/recoveryPasswordAdmin/requestCode";
 
     const handleNext = async (e) => {
         e.preventDefault();

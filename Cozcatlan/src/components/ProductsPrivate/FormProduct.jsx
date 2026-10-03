@@ -30,7 +30,7 @@ const FormProduct = ({ formData, isEditing, selectedFiles, setSelectedFiles, onV
     });
 
     useEffect(() => {
-        fetch("http://localhost:4000/api/suppliers")
+        fetch("https://proyectocozcatlan.onrender.com/api/suppliers")
             .then(res => res.json())
             .then(data => setSuppliers(data))
             .catch(err => console.log("error:", err));

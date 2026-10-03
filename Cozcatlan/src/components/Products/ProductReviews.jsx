@@ -4,8 +4,8 @@ import { toast } from "sonner";
 import { useAuth } from "../../hooks/UseAuthClient.js";
 import "./ProductReviews.css";
 
-const API_REVIEWS = "http://localhost:4000/api/reviews";
-const API_ORDERS = "http://localhost:4000/api/orders";
+const API_REVIEWS = "https://proyectocozcatlan.onrender.com/api/reviews";
+const API_ORDERS = "https://proyectocozcatlan.onrender.com/api/orders";
 
 const getReviewerName = (client) => {
     if (!client) return "Cliente";

@@ -9,7 +9,7 @@ export const RecoverPasswordClient = () => {
     const [email, setEmail] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const API_REQUEST_CODE = "http://localhost:4000/api/client/recoveryPasswordClient/requestCode";
+    const API_REQUEST_CODE = "https://proyectocozcatlan.onrender.com/api/client/recoveryPasswordClient/requestCode";
 
     const handleNext = async (e) => {
         e.preventDefault();

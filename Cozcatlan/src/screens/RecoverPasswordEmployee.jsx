@@ -10,7 +10,7 @@ export const RecoverPasswordEmployee = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     // endpoint para fetch a empelado
-    const API_REQUEST_CODE = "http://localhost:4000/api/employee/recoveryPasswordEmployee/requestCode";
+    const API_REQUEST_CODE = "https://proyectocozcatlan.onrender.com/api/employee/recoveryPasswordEmployee/requestCode";
 
     const handleNext = async (e) => {
         e.preventDefault();
