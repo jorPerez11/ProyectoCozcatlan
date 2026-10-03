@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router";
 
 const UseClientData = () => {
     const navigate = useNavigate();
-    const API_BASE = "http://localhost:4000/api/employee";
+    const API_BASE = "https://proyectocozcatlan.onrender.com/api/employee";
     const API_REGISTER = `${API_BASE}/registerEmployee`;
     const API_USERS = `${API_BASE}`;
     const TOKEN_KEY = "accessTokenAdmin";

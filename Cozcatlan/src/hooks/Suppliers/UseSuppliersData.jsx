@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { toast } from "sonner";
 
-const API = "http://localhost:4000/api/suppliers";
+const API = "https://proyectocozcatlan.onrender.com/api/suppliers";
 
 const UseSuppliersData = () => {
     const [suppliers, setSuppliers] = useState([]);

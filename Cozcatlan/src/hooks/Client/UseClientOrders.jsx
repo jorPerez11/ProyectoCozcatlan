@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useAuth } from "../UseAuthClient.js";
 
-const API_ORDERS = "http://localhost:4000/api/orders";
+const API_ORDERS = "https://proyectocozcatlan.onrender.com/api/orders";
 
 const UseClientOrders = () => {
     const { user } = useAuth();

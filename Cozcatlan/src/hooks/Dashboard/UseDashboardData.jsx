@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { useAuthAdmin } from "../../contexts/AuthContextAdmin";
 import { useAuthEmployee } from "../../contexts/AuthContextEmployee";
 
-const API_CLIENTS = "http://localhost:4000/api/client";
-const API_ORDERS = "http://localhost:4000/api/orders";
-const API_SALES = "http://localhost:4000/api/sales";
-const API_ADMINS = "http://localhost:4000/api/admin";
-const API_EMPLOYEES = "http://localhost:4000/api/employee";
+const API_CLIENTS = "https://proyectocozcatlan.onrender.com/api/client";
+const API_ORDERS = "https://proyectocozcatlan.onrender.com/api/orders";
+const API_SALES = "https://proyectocozcatlan.onrender.com/api/sales";
+const API_ADMINS = "https://proyectocozcatlan.onrender.com/api/admin";
+const API_EMPLOYEES = "https://proyectocozcatlan.onrender.com/api/employee";
 
 export const MONTH_LABELS = [
     "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",

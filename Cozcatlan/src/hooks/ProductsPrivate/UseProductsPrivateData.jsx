@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { toast } from "sonner";
 
-const API = "http://localhost:4000/api/products";
+const API = "https://proyectocozcatlan.onrender.com/api/products";
 
 const ITEMS_PER_PAGE = 9;
 

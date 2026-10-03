@@ -7,7 +7,7 @@ const UseAdminData = () => {
 
     const navigate = useNavigate();
 
-    const API_BASE = "http://localhost:4000/api/admin";
+    const API_BASE = "https://proyectocozcatlan.onrender.com/api/admin";
     const API_REGISTER = `${API_BASE}/registerAdmin`;
     const API_USERS = `${API_BASE}`;
     const TOKEN_KEY = "accessTokenAdmin";

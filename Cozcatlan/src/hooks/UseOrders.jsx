@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Swal from "sweetalert2";
 
-const API_URL = "http://localhost:4000/api/orders";
+const API_URL = "https://proyectocozcatlan.onrender.com/api/orders";
 
 const UseOrders = () => {
     const [loading, setLoading] = useState(false);
