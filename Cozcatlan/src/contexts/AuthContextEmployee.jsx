@@ -14,7 +14,7 @@ export const useAuthEmployee = () => {
     return context;
 };
 
-const API_URL = "http://localhost:4000/api/employee";
+const API_URL = "https://proyectocozcatlan.onrender.com/api/employee";
 const STORAGE_KEY = "accessTokenEmployee";
 const REMEMBER_KEY = "rememberDeviceEmployee";
 
@@ -94,7 +94,7 @@ export const AuthProvider = ({ children }) => {
 
         try {
             if (callApi) {
-                await fetch(`http://localhost:4000/api/logout`, {
+                await fetch(`https://proyectocozcatlan.onrender.com/api/logout`, {
                     method: "POST",
                     credentials: "include",
                 });

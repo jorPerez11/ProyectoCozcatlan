@@ -14,7 +14,7 @@ export const useAuthClient = () => {
     return context;
 };
 
-const API_URL = "http://localhost:4000/api/client"; // Ajusta según tus rutas de cliente
+const API_URL = "https://proyectocozcatlan.onrender.com/api/client"; // Ajusta según tus rutas de cliente
 const STORAGE_KEY = "accessTokenClient";
 const REMEMBER_KEY = "rememberDeviceClient";
 
@@ -87,7 +87,7 @@ export const AuthProviderClient = ({ children }) => {
         const callApi = options?.callApi ?? true;
         try {
             if (callApi) {
-                await fetch(`http://localhost:4000/api/logout`, {
+                await fetch(`https://proyectocozcatlan.onrender.com/api/logout`, {
                     method: "POST",
                     credentials: "include",
                 });

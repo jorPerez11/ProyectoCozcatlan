@@ -14,7 +14,7 @@ export const useAuthAdmin = () => {
     return context;
 };
 
-const API_URL = "http://localhost:4000/api/admin"; 
+const API_URL = "https://proyectocozcatlan.onrender.com/api/admin"; 
 const STORAGE_KEY = "accessTokenAdmin";
 const REMEMBER_KEY = "rememberDeviceAdmin";
 
@@ -87,7 +87,7 @@ export const AuthProviderAdmin = ({ children }) => {
         const callApi = options?.callApi ?? true;
         try {
             if (callApi) {
-                await fetch(`http://localhost:4000/api/logout`, { // Ajusta tu endpoint de logout admin
+                await fetch(`https://proyectocozcatlan.onrender.com/api/logout`, { // Ajusta tu endpoint de logout admin
                     method: "POST",
                     credentials: "include",
                 });
