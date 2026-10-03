@@ -3,7 +3,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 // En Expo, las variables con prefijo EXPO_PUBLIC_ se inyectan automáticamente
 // desde el .env del proyecto. Debe apuntar a la IP LAN de la PC donde corre
 // el backend (no "localhost", el teléfono no la puede resolver). Ver README.
-const FALLBACK_URL = "http://192.168.1.100:4000/api";
+const FALLBACK_URL = "https://proyectocozcatlan.onrender.com/api";
 export const API_BASE_URL = process.env.EXPO_PUBLIC_API_URL || FALLBACK_URL;
 
 export const TOKEN_KEY = "cozcatlan_client_token";
