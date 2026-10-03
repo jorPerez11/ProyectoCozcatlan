@@ -44,7 +44,7 @@ registerEmployeeController.register = async (req, res) => {
             { expiresIn: "15m" },
         );
 
-        res.cookie("registrationCookie", token, { maxAge: 15 * 60 * 1000 }); // Se ingresa el tiempo de la cookie
+        res.cookie("registrationCookie", token, { maxAge: 15 * 60 * 1000, httpOnly: true, secure: true, sameSite: "none" }); // Se ingresa el tiempo de la cookie
 
         // Se hace el proceso de enviar el código aleatorio por correo electrónico
         const transporter = nodemailer.createTransport({
@@ -118,7 +118,7 @@ registerEmployeeController.verifyCode = async (req, res) => {
             isVerified: true,
         });
         await newEmployee.save();
-        res.clearCookie("registrationCookie");
+        res.clearCookie("registrationCookie", { httpOnly: true, secure: true, sameSite: "none" });
         return res.status(201).json({ message: "Employee registered" })
     }
     catch (error) {

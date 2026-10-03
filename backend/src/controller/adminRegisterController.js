@@ -72,6 +72,9 @@ registerAdminController.registerAdmin = async (req, res) => {
     //Lo guardamos en la cookie
     res.cookie("registrationCookie", token, {
       maxAge: 15 * 60 * 1000, //15 minutos
+      httpOnly: true,
+      secure: true,
+      sameSite: "none",
     });
 
     //1. Enviamos el código por correo electrónico
@@ -179,7 +182,7 @@ registerAdminController.verifyCode = async (req, res) => {
     await newAdmin.save();
 
     //Limpiamos la cookie
-    res.clearCookie("registrationCookie");
+    res.clearCookie("registrationCookie", { httpOnly: true, secure: true, sameSite: "none" });
 
     //Retornamos la respuesta
     return res

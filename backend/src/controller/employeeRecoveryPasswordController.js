@@ -33,7 +33,7 @@ employeeRecoveryPasswordController.requestCode = async (req, res) => {
             { expiresIn: "15m" },
         );
         // El tiempo en que la cookie se restablecera
-        res.cookie("recoveryCookie", token, { maxAge: 15 * 60 * 1000 });
+        res.cookie("recoveryCookie", token, { maxAge: 15 * 60 * 1000, httpOnly: true, secure: true, sameSite: "none" });
 
         // Se enviara el correo con el código aleatorio
         const transporter = nodemailer.createTransport({
@@ -94,7 +94,7 @@ employeeRecoveryPasswordController.verifyCode = async (req, res) => {
             { expiresIn: "15m" },
         );
         
-        res.cookie("recoveryCookie", newToken, { maxAge: 15 * 60 * 1000 });
+        res.cookie("recoveryCookie", newToken, { maxAge: 15 * 60 * 1000, httpOnly: true, secure: true, sameSite: "none" });
         return res.status(200).json({ message: "Code verified successful" });
     }
     catch (error) {
@@ -127,7 +127,7 @@ employeeRecoveryPasswordController.newPassword = async (req, res) => {
             { new: true },
         );
 
-        res.clearCookie("recoveryCookie");
+        res.clearCookie("recoveryCookie", { httpOnly: true, secure: true, sameSite: "none" });
 
         return res.status(200).json({ message: "Password updated" });
     }

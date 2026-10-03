@@ -61,7 +61,7 @@ employeeLoginController.login = async (req, res) => {
         );
 
         // El token se guarda en una cookie
-        res.cookie("authCookie", token);
+        res.cookie("authCookie", token, { httpOnly: true, secure: true, sameSite: "none" });
         return res.status(200).json({ message: "Login successful",token });
     }
     catch (error) {

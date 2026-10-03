@@ -55,6 +55,9 @@ adminRecoveryPasswordController.requestCode = async (req, res) => {
     //Lo guardamos en la cookie
     res.cookie("recoveryCookie", token, {
       maxAge: 15 * 60 * 1000,
+      httpOnly: true,
+      secure: true,
+      sameSite: "none",
     });
 
     //Enviamos el correo electrónico
@@ -138,6 +141,9 @@ adminRecoveryPasswordController.verifyCode = async (req, res) => {
     //Lo guardamos en la cookie
     res.cookie("recoveryCookie", newToken, {
       maxAge: 15 * 60 * 1000,
+      httpOnly: true,
+      secure: true,
+      sameSite: "none",
     });
 
     //Retornamos la respuesta
@@ -200,7 +206,7 @@ adminRecoveryPasswordController.newPassword = async (req, res) => {
     }
 
     //Limpiamos la cookie
-    res.clearCookie("recoveryCookie");
+    res.clearCookie("recoveryCookie", { httpOnly: true, secure: true, sameSite: "none" });
 
     //Retornamos la respuesta
     return res.status(200).json({
